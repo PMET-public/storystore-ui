@@ -1,6 +1,6 @@
 {
   "name": "@pmet-public/storystore-ui",
-  "version": "1.0.0",
+  "version": "v1.0.0-beta",
   "description": "Luma React UI LIbrary",
   "repository": "https://github.com/pmet-public/storystore-ui.git",
   "author": "Carlos A. Cabrera @fnhhipster",

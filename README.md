@@ -1,6 +1,6 @@
 # StoryStore UI
 
-[📕 UI Library Storybook](https://fnhipster.github.io/storystore-ui)
+[📕 UI Library Storybook](https://pmet-public.github.io/storystore-ui)
 
 ## Getting Started
 

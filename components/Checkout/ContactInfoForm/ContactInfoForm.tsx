@@ -36,7 +36,6 @@ export type ContactInfoFormProps = FormProps<ContactInfoFormPayload> & {
     }
     editButton: ButtonProps
     submitButton: ButtonProps
-    onSubmit: (payload: ContactInfoFormPayload) => any
     onEdit: (...args: any) => any
     loading?: boolean
     submitting?: boolean

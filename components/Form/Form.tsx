@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, FormHTMLAttributes, LabelHTMLAttributes, InputHTMLAttributes, MutableRefObject } from 'react'
-import { Component, Props } from '../../lib'
+import React, { useCallback, useEffect, FormHTMLAttributes, LabelHTMLAttributes, InputHTMLAttributes } from 'react'
+import { Component, Props, Override } from '../../lib'
 import { Root, Field as FieldRoot, Label as LabelRoot, Error as ErrorRoot, Input as InputRoot, FormError as FormErrorRoot, FieldColors } from './Form.styled'
 
 export { FieldColors } from './Form.styled'
@@ -8,16 +8,19 @@ import { FormContext, useForm, useFormContext, ValidationOptions, FieldErrors, O
 import _get from 'lodash.get'
 
 /** Form */
-export type FormProps<P = {}> = FormHTMLAttributes<any> & {
-    onValues?: (values: any) => any
-    onErrors?: (values: FieldErrors<any>) => any
-    options?: UseFormOptions
-    onSubmit?: OnSubmit<P>
-}
+export type FormProps<P> = Override<
+    FormHTMLAttributes<any>,
+    {
+        onValues?: (values: any) => any
+        onErrors?: (values: FieldErrors<any>) => any
+        options?: UseFormOptions
+        onSubmit?: OnSubmit<P>
+    }
+>
 
 export type FormContext = FormContextValues
 
-export const Form: Component<FormProps> = React.forwardRef(({ children, onSubmit, onErrors, onValues, onChange, options, ...props }, ref: MutableRefObject<FormContextValues>) => {
+export const Form: Component<FormProps<any>> = React.forwardRef(({ children, onSubmit, onErrors, onValues, onChange, options, ...props }, ref: any) => {
     const form = useForm(options)
 
     if (ref) ref.current = form

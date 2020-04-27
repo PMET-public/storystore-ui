@@ -35,7 +35,7 @@ export const ShippingMethodForm: Component<ShippingMethodFormProps> = ({ edit = 
     const disabled = submitting || !edit
 
     return (
-        <Root as={Form} onSubmit={onSubmit}>
+        <Root as={Form} onSubmit={onSubmit} {...props}>
             <Select loading={loading} disabled={disabled} {...shippingMethod} />
 
             {error && <FormError>{error}</FormError>}

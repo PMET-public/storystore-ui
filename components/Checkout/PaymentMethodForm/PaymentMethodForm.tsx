@@ -170,28 +170,25 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({ submittin
         [createBraintreeInstance]
     )
 
-    const handleOnSubmit = useCallback(
-        async form => {
-            dispatch({ type: 'setLoader', payload: true })
-            dispatch({ type: 'unsetFormError' })
+    const handleOnSubmit = useCallback(async () => {
+        dispatch({ type: 'setLoader', payload: true })
+        dispatch({ type: 'unsetFormError' })
 
-            async function _submit() {
-                if (!instance) return
-                const payload = await instance.requestPaymentMethod()
-                dispatch({ type: 'setPaymentInfo', payload })
-                await onSubmit(payload)
-            }
+        async function _submit() {
+            if (!instance) return
+            const payload = await instance.requestPaymentMethod()
+            dispatch({ type: 'setPaymentInfo', payload })
+            await onSubmit(payload)
+        }
 
-            try {
-                await _submit()
-            } catch (error) {
-                dispatch({ type: 'setFormError', payload: error.message })
-            }
+        try {
+            await _submit()
+        } catch (error) {
+            dispatch({ type: 'setFormError', payload: error.message })
+        }
 
-            dispatch({ type: 'setLoader', payload: false })
-        },
-        [onSubmit, instance]
-    )
+        dispatch({ type: 'setLoader', payload: false })
+    }, [onSubmit, instance])
 
     return (
         <Root as={Form} onSubmit={handleOnSubmit}>

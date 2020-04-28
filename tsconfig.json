@@ -1,27 +1,30 @@
 {
     "compilerOptions": {
-        "allowJs": true,
+        "allowJs": false,
         "allowSyntheticDefaultImports": true,
-        "jsx": "preserve",
-        "lib": ["dom", "es2017"],
-        "module": "esnext",
-        "moduleResolution": "node",
-        "noEmit": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "preserveConstEnums": true,
-        "removeComments": false,
-        "skipLibCheck": true,
-        "sourceMap": true,
-        "strict": true,
-        "target": "esnext",
-        "baseUrl": "./",
-        "typeRoots": ["./node_modules/@types", "./@types"],
-        "forceConsistentCasingInFileNames": true,
+        "emitDecoratorMetadata": true,
         "esModuleInterop": true,
-        "resolveJsonModule": true,
-        "isolatedModules": true
+        "experimentalDecorators": true,
+        "forceConsistentCasingInFileNames": true,
+        "jsx": "react",
+        "lib": [
+            "dom",
+            "es2017"
+        ],
+        "moduleResolution": "node",
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        "outDir": "./dist",
+        "sourceMap": true,
+        "strictNullChecks": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "target": "ES5"
     },
-    "exclude": ["node_modules"],
-    "include": ["**/*.ts", "**/*.tsx"]
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
 }

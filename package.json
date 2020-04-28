@@ -6,14 +6,22 @@
   "author": "Carlos A. Cabrera @fnhhipster",
   "license": "MIT",
   "scripts": {
-    "dev": "start-storybook -p 5001 --quiet -s ./public",
+    "prepare": "yarn build",
+    "prebuild": "rimraf dist",
+    "build": "rollup -c",
+    "tsc": "tsc",
+    "dev": "concurrently -n rollup,storybook -c cyan,magenta 'yarn rollup:watch' 'yarn storybook:watch'",
+    "rollup:watch": "rollup -c -w",
+    "storybook:watch": "start-storybook -p 5001 --quiet -s ./public",
     "generate": "./bin/generate.js",
     "storybook:deploy": "storybook-to-ghpages",
     "lint": "eslint '*/**/*.{ts,tsx}' --quiet --fix",
     "test": "echo \"No Tests Found 🧐\" ",
     "prettier": "prettier --check --write ."
   },
-  "types": "./@types",
+  "files": [
+    "dist/"
+  ],
   "peerDependencies": {
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -81,6 +89,12 @@
     "react-toastify": "^5.5.0",
     "remixicon": "^2.3.0",
     "rimraf": "^3.0.0",
+    "rollup": "^2.7.3",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-multi-input": "^1.1.1",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-resolve": "^5.2.0",
     "styled-components": "4.4.1",
     "typescript": "^3.7.4",
     "webpack": "^4.41.5"

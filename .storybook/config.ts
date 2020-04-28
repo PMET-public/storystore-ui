@@ -4,7 +4,7 @@ import { withKnobs } from '@storybook/addon-knobs'
 import { withA11y } from '@storybook/addon-a11y'
 import { withLuma } from './addons/luma/withLuma'
 
-import Logo from './static/logo.png'
+const Logo = require('./static/logo.png')
 
 addDecorator(withLuma)
 addDecorator(withKnobs)
@@ -31,7 +31,7 @@ addParameters({
     },
 })
 
-const req = require.context('../components', true, /\.(story|stories)\.tsx$/)
+const req = require.context('../src/components', true, /\.(story|stories)\.tsx$/)
 
 function loadStories() {
     require('./welcome.tsx')

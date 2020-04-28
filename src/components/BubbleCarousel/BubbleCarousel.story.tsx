@@ -12,7 +12,7 @@ storiesOf('📦 Components/BubbleCarousel', module).add('Default', () => (
                 as: 'a',
                 href: '#',
                 image: {
-                    src: require('../../public/images/fashion-thumb1.jpg'),
+                    src: require('../../../public/images/fashion-thumb1.jpg'),
                 },
                 text: 'Minimalist',
             },
@@ -20,7 +20,7 @@ storiesOf('📦 Components/BubbleCarousel', module).add('Default', () => (
                 as: 'a',
                 href: '#',
                 image: {
-                    src: require('../../public/images/fashion-thumb1.jpg'),
+                    src: require('../../../public/images/fashion-thumb1.jpg'),
                 },
                 text: 'Minimalist',
             },
@@ -28,7 +28,7 @@ storiesOf('📦 Components/BubbleCarousel', module).add('Default', () => (
                 as: 'a',
                 href: '#',
                 image: {
-                    src: require('../../public/images/fashion-thumb2.jpg'),
+                    src: require('../../../public/images/fashion-thumb2.jpg'),
                 },
                 text: 'Dressy',
             },
@@ -36,7 +36,7 @@ storiesOf('📦 Components/BubbleCarousel', module).add('Default', () => (
                 as: 'a',
                 href: '#',
                 image: {
-                    src: require('../../public/images/fashion-thumb3.jpg'),
+                    src: require('../../../public/images/fashion-thumb3.jpg'),
                 },
                 text: 'Beachy',
             },
@@ -44,7 +44,7 @@ storiesOf('📦 Components/BubbleCarousel', module).add('Default', () => (
                 as: 'a',
                 href: '#',
                 image: {
-                    src: require('../../public/images/fashion-thumb4.jpg'),
+                    src: require('../../../public/images/fashion-thumb4.jpg'),
                 },
                 text: 'Biz Cas’',
             },
@@ -52,7 +52,7 @@ storiesOf('📦 Components/BubbleCarousel', module).add('Default', () => (
                 as: 'a',
                 href: '#',
                 image: {
-                    src: require('../../public/images/fashion-thumb5.jpg'),
+                    src: require('../../../public/images/fashion-thumb5.jpg'),
                 },
                 text: 'All Time',
             },

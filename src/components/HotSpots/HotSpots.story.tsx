@@ -29,7 +29,7 @@ storiesOf('📦 Components/HotSpots', module)
         <HotSpots
             image={{
                 alt: 'Shop the Look',
-                src: require('../../public/images/products-hotspots.jpg'),
+                src: require('../../../public/images/products-hotspots.jpg'),
                 height: 600,
                 width: 600,
             }}
@@ -50,7 +50,7 @@ storiesOf('📦 Components/HotSpots', module)
         <HotSpots
             image={{
                 alt: 'Shop the look',
-                src: require('../../public/images/products-hotspots.jpg'),
+                src: require('../../../public/images/products-hotspots.jpg'),
                 height: 600,
                 width: 600,
             }}

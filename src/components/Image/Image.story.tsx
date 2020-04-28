@@ -3,12 +3,9 @@ import Image from '.'
 import { storiesOf } from '@storybook/react'
 import { text, number, boolean } from '@storybook/addon-knobs'
 
-// @ts-ignore
-import ImageSrc1 from '../../public/images/banner-1.jpg'
-// @ts-ignore
-import ImageMobileSrc1 from '../../public/images/banner-1--mobile.jpg'
-// @ts-ignore
-import ImageSrc2 from '../../public/images/banner-2.jpg'
+const ImageSrc1 = require('../../../public/images/banner-1.jpg')
+const ImageMobileSrc1 = require('../../../public/images/banner-1--mobile.jpg')
+const ImageSrc2 = require('../../../public/images/banner-2.jpg')
 
 storiesOf('📦 Components/Image', module)
     .add('Default', () => <Image alt={text('alt', 'Lorem')} src={text('src', ImageSrc1)} height={number('height', 400)} width={number('width', 600)} vignette={boolean('vignette', false)} />)

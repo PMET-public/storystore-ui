@@ -10,7 +10,7 @@ storiesOf('📦 Components/ProductList', module).add('Default', () => (
         items={new Array(number('# items', 7)).fill(null).map(() => ({
             image: {
                 alt: '',
-                src: require('../../public/images/product-item-sample.jpg'),
+                src: require('../../../public/images/product-item-sample.jpg'),
             },
             price: {
                 regular: 49.99,

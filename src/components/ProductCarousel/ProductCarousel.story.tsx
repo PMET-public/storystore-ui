@@ -10,7 +10,7 @@ storiesOf('📦 Components/ProductCarousel', module).add('Default', () => {
         items: new Array(number('Products Qty.', 4)).fill({
             image: {
                 alt: '',
-                src: require('../../public/images/product-item-sample.jpg'),
+                src: require('../../../public/images/product-item-sample.jpg'),
             },
             onClick: action('onClick'),
             price: {

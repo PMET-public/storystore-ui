@@ -13,7 +13,7 @@ storiesOf('📦 Components/CartList', module).add('Default', () => (
             },
             sku: 'SKU. 123456',
             thumbnail: {
-                src: require('../../public/images/fashion-thumb2.jpg'),
+                src: require('../../../public/images/fashion-thumb2.jpg'),
             },
             quantity: {
                 value: 2,

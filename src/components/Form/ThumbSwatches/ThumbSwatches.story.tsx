@@ -5,6 +5,8 @@ import { number, boolean, text, select } from '@storybook/addon-knobs'
 import { Form, FieldColors } from '../Form'
 import { action } from '@storybook/addon-actions'
 
+const ProductImage = require('../../../../public/images/product-item-sample.jpg')
+
 storiesOf('📦 Components/Form/ThumbSwatches', module).add('Default', () => (
     <Form onSubmit={action('onSubmit')}>
         <ThumbSwatches
@@ -15,7 +17,7 @@ storiesOf('📦 Components/Form/ThumbSwatches', module).add('Default', () => (
             items={Array(number('quantity', 5)).fill({
                 image: {
                     alt: 'Hola',
-                    src: require('../../../public/images/product-item-sample.jpg'),
+                    src: ProductImage,
                 },
             })}
             style={{ maxWidth: '40rem' }}

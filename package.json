@@ -5,9 +5,6 @@
   "repository": "https://github.com/pmet-public/storystore-ui.git",
   "author": "Carlos A. Cabrera @fnhhipster",
   "license": "MIT",
-  "files": [
-    "dist/"
-  ],
   "scripts": {
     "dev": "start-storybook -p 5001 --quiet -s ./public",
     "generate": "./bin/generate.js",

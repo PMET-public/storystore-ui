@@ -25,7 +25,7 @@ storiesOf('👋 Welcome', module).add('Getting Started', () => (
         <Section>
             <h2>🤙 Generate New Component</h2>
             <CodeBlock lang="bash">{`
-                    yarn generate component FooBar
+                    npm run generate component FooBar
                 `}</CodeBlock>
 
             <Source>

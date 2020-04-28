@@ -5,11 +5,11 @@
 ## Getting Started
 
 ```bash
-yarn install
+npm install
 ```
 
 ```bash
-yarn dev
+npm run dev
 ```
 
 ---

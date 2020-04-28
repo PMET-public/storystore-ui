@@ -6,17 +6,18 @@
   "author": "Carlos A. Cabrera @fnhhipster",
   "license": "MIT",
   "scripts": {
-    "prepare": "echo \"\n⚙️ Building StoryStore UI ...\n\" && yarn build",
+    "prepare": "sh ./install.sh",
     "prebuild": "rimraf dist",
     "build": "rollup -c",
-    "dev": "concurrently -n rollup,storybook -c cyan,magenta 'yarn rollup:watch' 'yarn storybook:watch'",
+    "dev": "concurrently -n rollup,storybook -c cyan,magenta 'npm run rollup:watch' 'npm run storybook:watch'",
     "rollup:watch": "rollup -c -w",
     "storybook:watch": "start-storybook -p 5001 --quiet -s ./public",
     "generate": "./bin/generate.js",
     "storybook:deploy": "storybook-to-ghpages",
     "lint": "eslint '*/**/*.{ts,tsx}' --quiet --fix",
     "test": "echo \"No Tests Found 🧐\" ",
-    "prettier": "prettier --check --write ."
+    "prettier": "prettier --check --write .",
+    "tsc": "tsc"
   },
   "files": [
     "dist/"
@@ -34,6 +35,8 @@
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.7.7",
+    "@rollup/plugin-babel": "^5.0.0",
+    "@rollup/plugin-commonjs": "^11.1.0",
     "@storybook/addon-a11y": "5.3.18",
     "@storybook/addon-actions": "5.3.18",
     "@storybook/addon-backgrounds": "5.3.18",
@@ -89,8 +92,6 @@
     "remixicon": "^2.3.0",
     "rimraf": "^3.0.0",
     "rollup": "^2.7.3",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-multi-input": "^1.1.1",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-resolve": "^5.2.0",

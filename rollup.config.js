@@ -1,6 +1,6 @@
-import babel from 'rollup-plugin-babel'
+import babel from '@rollup/plugin-babel'
+import commonjs from '@rollup/plugin-commonjs'
 import nodeResolve from 'rollup-plugin-node-resolve'
-import commonjs from 'rollup-plugin-commonjs'
 import builtins from 'rollup-plugin-node-builtins'
 import multiInput from 'rollup-plugin-multi-input'
 import { version } from './package.json'
@@ -20,7 +20,7 @@ function tsDeclarations({ outDir, rootDir = './' }) {
                 .join(' ')
 
             spawn(
-                `yarn tsc \
+                `npm run tsc \
                 --allowSyntheticDefaultImports \
                 --declaration \
                 --emitDeclarationOnly \

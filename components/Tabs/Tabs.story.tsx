@@ -5,8 +5,8 @@ import { storiesOf } from '@storybook/react'
 storiesOf('📦 Components/Tabs', module).add('Default', () => (
     <Tabs style={{ width: '70rem', maxWidth: '100%' }}>
         <TabList>
-            <Tab>I'm a tab</Tab>
-            <Tab>and I'm also a tab</Tab>
+            <Tab>I&apos;m a tab</Tab>
+            <Tab>and I&apos;m also a tab</Tab>
             <Tab>Guess who?</Tab>
             <Tab>Tab!</Tab>
             <Tab>yet another Tab 🙃</Tab>

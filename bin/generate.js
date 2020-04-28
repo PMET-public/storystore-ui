@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-const [_, _bin, command, name, ...attr] = process.argv
+const [_, _bin, command, name] = process.argv
 
 const usage = `
 🏗  \x1b[4mStorybook Generator\x1b[0m

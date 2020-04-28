@@ -13,7 +13,6 @@
     "test": "echo \"No Tests Found 🧐\" ",
     "prettier": "prettier --check --write ."
   },
-  "types": "./@types",
   "peerDependencies": {
     "react": "16.13.1",
     "react-dom": "16.13.1",

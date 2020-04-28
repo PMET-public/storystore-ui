@@ -3,13 +3,13 @@ import { defaultColors as colors } from './colors'
 import { defaultTypography as typography } from './typography'
 import { defaultBreakpoints as breakpoints, defaultLayout as layout } from './layout'
 import { GlobalStyles } from './GlobalStyles'
-import { DefaultTheme } from 'styled-components'
+import { DefaultTheme, ThemeProvider as StyledThemeProvider } from 'styled-components'
 
 export const baseTheme: DefaultTheme = { colors, typography, breakpoints, layout }
 
-export const UIBase = () => {
+export const ThemeProvider = (theme = baseTheme) => {
     return (
-        <React.Fragment>
+        <StyledThemeProvider theme={theme}>
             <GlobalStyles />
 
             {/* SVGs Effects */}
@@ -32,6 +32,6 @@ export const UIBase = () => {
                     <feGaussianBlur stdDeviation="10" />
                 </filter>
             </svg>
-        </React.Fragment>
+        </StyledThemeProvider>
     )
 }

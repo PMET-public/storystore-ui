@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react'
+import React from 'react'
 import { Component, Override } from '../../lib'
 import { LazyImageFull, ImageState, ImageProps as LazyImageProps } from 'react-lazy-images'
 import { Root } from './Image.styled'
@@ -8,8 +8,12 @@ export type ImageProps = Override<
     LazyImageProps,
     {
         vignette?: boolean
-        src?: ImgSrc
-    } & HTMLAttributes<HTMLImageElement>
+        src: ImgSrc
+        alt?: string
+        height?: string | number
+        width?: string | number
+        title?: string
+    }
 >
 
 export const ImageComponent: Component<ImageProps> = ({ src: _src, vignette, width, height, ...props }) => {

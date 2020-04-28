@@ -23,21 +23,21 @@ export const Label = styled.label<{ $color?: FieldColors }>`
     font-size: 1.3rem;
     font-weight: 600;
     pointer-events: none;
-    color: ${({ theme, $color = 'onSurface' }) => theme.colors[$color]};
+    color: ${({ theme, $color }) => theme.colors[$color || 'onSurface']};
 `
 
 export const Error = styled.span<{ $color?: FieldColors }>`
-    color: ${({ theme, $color = FieldColors.error }) => theme.colors[$color]};
+    color: ${({ theme, $color }) => theme.colors[$color || FieldColors.error]};
     min-height: 1em;
     font-size: 0.8em;
     line-height: 1.3;
 `
 
 export const FormError = styled.span<{ $color?: FieldColors }>`
-    background-color: ${({ theme, $color = theme.colors.onSurface }) => theme.colors[$color]};
+    background-color: ${({ theme, $color }) => theme.colors[$color || 'onSurface']};
     border-radius: 0.25rem;
-    border: 0.1rem solid ${({ theme, $color = FieldColors.error }) => theme.colors[$color]};
-    color: ${({ theme, $color = FieldColors.error }) => theme.colors[$color]};
+    border: 0.1rem solid ${({ theme, $color }) => theme.colors[$color || FieldColors.error]};
+    color: ${({ theme, $color }) => theme.colors[$color || FieldColors.error]};
     font-size: 90%;
     min-height: 1em;
     padding: 1rem;
@@ -52,7 +52,7 @@ export const Input = styled.input<{ $color?: FieldColors }>`
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 0.1rem solid ${({ theme, $color = 'primary15' }) => theme.colors[$color]};
+    border-bottom: 0.1rem solid ${({ theme, $color }) => theme.colors[$color || 'primary15']};
     transition: border 250ms ease, background-color 250ms ease;
     background-color: transparent;
 

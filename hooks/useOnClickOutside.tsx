@@ -2,7 +2,7 @@ import { useEffect, MutableRefObject, useCallback } from 'react'
 
 export const useOnClickOutside = (ref: MutableRefObject<any>, fn: (props?: any) => any) => {
     const handleClick = useCallback(
-        (e: MouseEvent) => {
+        (e: Event) => {
             if (!ref.current.contains(e.target)) {
                 fn(e)
             }

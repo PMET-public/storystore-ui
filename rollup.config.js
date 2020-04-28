@@ -20,7 +20,7 @@ function tsDeclarations({ outDir, rootDir = './' }) {
                 .join(' ')
 
             spawn(
-                `npm run tsc \
+                `tsc \
                 --allowSyntheticDefaultImports \
                 --declaration \
                 --emitDeclarationOnly \
@@ -49,6 +49,8 @@ const plugins = [
 
     babel({
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
+        babelHelpers: 'runtime',
+        skipPreflightCheck: true,
     }),
 
     tsDeclarations({ outDir: './dist', rootDir: './src' }),

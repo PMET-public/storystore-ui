@@ -6,7 +6,7 @@
   "author": "Carlos A. Cabrera @fnhhipster",
   "license": "MIT",
   "scripts": {
-    "prepare": "echo \"👷‍♀️ Building StoryStore UI ...\" && yarn build",
+    "prepare": "echo \"\n⚙️ Building StoryStore UI ...\n\" && yarn build",
     "prebuild": "rimraf dist",
     "build": "rollup -c",
     "dev": "concurrently -n rollup,storybook -c cyan,magenta 'yarn rollup:watch' 'yarn storybook:watch'",

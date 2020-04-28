@@ -1,6 +1,9 @@
 import { createGlobalStyle } from 'styled-components'
+import { ThemeColors } from './colors'
+import { ThemeTypography } from './typography'
+import { ThemeBreakpoints } from './layout'
 
-export const GlobalStyles = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle<{ $colors: ThemeColors; $typography: ThemeTypography; $breakpoints: ThemeBreakpoints }>`
     /* http://meyerweb.com/eric/tools/css/reset/ 
         v2.0 | 20110126
         License: none (public domain)
@@ -114,11 +117,11 @@ export const GlobalStyles = createGlobalStyle`
         line-height: 1;
 
         -webkit-font-smoothing: antialiased;
-        background: ${props => props.theme.colors.background};
-        color: ${props => props.theme.colors.onBackground};
-        font-family: ${props => props.theme.typography.body.family};
-        font-style: ${props => props.theme.typography.body.style};
-        font-weight: ${props => props.theme.typography.body.weight.normal};
+        background: ${props => props.$colors.background};
+        color: ${props => props.$colors.onBackground};
+        font-family: ${props => props.$typography.body.family};
+        font-style: ${props => props.$typography.body.style};
+        font-weight: ${props => props.$typography.body.weight.normal};
     }
 
     /** MISC */
@@ -146,7 +149,7 @@ export const GlobalStyles = createGlobalStyle`
 
     .focus-visible:focus {
         outline-style: solid;
-        outline-color: ${props => props.theme.colors.accent};
+        outline-color: ${props => props.$colors.accent};
         outline-width: 0.1rem;
         outline-offset: 0.3rem;
     }
@@ -160,48 +163,48 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     .breakpoint-smallOnly-hidden {
-        @media ${props => props.theme.breakpoints.smallOnly} {
+        @media ${props => props.$breakpoints.smallOnly} {
             display: none;
         }
     }
     .breakpoint-medium-hidden {
-        @media ${props => props.theme.breakpoints.medium} {
+        @media ${props => props.$breakpoints.medium} {
             display: none;
         }
     }
 
     .breakpoint-mediumOnly-hidden {
-        @media ${props => props.theme.breakpoints.mediumOnly} {
+        @media ${props => props.$breakpoints.mediumOnly} {
             display: none;
         }
     }
 
     .breakpoint-untilMedium-hidden {
-        @media ${props => props.theme.breakpoints.untilMedium} {
+        @media ${props => props.$breakpoints.untilMedium} {
             display: none;
         }
     }
 
     .breakpoint-large-hidden {
-        @media ${props => props.theme.breakpoints.large} {
+        @media ${props => props.$breakpoints.large} {
             display: none;
         }
     }
 
     .breakpoint-largeOnly-hidden {
-        @media ${props => props.theme.breakpoints.largeOnly} {
+        @media ${props => props.$breakpoints.largeOnly} {
             display: none;
         }
     }
 
     .breakpoint-untilLarge-hidden {
-        @media ${props => props.theme.breakpoints.untilLarge} {
+        @media ${props => props.$breakpoints.untilLarge} {
             display: none;
         }
     }
 
     .breakpoint-xLarge-hidden {
-        @media ${props => props.theme.breakpoints.xLarge} {
+        @media ${props => props.$breakpoints.xLarge} {
             display: none;
         }
     }

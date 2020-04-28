@@ -3,14 +3,16 @@ import { defaultColors as colors } from './colors'
 import { defaultTypography as typography } from './typography'
 import { defaultBreakpoints as breakpoints, defaultLayout as layout } from './layout'
 import { GlobalStyles } from './GlobalStyles'
-import { DefaultTheme, ThemeProvider as StyledThemeProvider } from 'styled-components'
+import { DefaultTheme } from 'styled-components'
+import { useTheme } from './useTheme'
 
 export const baseTheme: DefaultTheme = { colors, typography, breakpoints, layout }
 
-export const ThemeProvider = (theme = baseTheme) => {
+export const UIBase = () => {
+    const { colors, typography, breakpoints } = useTheme()
     return (
-        <StyledThemeProvider theme={theme}>
-            <GlobalStyles />
+        <React.Fragment>
+            <GlobalStyles $colors={colors} $typography={typography} $breakpoints={breakpoints} />
 
             {/* SVGs Effects */}
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style={{ position: 'fixed', width: 0, height: 0 }}>
@@ -32,6 +34,6 @@ export const ThemeProvider = (theme = baseTheme) => {
                     <feGaussianBlur stdDeviation="10" />
                 </filter>
             </svg>
-        </StyledThemeProvider>
+        </React.Fragment>
     )
 }

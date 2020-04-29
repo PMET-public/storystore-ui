@@ -3,10 +3,9 @@ import { defaultColors as colors } from './colors'
 import { defaultTypography as typography } from './typography'
 import { defaultBreakpoints as breakpoints, defaultLayout as layout } from './layout'
 import { GlobalStyles } from './GlobalStyles'
-import { DefaultTheme } from 'styled-components'
 import { useTheme } from './useTheme'
 
-export const baseTheme: DefaultTheme = { colors, typography, breakpoints, layout }
+export const baseTheme = { colors, typography, breakpoints, layout }
 
 export const UIBase = () => {
     const { colors, typography, breakpoints } = useTheme()

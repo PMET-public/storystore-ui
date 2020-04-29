@@ -1,17 +1,19 @@
 import { useEffect, MutableRefObject, useCallback } from 'react'
 
 export const useOnClickOutside = (ref: MutableRefObject<any>, fn: (props?: any) => any) => {
+    const current = ref.current
+
     const handleClick = useCallback(
         (e: Event) => {
-            if (!ref.current.contains(e.target)) {
+            if (!current.contains(e.target)) {
                 fn(e)
             }
         },
-        [ref.current]
+        [current, fn]
     )
 
     useEffect(() => {
-        if (!ref.current) return
+        if (!current) return
 
         document.addEventListener('mousedown', handleClick)
         document.addEventListener('touchstart', handleClick)
@@ -20,5 +22,5 @@ export const useOnClickOutside = (ref: MutableRefObject<any>, fn: (props?: any) 
             document.removeEventListener('mousedown', handleClick)
             document.removeEventListener('touchstart', handleClick)
         }
-    }, [ref, fn])
+    }, [current, fn, handleClick])
 }

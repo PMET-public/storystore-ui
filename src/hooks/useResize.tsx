@@ -66,7 +66,7 @@ export const useResize = (callback?: (values?: UseResize) => any): UseResize => 
         setResize(values)
 
         typeof callback === 'function' && callback(values)
-    }, [callback])
+    }, [callback, breakpoints])
 
     const throttled = useThrottle(triggerResize, 150, true)
 
@@ -78,7 +78,7 @@ export const useResize = (callback?: (values?: UseResize) => any): UseResize => 
         return () => {
             window.removeEventListener('resize', throttled)
         }
-    }, [])
+    }, [throttled, triggerResize])
 
     return resize
 }

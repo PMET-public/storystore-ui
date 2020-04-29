@@ -11,7 +11,7 @@ export type ImgSrc =
     | undefined
 
 export const useImage = (src: ImgSrc) => {
-    const { width: vWidth, breakpoints } = useResize()
+    const { breakpoints } = useResize()
 
     return useMemo(() => {
         if (typeof src === 'object') {
@@ -23,5 +23,5 @@ export const useImage = (src: ImgSrc) => {
         }
 
         return src
-    }, [src, vWidth, breakpoints])
+    }, [src, breakpoints])
 }

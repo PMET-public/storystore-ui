@@ -151,7 +151,7 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({ submittin
             dispatch({ type: 'unsetInstance' })
             console.error(error)
         }
-    }, [containerElem, JSON.stringify(braintree)])
+    }, [containerElem, braintree, colors.onSurface])
 
     useEffect(() => {
         if (editable && !instance) createBraintreeInstance()
@@ -159,7 +159,7 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({ submittin
         return () => {
             if (instance) instance.teardown()
         }
-    }, [instance])
+    }, [instance, editable, createBraintreeInstance])
 
     const handleOnEdit = useCallback(
         async (e: Event) => {

@@ -8,7 +8,7 @@
   "scripts": {
     "prepare": "sh ./install.sh",
     "prebuild": "rimraf dist",
-    "build": "rollup -c",
+    "build": "NODE_ENV=production rollup -c",
     "dev": "concurrently -n rollup,storybook -c cyan,magenta 'npm run rollup:watch' 'npm run storybook:watch'",
     "rollup:watch": "rollup -c -w",
     "storybook:watch": "start-storybook -p 5001 --quiet -s ./public",
@@ -61,7 +61,7 @@
     "@typescript-eslint/parser": "^2.30.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-inline-react-svg": "^1.1.0",
-    "babel-plugin-styled-components": "1.10.7",
+    "babel-plugin-styled-components": "1.10.5",
     "braintree-web-drop-in": "^1.20.4",
     "common-tags": "^1.8.0",
     "concurrently": "^5.0.2",

@@ -17,7 +17,7 @@ export const SlickSlider: Component<SlickSliderProps> = ({ beforeChange, afterCh
             if (draggable) setDragging(true)
             if (beforeChange) beforeChange(currentSlide, nextSlide)
         },
-        [draggable, setDragging]
+        [draggable, setDragging, beforeChange]
     )
 
     const handleAfterChange = useCallback(
@@ -25,7 +25,7 @@ export const SlickSlider: Component<SlickSliderProps> = ({ beforeChange, afterCh
             if (draggable) setDragging(false)
             if (afterChange) afterChange(currentSlide)
         },
-        [draggable, setDragging]
+        [draggable, setDragging, afterChange]
     )
 
     const handleOnItemClick = useCallback(

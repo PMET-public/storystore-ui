@@ -13,7 +13,6 @@ export type ProductCarouselProps = {
 export const ProductCarousel: Component<ProductCarouselProps> = ({
     loading = false,
     items = [],
-    title,
     accessibility = true,
     arrows = true,
     dots = true,

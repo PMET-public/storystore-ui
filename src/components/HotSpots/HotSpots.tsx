@@ -30,7 +30,7 @@ export const HotSpotsContext = createContext<{
     set: () => {},
 })
 
-export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({ children, description, image, items, ...props }) => {
+export const HotSpots: Component<HotSpotsProps> & CompoundComponent = ({ children, image, items, ...props }) => {
     const [active, set] = useState<string | null>(null)
 
     return (
@@ -59,7 +59,7 @@ const HotSpotsItem: Component<HotSpotItemProps> = ({ children, coords, id, label
 
     const handleToggle = useCallback(() => {
         if (children) context.set(active ? null : id)
-    }, [children])
+    }, [children, active, context, id])
 
     return (
         <Item {...props}>

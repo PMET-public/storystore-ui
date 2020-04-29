@@ -17,7 +17,7 @@ export type BubbleCarouselProps = {
     items: Items
 }
 
-export const BubbleCarousel: Component<BubbleCarouselProps> = ({ children, loading, items, ...props }) => {
+export const BubbleCarousel: Component<BubbleCarouselProps> = ({ loading, items, ...props }) => {
     return (
         <Root gap={1.4} show="auto" padding={1.5} snap={false} hideScrollBar {...props}>
             {loading ? (

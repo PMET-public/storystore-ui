@@ -5,7 +5,6 @@ import { Root, Field as FieldRoot, Label as LabelRoot, Error as ErrorRoot, Input
 export { FieldColors } from './Form.styled'
 
 import { FormContext, useForm, useFormContext, ValidationOptions, FieldErrors, OnSubmit, FormContextValues, UseFormOptions } from 'react-hook-form'
-import _get from 'lodash.get'
 
 /** Form */
 export type FormProps<P> = Override<
@@ -31,12 +30,12 @@ export const Form: Component<FormProps<any>> = React.forwardRef(({ children, onS
             if (onValues) onValues(values)
             if (onChange) onChange(e)
         },
-        [onChange, onValues]
+        [onChange, onValues, form]
     )
 
     useEffect(() => {
         if (onErrors) onErrors(form.errors)
-    }, [onErrors, Object.entries(form.errors).toString()])
+    }, [onErrors, form.errors])
 
     return (
         <FormContext {...form}>

@@ -34,7 +34,6 @@ export const Error = styled.span<{ $color?: FieldColors }>`
 `
 
 export const FormError = styled.span<{ $color?: FieldColors }>`
-    background-color: ${({ theme, $color }) => theme.colors[$color || 'onSurface']};
     border-radius: 0.25rem;
     border: 0.1rem solid ${({ theme, $color }) => theme.colors[$color || FieldColors.error]};
     color: ${({ theme, $color }) => theme.colors[$color || FieldColors.error]};

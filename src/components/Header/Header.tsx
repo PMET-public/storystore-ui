@@ -37,7 +37,17 @@ export const Header: Component<HeaderProps> = ({
     return (
         <Root {...props}>
             {/* Logo */}
-            <Logo {...logo}>{logoImage ? <img {...logoImage} /> : logoLoading ? <LogoSkeleton /> : <LogoImageSvg />}</Logo>
+            <Logo {...logo}>
+                {logoImage ? (
+                    <img {...logoImage} />
+                ) : logoLoading ? (
+                    <LogoSkeleton />
+                ) : (
+                    <span>
+                        <LogoImageSvg />
+                    </span>
+                )}
+            </Logo>
 
             {/* Menu */}
             <Menu {...menu}>

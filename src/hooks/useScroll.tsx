@@ -19,8 +19,6 @@ type Options = {
 export const useScroll = (options?: Options): UseScroll => {
     const { delay = 50, container, disabled = false } = options || {}
 
-    const elem = container?.current || document.scrollingElement
-
     const [scroll, setWheelEvent] = useState({
         scrollDeltaX: 0,
         scrollDeltaY: 0,
@@ -31,6 +29,8 @@ export const useScroll = (options?: Options): UseScroll => {
     })
 
     const handleUpdate = useCallback(() => {
+        const elem = container?.current || document.scrollingElement
+
         if (!elem) return
 
         setWheelEvent({
@@ -41,7 +41,7 @@ export const useScroll = (options?: Options): UseScroll => {
             scrollX: elem.scrollLeft,
             scrollY: elem.scrollTop,
         })
-    }, [elem, scroll.scrollX, scroll.scrollY])
+    }, [container, scroll.scrollX, scroll.scrollY])
 
     const throttled = useThrottle(handleUpdate, delay, true)
 

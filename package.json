@@ -1,7 +1,7 @@
 {
-  "name": "@pmet-public/storystore-ui",
-  "version": "v1.0.0-beta",
-  "description": "Luma React UI Library",
+  "name": "@storystore/ui",
+  "version": "1.0.0-beta1",
+  "description": "Magento React UI Library",
   "repository": "https://github.com/pmet-public/storystore-ui.git",
   "author": "Carlos A. Cabrera @fnhhipster",
   "license": "MIT",
@@ -19,7 +19,7 @@
     "prettier": "prettier --check --write ."
   },
   "files": [
-    "dist/"
+    "dist/*"
   ],
   "peerDependencies": {
     "react": "16.13.1",

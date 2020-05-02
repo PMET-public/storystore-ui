@@ -16,7 +16,7 @@ jobs:
                   registry-url: https://registry.npmjs.org/
             - run: npm install -g yarn # Extra Step
             - run: yarn install --quiet
-            - run: echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
+            - run: echo "//npm.pkg.github.com/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
             - run: yarn publish --access public
               env:
                   NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

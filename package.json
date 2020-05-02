@@ -7,7 +7,6 @@
   "license": "MIT",
   "scripts": {
     "prepare": "sh ./install.sh",
-    "prepublish": "sh ./install.sh",
     "prebuild": "rimraf dist",
     "build": "NODE_ENV=production rollup -c",
     "dev": "concurrently -n rollup,storybook -c cyan,magenta 'npm run rollup:watch' 'npm run storybook:watch'",
@@ -20,7 +19,7 @@
     "prettier": "prettier --check --write ."
   },
   "files": [
-    "dist/"
+    "dist/*"
   ],
   "peerDependencies": {
     "react": "16.13.1",

@@ -1,6 +1,6 @@
 {
   "name": "@storystore/ui",
-  "version": "v1.0.0-beta",
+  "version": "1.0.0-beta",
   "description": "Magento React UI Library",
   "repository": "https://github.com/pmet-public/storystore-ui.git",
   "author": "Carlos A. Cabrera @fnhhipster",

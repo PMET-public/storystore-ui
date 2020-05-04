@@ -6,6 +6,6 @@ export const Root = styled.img<{ $loaded?: boolean; $vignette?: boolean }>`
     transition-duration: 500ms;
     transition-timing-function: ease;
     opacity: ${({ $loaded }) => ($loaded ? 1 : 0.5)};
-    filter: ${({ $vignette }) => $vignette && `url(#vignette)`};
+    filter: ${({ $vignette }) => $vignette && `brightness(0.95)`};
     overflow: hidden;
 `

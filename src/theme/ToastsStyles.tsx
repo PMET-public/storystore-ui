@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
+import { ThemeColors } from './colors'
 
-export const ToastsStyles = createGlobalStyle`
+export const ToastsStyles = createGlobalStyle<{ $colors: ThemeColors }>`
     .Toastify__toast-container {
         z-index: 9999;
         transform: translate3d(0, 0, 9999px);
@@ -86,28 +87,28 @@ export const ToastsStyles = createGlobalStyle`
     }
 
     .Toastify__toast--default {
-        background: ${props => props.theme.colors.surface};
-        color: ${props => props.theme.colors.onSurface};
+        background: ${props => props.$colors.surface};
+        color: ${props => props.$colors.onSurface};
     }
 
     .Toastify__toast--info {
-        background: ${props => props.theme.colors.notice};
-        color: ${props => props.theme.colors.onNotice};
+        background: ${props => props.$colors.notice};
+        color: ${props => props.$colors.onNotice};
     }
 
     .Toastify__toast--success {
-        background: ${props => props.theme.colors.success};
-        color: ${props => props.theme.colors.onSuccess};
+        background: ${props => props.$colors.success};
+        color: ${props => props.$colors.onSuccess};
     }
 
     .Toastify__toast--warning {
-        background: ${props => props.theme.colors.warning};
-        color: ${props => props.theme.colors.onWarning};
+        background: ${props => props.$colors.warning};
+        color: ${props => props.$colors.onWarning};
     }
 
     .Toastify__toast--error {
-        background: ${props => props.theme.colors.error};
-        color: ${props => props.theme.colors.onError};
+        background: ${props => props.$colors.error};
+        color: ${props => props.$colors.onError};
     }
 
     .Toastify__toast-body {

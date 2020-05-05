@@ -17,8 +17,8 @@ const Story = styled.div<{ $layout: 'centered' | 'fullPage' }>`
         `}
 `
 
-export const withLuma = makeDecorator({
-    name: 'withLuma',
+export const withStoryStore = makeDecorator({
+    name: 'withStoryStore',
     parameterName: 'luma',
     wrapper: (getStory, context, { parameters = {} }) => {
         return (

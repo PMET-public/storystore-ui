@@ -2,11 +2,11 @@ import { addDecorator, addParameters, configure } from '@storybook/react'
 import { create } from '@storybook/theming'
 import { withKnobs } from '@storybook/addon-knobs'
 import { withA11y } from '@storybook/addon-a11y'
-import { withLuma } from './addons/luma/withLuma'
+import { withStoryStore } from './addons/storystore/withStoryStore'
 
 const Logo = require('./static/logo.png')
 
-addDecorator(withLuma)
+addDecorator(withStoryStore)
 addDecorator(withKnobs)
 addDecorator(withA11y)
 
@@ -16,7 +16,7 @@ addParameters({
         sortStoriesByKind: true,
         theme: create({
             base: 'dark',
-            brandTitle: 'Luma Storybook',
+            brandTitle: 'StoryStore UI',
             brandUrl: 'https://pmet-public.github.io/storystore-ui',
             brandImage: Logo,
             barBg: 'rgba(0, 0, 0, 0.3)',

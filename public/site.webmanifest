@@ -1,6 +1,6 @@
 {
-    "name": "Luma StoryBook",
-    "short_name": "Luma StoryBook",
+    "name": "StoryStore UI",
+    "short_name": "StoryStore UI",
     "start_url": "./",
     "icons": [
         {

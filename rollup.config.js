@@ -68,7 +68,7 @@ const plugins = [
 ]
 
 const output = {
-    banner: `/* Luma React UI Library v.${version} */`,
+    banner: `/* StoryStore UI Library v.${version} */`,
     compact: false,
     dir: './dist/',
     exports: 'named',

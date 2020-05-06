@@ -1,8 +1,6 @@
 import React from 'react'
 
-import { toast as _toast } from 'react-toastify'
-
-export const toast = _toast
+export const toast = typeof window !== 'undefined' ? require('react-toastify').toast : {}
 
 /**
  * Error Boundary

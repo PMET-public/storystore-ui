@@ -5,12 +5,14 @@ import { defaultBreakpoints as breakpoints, defaultLayout as layout } from './la
 import { GlobalStyles } from './GlobalStyles'
 import { ToastsStyles } from './ToastsStyles'
 import { useTheme } from './useTheme'
-import { toast } from 'react-toastify'
+import { toast } from '../lib'
 import 'focus-visible'
 
-toast.configure({
-    position: toast.POSITION.BOTTOM_RIGHT,
-})
+if (typeof window !== 'undefined') {
+    toast.configure({
+        position: toast.POSITION.BOTTOM_RIGHT,
+    })
+}
 
 export const baseTheme = { colors, typography, breakpoints, layout }
 

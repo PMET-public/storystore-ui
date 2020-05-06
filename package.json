@@ -1,6 +1,6 @@
 {
   "name": "@storystore/ui",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Magento React UI Library",
   "repository": "https://github.com/pmet-public/storystore-ui.git",
   "author": "Carlos A. Cabrera @fnhhipster",
@@ -88,7 +88,6 @@
     "react-slick": "^0.25.2",
     "react-spring": "^8.0.25",
     "react-tabs": "^3.1.0",
-    "react-toastify": "^5.5.0",
     "remixicon": "^2.3.0",
     "rimraf": "^3.0.0",
     "rollup": "^2.7.3",

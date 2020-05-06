@@ -1,10 +1,9 @@
 import React from 'react'
 
-export const toast = typeof window !== 'undefined' ? require('react-toastify').toast : {}
-
 /**
  * Error Boundary
  */
+
 export class ErrorBoundary extends React.Component<any, { hasError: boolean }> {
     constructor(props: any) {
         super(props)

@@ -1,13 +1,20 @@
-import React, { Suspense, useState, useCallback } from 'react'
+import React, { Suspense, useState, useCallback, HTMLAttributes } from 'react'
 import { Component } from '../../lib'
 import { Root, Item, NavButton, ArrowIcon, SlickGlobalStyles } from './SlickSlider.styled'
 import { Settings } from 'react-slick'
 
 const Slick = React.lazy(() => import('react-slick'))
 
-export type SlickSliderProps = Settings
+export type SlickSliderProps = Settings & {
+    buttons?: {
+        previous?: HTMLAttributes<HTMLButtonElement>
+        next?: {
+            text: HTMLAttributes<HTMLButtonElement>
+        }
+    }
+}
 
-export const SlickSlider: Component<SlickSliderProps> = ({ beforeChange, afterChange, fade = false, children, ...props }) => {
+export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true, buttons, beforeChange, afterChange, fade = false, children, ...props }) => {
     const draggable = !fade
 
     const [dragging, setDragging] = useState(false)
@@ -51,15 +58,16 @@ export const SlickSlider: Component<SlickSliderProps> = ({ beforeChange, afterCh
                         respondTo="min"
                         draggable={draggable}
                         fade={fade}
+                        accesibility={accessibility}
                         beforeChange={handleBeforeChange}
                         afterChange={handleAfterChange}
                         prevArrow={
-                            <NavButton>
+                            <NavButton aria-label="previous" {...buttons?.previous}>
                                 <ArrowIcon />
                             </NavButton>
                         }
                         nextArrow={
-                            <NavButton>
+                            <NavButton aria-label="next" {...buttons?.next}>
                                 <ArrowIcon />
                             </NavButton>
                         }

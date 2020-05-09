@@ -7,4 +7,5 @@ export const Root = styled.img<{ $loaded?: boolean; $vignette?: boolean }>`
     opacity: ${({ $loaded }) => ($loaded ? 1 : 0.5)};
     overflow: hidden;
     ${({ $vignette }) => $vignette && `filter: brightness(0.95);`}
+    ${({ $loaded, theme }) => !$loaded && `background-color: ${theme.colors.onSurface15};`}
 `

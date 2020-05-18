@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, FormHTMLAttributes, LabelHTMLAttributes, InputHTMLAttributes } from 'react'
+import React, { useCallback, useEffect, FormHTMLAttributes, LabelHTMLAttributes, InputHTMLAttributes, ReactElement } from 'react'
 import { Component, Props, Override } from '../../lib'
 import { Root, Field as FieldRoot, Label as LabelRoot, Error as ErrorRoot, Input as InputRoot, FormError as FormErrorRoot, FieldColors } from './Form.styled'
 
@@ -48,7 +48,7 @@ export const Form: Component<FormProps<any>> = React.forwardRef(({ children, onS
 
 export type FormFieldProps = Props<{
     name: string
-    label?: string
+    label?: ReactElement | string
     error?: string
     color?: FieldColors
     rules?: ValidationOptions

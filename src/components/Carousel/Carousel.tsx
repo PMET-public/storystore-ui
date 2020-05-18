@@ -19,18 +19,17 @@ type CompoundComponent = {
 }
 
 export const Carousel: Component<CarouselProps> & CompoundComponent = ({ children, gap = 0, padding = 0, show = 1, hideScrollBar = false, snap = true, scrollerRef, ...props }) => {
-    const rootElemRef = useRef(null)
+    // const rootElemRef = useRef(null)
     const scrollerElemRef = useRef(null)
-    const { height } = useMeasure(rootElemRef)
+    const { height } = useMeasure(scrollerElemRef)
 
     useEffect(() => {
         if (scrollerRef) scrollerRef(scrollerElemRef)
     }, [scrollerRef])
 
     const childrenCount = React.Children.count(children)
-
     return (
-        <Root ref={rootElemRef} $height={!hideScrollBar ? height : undefined}>
+        <Root style={{ height: !hideScrollBar ? `calc(${height}px + 3rem)` : undefined }}>
             <Scroller ref={scrollerElemRef} $padding={childrenCount > 1 ? padding : 0} $show={show} $gap={gap} $hideScrollBar={hideScrollBar} $snap={snap} {...props}>
                 {children}
             </Scroller>

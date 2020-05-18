@@ -1,14 +1,8 @@
 import styled from 'styled-components'
 
-export const Root = styled.div<{ $height?: number }>`
+export const Root = styled.div`
     width: 100%;
     overflow-y: hidden;
-
-    ${props =>
-        props.$height &&
-        `
-            height: calc(${props.$height} + 3rem);
-            `}
 `
 
 export const Scroller = styled.div<{

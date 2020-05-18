@@ -14,20 +14,23 @@ export const Input: Component<InputProps> = ({ as, error, color: _color, label, 
 
     const color = _color ?? (fieldError && FieldColors.error)
 
+    const { defaultValue, value = defaultValue, placeholder } = props
+
+    const hasErrors = Boolean(fieldError)
+
     const defaultActive = useMemo(() => {
-        const { defaultValue, value = defaultValue, placeholder } = props
-        return !!value || !!placeholder || !!fieldError
-    }, [props.value, props.defaultValue, props.placeholder, !!fieldError])
+        return !!value || !!placeholder || hasErrors
+    }, [value, placeholder, hasErrors])
 
     const [active, setActive] = useState<boolean>(defaultActive)
 
     const handleOnChange = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
             const { value, placeholder } = event.currentTarget
-            setActive(!!value || !!placeholder || !!fieldError)
+            setActive(!!value || !!placeholder || hasErrors)
             if (onChange) onChange(event)
         },
-        [!!fieldError, onChange]
+        [hasErrors, onChange]
     )
 
     const handleOnFocus = useCallback(
@@ -41,16 +44,16 @@ export const Input: Component<InputProps> = ({ as, error, color: _color, label, 
     const handleOnBlur = useCallback(
         (event: FocusEvent<HTMLInputElement>) => {
             const { value, placeholder } = event.currentTarget
-            setActive(!!value || !!placeholder || !!fieldError)
+            setActive(!!value || !!placeholder || hasErrors)
             if (onBlur) onBlur(event)
         },
-        [!!fieldError, onBlur]
+        [hasErrors, onBlur]
     )
 
     return (
         <Field as={as}>
             {label && (
-                <LabelRoot htmlFor={`field-input__${name}`} color={color} $active={loading || defaultActive || active || !!fieldError}>
+                <LabelRoot htmlFor={`field-input__${name}`} color={color} $active={loading || defaultActive || active || hasErrors}>
                     {label}
                 </LabelRoot>
             )}

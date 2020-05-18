@@ -7,7 +7,9 @@ export const Wrapper = styled.div`
 
 export const OnIcon = styled.svg``
 
-export const OffIcon = styled.svg``
+export const OffIcon = styled.svg`
+    opacity: 0.25;
+`
 
 export const Input = styled.input`
     display: none;
@@ -20,6 +22,10 @@ export const Input = styled.input`
         display: block;
     }
 
+    &:disabled ~ * {
+        opacity: 0.4;
+    }
+
     ~ ${OnIcon} {
         display: none;
     }
@@ -27,7 +33,7 @@ export const Input = styled.input`
 
 export const Item = styled.label`
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-auto-columns: max-content;
     grid-auto-flow: column;
     align-items: center;
     grid-gap: 0.6rem;
@@ -35,8 +41,8 @@ export const Item = styled.label`
 
     ${OnIcon},
     ${OffIcon} {
-        width: 1.6em;
-        height: 1.6em;
+        width: 1.4em;
+        height: 1.4em;
         fill: currentColor;
     }
 `

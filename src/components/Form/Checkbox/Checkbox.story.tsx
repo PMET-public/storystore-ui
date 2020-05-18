@@ -25,16 +25,16 @@ storiesOf('📦 Components/Form/Checkbox', module).add('Default', () => (
             type={select('type', { checkbox: 'checkbox', radio: 'radio' }, 'checkbox')}
             items={[
                 {
-                    text: 'Option 1',
+                    label: 'Option 1',
                     value: 'option1',
                 },
                 {
-                    text: 'Option 2',
+                    label: 'Option 2',
                     value: 'option2',
                     defaultChecked: true,
                 },
                 {
-                    text: 'Option 3',
+                    label: 'Option 3',
                     value: 'option3',
                 },
             ]}

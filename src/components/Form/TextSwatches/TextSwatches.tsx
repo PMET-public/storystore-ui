@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react'
+import React, { HTMLAttributes, ReactElement } from 'react'
 import { Component } from '../../../lib'
 import { Items, Item } from './TextSwatches.styled'
 import { FormFieldProps, Field, Label, FieldInput, Error, FieldColors } from '../Form'
@@ -10,7 +10,7 @@ export type TextSwatchesProps = FormFieldProps & {
     type?: 'radio' | 'checkbox'
     items: Array<
         {
-            text: string
+            label: ReactElement | string
             disabled?: boolean
         } & HTMLAttributes<HTMLInputElement>
     >
@@ -34,14 +34,13 @@ export const TextSwatches: Component<TextSwatchesProps> = ({ loading, error, col
                     )}
 
                     <Items>
-                        {items.map(({ text, ...item }, index) => (
+                        {items.map(({ label, ...item }, index) => (
                             <Item key={index}>
                                 <FieldInput id={`swatch-group__${name}__${index}`} rules={rules} name={name} type={type} color={color as any} {...item} />
-                                <label htmlFor={`swatch-group__${name}__${index}`}>{text}</label>
+                                <label htmlFor={`swatch-group__${name}__${index}`}>{label}</label>
                             </Item>
                         ))}
                     </Items>
-
                     <Error color={color as any}>{fieldError?.message}</Error>
                 </React.Fragment>
             )}

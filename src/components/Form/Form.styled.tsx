@@ -20,7 +20,6 @@ export const Field = styled.div`
 `
 
 export const Label = styled.label<{ $color?: FieldColors }>`
-    font-size: 1.3rem;
     font-weight: 600;
     pointer-events: none;
     color: ${({ theme, $color }) => theme.colors[$color || 'onSurface']};

@@ -33,20 +33,20 @@ export const ProductItem: Component<ProductItemProps> = ({ loading, badge, color
 
                     <Image width={4} height={5} vignette {...image} />
 
-                    {colors && (
-                        <Colors>
-                            {colors.map(({ label, value, ...color }, index) => (
-                                <Color arial-label={label} key={index} style={{ backgroundColor: value }} {...color} />
-                            ))}
-                        </Colors>
-                    )}
-
                     <Details>
                         <Title {...title}>{title.text}</Title>
 
                         <PriceWrapper>
                             <Price {...price} />
                         </PriceWrapper>
+
+                        {colors && (
+                            <Colors>
+                                {colors.map(({ label, value, ...color }, index) => (
+                                    <Color arial-label={label} key={index} style={{ backgroundColor: value }} {...color} />
+                                ))}
+                            </Colors>
+                        )}
                     </Details>
                 </React.Fragment>
             )}

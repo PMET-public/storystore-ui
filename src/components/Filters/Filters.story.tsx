@@ -19,8 +19,6 @@ storiesOf('📦 Components/Filters', module).add('Default', () => {
                         value: 'Gold--value',
                     },
                     {
-                        active: true,
-
                         count: 68,
                         href: '#',
                         label: 'Acrylic',
@@ -139,7 +137,6 @@ storiesOf('📦 Components/Filters', module).add('Default', () => {
                         href: '#',
                         label: 'Short Sleeve',
                         value: 'Short--value',
-                        active: true,
                     },
                     {
                         count: 170,

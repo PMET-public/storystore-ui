@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react'
+import React, { useState, useRef, useCallback, useMemo } from 'react'
 import { Component, Props } from '../../lib'
 import { Root, Wrapper, Group, ListWrapper, List, GroupLabel, Count, ToggleIcon, ToggleButton } from './Filters.styled'
 
@@ -39,14 +39,12 @@ type FiltersGroupProps = {
     items: Array<
         Props<{
             _id?: string | number
-            active?: boolean
             count?: number
             label: string
             value: string
         }>
     >
 }
-
 const FiltersGroup: Component<FiltersGroupProps> = ({ name, title, items = [], offset = 5, ...props }) => {
     const [open, setOpen] = useState(false)
     const handleOnToggle = useCallback(() => setOpen(!open), [open, setOpen])
@@ -60,17 +58,17 @@ const FiltersGroup: Component<FiltersGroupProps> = ({ name, title, items = [], o
             <ListWrapper $duration={items.length * 20 + 'ms'} style={{ maxHeight: open ? `${height / 10}rem` : `calc(2.1em * ${offset})` }}>
                 <List ref={elRef}>
                     <GroupLabel>{title}</GroupLabel>
+
                     <Checkbox
                         type="checkbox"
                         name={name}
-                        items={items.map(({ _id, active = false, count, label, value, ...item }, index) => ({
+                        items={items.map(({ _id, count, label, value, ...item }, index) => ({
                             _id: _id ?? index,
                             label: (
                                 <>
                                     {label} {count && <Count>{count}</Count>}
                                 </>
                             ),
-                            defaultChecked: active,
                             value,
                             ...item,
                         }))}

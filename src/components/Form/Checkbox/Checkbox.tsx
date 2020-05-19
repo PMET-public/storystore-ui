@@ -14,6 +14,7 @@ export type CheckboxProps = FormFieldProps & {
     type?: 'checkbox' | 'radio'
     items: Array<
         {
+            _id?: string | number
             label: ReactElement | string
             value?: string
         } & HTMLAttributes<HTMLInputElement>
@@ -37,8 +38,8 @@ export const Checkbox: Component<CheckboxProps> = ({ as, error, color: _color, r
                 {placeholder && <Placeholder>{placeholder}</Placeholder>}
 
                 <Wrapper>
-                    {items.map(({ label, ...item }, index) => (
-                        <Item key={index}>
+                    {items.map(({ _id, label, ...item }, index) => (
+                        <Item key={_id ?? index}>
                             <FieldInput as={Input} type={type} name={name} rules={rules} color={color as any} {...item} />
                             <OffIcon as={type === 'radio' ? RadioOffIconSvg : CheckboxOffIconSvg} />
                             <OnIcon as={type === 'radio' ? RadioOnIconSvg : CheckboxOnIconSvg} />

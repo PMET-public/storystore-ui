@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useMemo } from 'react'
+import React, { useState, useRef, useCallback } from 'react'
 import { Component, Props } from '../../lib'
 import { Root, Wrapper, Group, ListWrapper, List, GroupLabel, Count, ToggleIcon, ToggleButton } from './Filters.styled'
 
@@ -45,7 +45,7 @@ type FiltersGroupProps = {
         }>
     >
 }
-const FiltersGroup: Component<FiltersGroupProps> = ({ name, title, items = [], offset = 5, ...props }) => {
+const FiltersGroup: Component<FiltersGroupProps> = ({ name, title, items = [], offset = 4, ...props }) => {
     const [open, setOpen] = useState(false)
     const handleOnToggle = useCallback(() => setOpen(!open), [open, setOpen])
 
@@ -55,7 +55,7 @@ const FiltersGroup: Component<FiltersGroupProps> = ({ name, title, items = [], o
 
     return (
         <Group {...props}>
-            <ListWrapper $duration={items.length * 20 + 'ms'} style={{ maxHeight: open ? `${height / 10}rem` : `calc(2.1em * ${offset})` }}>
+            <ListWrapper $duration={items.length * 20 + 'ms'} style={{ maxHeight: open ? `${height / 10}rem` : `calc(2.2em * ${offset})` }}>
                 <List ref={elRef}>
                     <GroupLabel>{title}</GroupLabel>
 

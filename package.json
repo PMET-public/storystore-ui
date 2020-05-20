@@ -1,6 +1,6 @@
 {
   "name": "@storystore/ui",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Magento React UI Library",
   "repository": "https://github.com/pmet-public/storystore-ui.git",
   "author": "Carlos A. Cabrera @fnhhipster",
@@ -95,7 +95,7 @@
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-resolve": "^5.2.0",
     "styled-components": "4.4.1",
-    "typescript": "^3.7.4",
+    "typescript": "3.8.3",
     "webpack": "^4.41.5"
   }
 }

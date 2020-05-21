@@ -26,7 +26,7 @@ export const ImageComponent: Component<ImageProps> = ({ src: _src, vignette, wid
                     $loaded={imageState === ImageState.LoadSuccess}
                     $vignette={vignette}
                     {...imageProps}
-                    src={imageState === ImageState.LoadSuccess ? src : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII='}
+                    src={imageState === ImageState.LoadSuccess ? src : 'data:image/gif;base64,R0lGODlhBAAFAPAAANbW1gAAACH5BAAAAAAALAAAAAAEAAUAAAIEhI+ZBQA7'}
                     ref={ref}
                     width={width}
                     height={height}

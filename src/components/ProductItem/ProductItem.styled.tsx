@@ -39,6 +39,8 @@ export const Color = styled.li`
     width: 1rem;
     border-radius: 50%;
     filter: contrast(0.85);
+    will-change: filter;
+    transform: translateZ(0);
 `
 
 export const Details = styled.span`

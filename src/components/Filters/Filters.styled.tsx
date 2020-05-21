@@ -37,7 +37,7 @@ export const GroupLabel = styled.div`
 `
 
 export const Count = styled.span`
-    filter: opacity(0.45);
+    opacity: 0.45;
     font-size: 0.9em;
 `
 export const ToggleIcon = styled(ToggleIconSvg)`

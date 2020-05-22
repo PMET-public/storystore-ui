@@ -31,7 +31,7 @@ export const Filters: Component<FiltersProps> = ({ groups = [], disabled, ...pro
  * Filters Group
  */
 
-type FiltersGroupProps = {
+export type FiltersGroupProps = {
     _id?: string | number
     title: string
     name: string

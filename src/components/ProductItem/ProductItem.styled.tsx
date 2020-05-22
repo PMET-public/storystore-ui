@@ -32,6 +32,7 @@ export const Colors = styled.ul`
     grid-auto-columns: 1rem;
     grid-gap: 0.5rem;
     grid-auto-flow: column;
+    height: 1rem;
 `
 
 export const Color = styled.li`

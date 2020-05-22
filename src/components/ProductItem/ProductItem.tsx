@@ -40,13 +40,11 @@ export const ProductItem: Component<ProductItemProps> = ({ loading, badge, color
                             <Price {...price} />
                         </PriceWrapper>
 
-                        {colors && (
-                            <Colors>
-                                {colors.map(({ label, value, ...color }, index) => (
-                                    <Color arial-label={label} key={index} style={{ backgroundColor: value }} {...color} />
-                                ))}
-                            </Colors>
-                        )}
+                        <Colors>
+                            {colors?.map(({ label, value, ...color }, index) => (
+                                <Color arial-label={label} key={index} style={{ backgroundColor: value }} {...color} />
+                            ))}
+                        </Colors>
                     </Details>
                 </React.Fragment>
             )}

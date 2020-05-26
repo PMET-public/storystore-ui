@@ -55,7 +55,7 @@ const FiltersGroup: Component<FiltersGroupProps> = ({ name, title, items = [], o
 
     return (
         <Group {...props}>
-            <ListWrapper $duration={items.length * 20 + 'ms'} style={{ maxHeight: open ? `${height / 10}rem` : `calc(2.2em * ${offset})` }}>
+            <ListWrapper $duration={items.length * 20 + 'ms'} style={{ maxHeight: open ? `${height / 10}rem` : `calc(2.3em * ${offset})` }}>
                 <List ref={elRef}>
                     <GroupLabel>{title}</GroupLabel>
 

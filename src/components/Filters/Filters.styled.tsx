@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Error } from '../Form/Form.styled'
 import ToggleIconSvg from 'remixicon/icons/System/arrow-down-s-line.svg'
+import { Wrapper as Checkboxes } from '../Form/Checkbox/Checkbox.styled'
 
 export const Root = styled.div``
 
@@ -28,6 +29,10 @@ export const List = styled.div`
 
     ${Error} {
         display: none;
+    }
+
+    ${Checkboxes} {
+        grid-gap: 0.8rem;
     }
 `
 

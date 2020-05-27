@@ -36,6 +36,7 @@ export type FiltersGroupProps = {
     title: string
     name: string
     offset?: number
+    type?: 'checkbox' | 'radio'
     items: Array<
         Props<{
             _id?: string | number
@@ -45,7 +46,7 @@ export type FiltersGroupProps = {
         }>
     >
 }
-const FiltersGroup: Component<FiltersGroupProps> = ({ name, title, items = [], offset = 4, ...props }) => {
+const FiltersGroup: Component<FiltersGroupProps> = ({ name, type = 'checkbox', title, items = [], offset = 4, ...props }) => {
     const [open, setOpen] = useState(false)
     const handleOnToggle = useCallback(() => setOpen(!open), [open, setOpen])
 
@@ -60,7 +61,7 @@ const FiltersGroup: Component<FiltersGroupProps> = ({ name, title, items = [], o
                     <GroupLabel>{title}</GroupLabel>
 
                     <Checkbox
-                        type="checkbox"
+                        type={type}
                         name={name}
                         items={items.map(({ _id, count, label, value, ...item }, index) => ({
                             _id: _id ?? index,

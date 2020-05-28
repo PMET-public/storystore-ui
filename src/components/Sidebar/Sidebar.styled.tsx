@@ -35,5 +35,5 @@ export const Screen = styled.div`
     top: 0;
     width: 100%;
     z-index: 10;
-    background: ${props => props.theme.colors.surface50};
+    background: ${props => props.theme.colors.onSurface50};
 `

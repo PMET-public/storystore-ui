@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
 export const Root = styled.div`
-    grid-gap: 1rem;
-    padding: 2rem;
+    grid-gap: 0.8rem;
 `
 
 export const Item = styled.div``
@@ -16,7 +15,7 @@ export const Icon = styled.div`
 `
 
 export const Label = styled.label`
-    display: inline-flex;
+    display: flex;
     align-items: center;
     cursor: pointer;
     user-select: none;

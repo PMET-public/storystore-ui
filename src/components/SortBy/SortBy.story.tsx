@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions'
 
 storiesOf('📦 Components/SortBy', module).add('Default', () => (
     <SortBy
-        options={{ defaultValues: { sortBy: 'relevance,ASC' } }}
+        options={{ defaultValues: { sortBy: 'price,ASC' } }}
         onValues={action('onValues')}
         items={[
             { label: 'Relevance', value: 'relevance' },

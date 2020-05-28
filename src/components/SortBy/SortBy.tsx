@@ -17,7 +17,10 @@ export type SortByProps = FormProps<any> & { items: SortByItemProps[] }
 
 export const SortByItem: Component<SortByItemProps> = ({ label, value }) => {
     const { register, getValues } = useFormContext()
-    const [order, setOrder] = useState<'ASC' | 'DESC'>('ASC')
+
+    const defaultOrder = getValues('sortBy')?.split(',')[1] ?? 'DESC'
+
+    const [order, setOrder] = useState<'ASC' | 'DESC'>(defaultOrder)
 
     return (
         <Item>
@@ -27,7 +30,7 @@ export const SortByItem: Component<SortByItemProps> = ({ label, value }) => {
             <Label
                 htmlFor={`sortBy__radio__${value}--${order}`}
                 onClick={() => {
-                    const [_value, _order] = getValues('sortBy').split(',')
+                    const [_value, _order = 'ASC'] = getValues('sortBy').split(',')
 
                     if (_value === value && _order === order) {
                         setOrder(order === 'DESC' ? 'ASC' : 'DESC')

@@ -42,7 +42,7 @@ export const GroupLabel = styled.div`
 `
 
 export const Count = styled.span`
-    opacity: 0.45;
+    opacity: 0.65;
     font-size: 0.9em;
 `
 export const ToggleIcon = styled(ToggleIconSvg)`
@@ -58,7 +58,7 @@ export const ToggleButton = styled.button<{ $active?: boolean }>`
     color: inherit;
     cursor: pointer;
     display: inline-flex;
-    opacity: 0.5;
+    opacity: 0.65;
     font-size: 0.9em;
 
     ${ToggleIcon} {

@@ -5,9 +5,9 @@ import { Wrapper, Input, Item, OffIcon, OnIcon, Placeholder } from './Checkbox.s
 import { FormFieldProps, Field, Label, Error, FieldInput, FieldColors } from '../Form'
 
 import RadioOnIconSvg from 'remixicon/icons/System/checkbox-circle-fill.svg'
-import RadioOffIconSvg from 'remixicon/icons/System/checkbox-blank-circle-line.svg'
+import RadioOffIconSvg from 'remixicon/icons/System/checkbox-blank-circle-fill.svg'
 import CheckboxOnIconSvg from 'remixicon/icons/System/checkbox-fill.svg'
-import CheckboxOffIconSvg from 'remixicon/icons/System/checkbox-blank-line.svg'
+import CheckboxOffIconSvg from 'remixicon/icons/System/checkbox-blank-fill.svg'
 import { useFormFieldError } from '../useFormFieldError'
 
 export type CheckboxProps = FormFieldProps & {

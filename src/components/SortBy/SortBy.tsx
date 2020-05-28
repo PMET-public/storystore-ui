@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { Component } from '../../lib'
-import { Root, Item, Label, Icon, HiddenInput } from './SortBy.styled'
+import { Root, Item, Label, IconOn, IconOff, IconDirection, HiddenInput } from './SortBy.styled'
 import Form, { FormProps } from '../Form'
 import { useFormContext } from 'react-hook-form'
 
 import IconASC from 'remixicon/icons/Editor/sort-asc.svg'
 import IconDESC from 'remixicon/icons/Editor/sort-desc.svg'
-import IconNONE from 'remixicon/icons/System/checkbox-blank-circle-fill.svg'
+import RadioOnIconSvg from 'remixicon/icons/System/radio-button-fill.svg'
+import RadioOffIconSvg from 'remixicon/icons/System/checkbox-blank-circle-fill.svg'
 
 export type SortByItemProps = {
     label: string
@@ -37,9 +38,12 @@ export const SortByItem: Component<SortByItemProps> = ({ label, value }) => {
                     }
                 }}
             >
-                <Icon as={IconNONE} />
-                {order === 'ASC' ? <Icon as={IconASC} /> : <Icon as={IconDESC} />}
+                <IconOff as={RadioOffIconSvg} />
+                <IconOn as={RadioOnIconSvg} />
+
                 {label}
+
+                {order === 'ASC' ? <IconDirection as={IconASC} /> : <IconDirection as={IconDESC} />}
             </Label>
         </Item>
     )

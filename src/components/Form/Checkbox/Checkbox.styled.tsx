@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 export const OnIcon = styled.svg``
 
 export const OffIcon = styled.svg`
-    opacity: 0.15;
+    opacity: 0.2;
 `
 
 export const Item = styled.label`

@@ -6,31 +6,38 @@ export const Root = styled.div`
 
 export const Item = styled.div``
 
-export const Icon = styled.div`
+const Icon = styled.svg`
     color: currentColor;
     width: 2rem;
     height: 2rem;
-    margin-right: 1rem;
     transition: opacity 350ms ease-in;
 `
 
+const IconRadio = styled(Icon)``
+
+export const IconDirection = styled(Icon)`
+    display: none;
+`
+
+export const IconOn = styled(IconRadio)`
+    display: none;
+`
+
+export const IconOff = styled(IconRadio)`
+    opacity: 0.2;
+`
+
 export const Label = styled.label`
-    display: flex;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    grid-gap: 0.6rem;
     align-items: center;
     cursor: pointer;
     user-select: none;
 
-    & ${Icon} {
-        opacity: 0.15;
-
-        & + ${Icon} {
-            opacity: 1;
-            display: none;
-        }
-    }
-
     &:hover {
-        & ${Icon} {
+        & ${IconOff} {
             opacity: 0.4;
         }
     }
@@ -39,12 +46,17 @@ export const Label = styled.label`
 export const HiddenInput = styled.input`
     display: none;
 
-    &:checked ~ ${Label} > ${Icon} {
-        display: none;
+    &:checked ~ ${Label} {
+        & > ${IconOff} {
+            display: none;
+        }
 
-        & + ${Icon} {
+        & > ${IconOn} {
             display: block;
-            opacity: 1;
+        }
+
+        & ${IconDirection} {
+            display: block;
         }
     }
 `

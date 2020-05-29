@@ -60,5 +60,5 @@ export const Input = styled.input`
 `
 
 export const Placeholder = styled.span`
-    color: ${props => props.theme.colors.primary75};
+    color: ${props => props.theme.colors.onSurface75};
 `

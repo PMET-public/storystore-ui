@@ -2,13 +2,13 @@ import styled from 'styled-components'
 
 export const Root = styled.button<{ $secondary?: boolean; $outline?: boolean }>`
     align-items: center;
-    background-color: ${props => (props.$secondary ? props.theme.colors.surface : props.theme.colors.onSurface)};
-    color: ${props => (props.$secondary ? props.theme.colors.onSurface : props.theme.colors.surface)};
+    background-color: ${props => (props.$secondary ? props.theme.colors.secondary : props.theme.colors.primary)};
+    color: ${props => (props.$secondary ? props.theme.colors.onSecondary : props.theme.colors.onPrimary)};
 
     ${props =>
         props.$outline &&
         `
-            color: ${props.$secondary ? props.theme.colors.surface : props.theme.colors.onSurface};
+            color: ${props.$secondary ? props.theme.colors.secondary : props.theme.colors.primary};
             border: 0.1rem solid currentColor;
             background-color: transparent;
         `}

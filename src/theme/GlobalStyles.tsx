@@ -117,8 +117,8 @@ export const GlobalStyles = createGlobalStyle<{ $colors: ThemeColors; $typograph
         line-height: 1;
 
         -webkit-font-smoothing: antialiased;
-        background: ${props => props.$colors.background};
-        color: ${props => props.$colors.onBackground};
+        background: ${props => props.$colors.surface};
+        color: ${props => props.$colors.onSurface};
         font-family: ${props => props.$typography.body.family};
         font-style: ${props => props.$typography.body.style};
         font-weight: ${props => props.$typography.body.weight.normal};

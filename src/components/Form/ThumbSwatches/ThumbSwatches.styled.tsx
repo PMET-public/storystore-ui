@@ -29,7 +29,7 @@ export const Item = styled.div`
 
     & > input[type='radio']:checked + label,
     & > input[type='radio']:focus + label {
-        border-color: ${props => props.theme.colors.primary} !important;
+        border-color: ${props => props.theme.colors.onSurface} !important;
         & ${Image} {
             filter: brightness(100%) contrast(100%) !important;
         }
@@ -42,7 +42,7 @@ export const Item = styled.div`
     }
 
     &:hover > input[type='radio']:not(:disabled) + label {
-        border-color: ${props => props.theme.colors.primary75};
+        border-color: ${props => props.theme.colors.onSurface75};
         & ${Image} {
             filter: brightness(98%) contrast(92%);
         }

@@ -50,12 +50,12 @@ export const Input = styled.input<{ $color?: FieldColors }>`
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 0.1rem solid ${({ theme, $color }) => theme.colors[$color || 'primary15']};
+    border-bottom: 0.1rem solid ${({ theme, $color }) => theme.colors[$color || 'onSurface15']};
     transition: border 250ms ease, background-color 250ms ease;
     background-color: transparent;
 
     &::placeholder {
-        color: ${props => props.theme.colors.primary50};
+        color: ${props => props.theme.colors.onSurface50};
     }
 
     &:focus {
@@ -66,6 +66,6 @@ export const Input = styled.input<{ $color?: FieldColors }>`
 
     &:disabled {
         border-bottom-style: dashed;
-        border-bottom-color: ${props => props.theme.colors.primary10};
+        border-bottom-color: ${props => props.theme.colors.onSurface10};
     }
 `

@@ -11,7 +11,7 @@ const PriceTag = styled.div`
 
     & > em {
         border-radius: 0.5rem;
-        padding-left: 1rem;
+        padding: 0.3rem 0.75rem;
         background-color: ${props => props.theme.colors.secondary};
         color: ${props => props.theme.colors.onSecondary};
     }

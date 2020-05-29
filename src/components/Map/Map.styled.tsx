@@ -28,7 +28,7 @@ export const Marker = styled.svg`
     height: 2rem;
     padding: 0.5rem;
     fill: ${props => props.theme.colors.onAccent};
-    background-color: #222;
+    background-color: ${props => props.theme.colors.accent};
     border-radius: 50%;
     transform: scale(1);
     transition: transform 400ms ease;

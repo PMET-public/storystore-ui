@@ -83,15 +83,15 @@ export const MenuWrapper = styled.div`
 `
 
 export const Link = styled.span<{ $active?: boolean }>`
-    color: ${props => props.theme.colors.primary};
+    color: inherit;
     padding-top: 0.4rem;
     padding-bottom: 0.3rem;
     text-decoration: none;
     transition: border 700ms ease;
-    border-bottom: 0.1rem solid ${props => (props.$active ? props.theme.colors.primary : 'transparent')};
+    border-bottom: 0.1rem solid ${props => (props.$active ? 'currentColor' : 'transparent')};
 
     &:hover {
-        border-color: ${props => props.theme.colors.primary};
+        border-color: currentColor;
     }
 `
 

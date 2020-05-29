@@ -11,7 +11,7 @@ const Item = styled.div`
     display: flex;
     height: 50vh;
     font-size: 4rem;
-    background-color: ${props => props.theme.colors.primary25};
+    background-color: #ccc;
 `
 
 storiesOf('📦 Components/SlickSlider', module).add('Default', () => (

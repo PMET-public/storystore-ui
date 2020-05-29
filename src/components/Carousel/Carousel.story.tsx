@@ -11,7 +11,7 @@ const Item = styled.div`
     height: 50vh;
     justify-content: center;
     font-size: 4rem;
-    background-color: ${props => props.theme.colors.primary25};
+    background-color: #333;
 `
 
 storiesOf('📦 Components/Carousel', module).add('Default', () => (

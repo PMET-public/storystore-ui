@@ -26,7 +26,7 @@ const Button = styled.button`
     }
 
     align-items: center;
-    background-color: ${({ theme }) => theme.colors.primary5};
+    background-color: ${({ theme }) => theme.colors.primary10};
     border-radius: 1rem;
     display: flex;
     justify-content: center;

@@ -7,7 +7,7 @@ export const Root = styled.div`
 export const Item = styled.div``
 
 const Icon = styled.svg`
-    color: currentColor;
+    fill: currentColor;
     width: 2rem;
     height: 2rem;
     transition: opacity 350ms ease-in;

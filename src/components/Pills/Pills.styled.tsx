@@ -1,24 +1,14 @@
 import styled from 'styled-components'
 
-export const Root = styled.div`
-    overflow: hidden;
-    max-width: 100vw;
-`
+export const Root = styled.div``
 
 export const Wrapper = styled.div`
-    -webkit-overflow-scrolling: touch;
     display: grid;
     grid-auto-columns: max-content;
     grid-auto-flow: column;
     grid-gap: 1rem;
     margin-bottom: -1rem;
-    overflow-x: scroll;
     padding: 0 0 1rem;
-    scrollbar-width: none;
-
-    &::-webkit-scrollbar {
-        display: none;
-    }
 
     &::after {
         content: '';

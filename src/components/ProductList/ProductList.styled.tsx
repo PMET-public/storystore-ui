@@ -27,4 +27,8 @@ export const List = styled.div`
     }
 `
 
-export const ItemWrapper = styled.div``
+export const ItemWrapper = styled.div`
+    & img {
+        max-height: 60vh;
+    }
+`

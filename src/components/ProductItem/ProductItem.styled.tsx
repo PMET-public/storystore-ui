@@ -35,7 +35,6 @@ export const Image = styled(ImageComponent)`
     width: 100%;
     height: 100%;
     object-fit: contain;
-    max-height: 70vh;
 `
 
 export const Colors = styled.ul`

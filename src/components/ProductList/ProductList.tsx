@@ -26,7 +26,7 @@ export const ProductList: Component<ProductListProps> = ({ loading, loadingMore,
                 ))}
 
                 {loadingMore &&
-                    Array(7)
+                    Array(12)
                         .fill(null)
                         .map((_, index) => (
                             <ItemWrapper key={index}>

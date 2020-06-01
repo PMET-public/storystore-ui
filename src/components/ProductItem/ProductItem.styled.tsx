@@ -4,9 +4,11 @@ import { Root as PriceRoot } from '../Price/Price.styled'
 import ImageComponent from '../Image'
 
 export const Root = styled.div`
-    display: block;
     overflow: hidden;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 `
 
 export const Badge = styled.span`
@@ -22,9 +24,18 @@ export const Badge = styled.span`
     z-index: 1;
 `
 
+export const ImageWrapper = styled.div`
+    flex-grow: 1;
+    & > img {
+        background-color: #fff;
+    }
+`
+
 export const Image = styled(ImageComponent)`
     width: 100%;
     height: 100%;
+    object-fit: contain;
+    max-height: 70vh;
 `
 
 export const Colors = styled.ul`

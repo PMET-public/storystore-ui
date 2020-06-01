@@ -1,6 +1,6 @@
 import React from 'react'
 import { Component, Props } from '../../lib'
-import { Root, Badge, Image, Colors, Color, Details, Title, PriceWrapper } from './ProductItem.styled'
+import { Root, Badge, ImageWrapper, Image, Colors, Color, Details, Title, PriceWrapper } from './ProductItem.styled'
 import { ProductItemSkeleton } from './ProductItem.skeleton'
 import { ImageProps } from '../Image'
 import Price, { PriceProps } from '../Price'
@@ -31,7 +31,9 @@ export const ProductItem: Component<ProductItemProps> = ({ loading, badge, color
                         </Badge>
                     )}
 
-                    <Image width={4} height={5} vignette {...image} />
+                    <ImageWrapper>
+                        <Image width={4} height={5} vignette {...image} />
+                    </ImageWrapper>
 
                     <Details>
                         <Title {...title}>{title.text}</Title>

@@ -29,8 +29,8 @@ export const Carousel: Component<CarouselProps> & CompoundComponent = ({ childre
 
     const childrenCount = React.Children.count(children)
     return (
-        <Root style={{ height: !hideScrollBar ? `calc(${height}px + 3rem)` : undefined }}>
-            <Scroller ref={scrollerElemRef} $padding={childrenCount > 1 ? padding : 0} $show={show} $gap={gap} $hideScrollBar={hideScrollBar} $snap={snap} {...props}>
+        <Root style={{ height: !hideScrollBar ? `calc(${height}px + 3rem)` : undefined }} {...props}>
+            <Scroller ref={scrollerElemRef} $padding={childrenCount > 1 ? padding : 0} $show={show} $gap={gap} $hideScrollBar={hideScrollBar} $snap={snap}>
                 {children}
             </Scroller>
         </Root>

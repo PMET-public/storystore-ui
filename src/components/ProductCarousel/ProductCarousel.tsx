@@ -60,7 +60,7 @@ export const ProductCarousel: Component<ProductCarouselProps> = ({
             {...props}
         >
             {loading
-                ? Array(4)
+                ? Array(6)
                       .fill(null)
                       .map((_, key) => <ProductItemSkeleton key={key} />)
                 : items.map((item, key) => (

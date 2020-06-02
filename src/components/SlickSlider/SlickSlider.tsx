@@ -1,9 +1,9 @@
-import React, { Suspense, useState, useCallback, HTMLAttributes } from 'react'
+import React, { useState, useCallback, HTMLAttributes, useEffect } from 'react'
 import { Component } from '../../lib'
 import { Root, Item, NavButton, ArrowIcon, SlickGlobalStyles } from './SlickSlider.styled'
 import { Settings } from 'react-slick'
 
-const Slick = React.lazy(() => import('react-slick'))
+const Slick = typeof window === 'undefined' ? null : require('react-slick').default
 
 export type SlickSliderProps = Settings & {
     buttons?: {
@@ -16,6 +16,14 @@ export type SlickSliderProps = Settings & {
 
 export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true, buttons, beforeChange, afterChange, fade = false, children, ...props }) => {
     const draggable = !fade
+
+    /**
+     * SSR Hack
+     */
+    const [isBrowser, setIsBrowser] = useState(false)
+    useEffect(() => {
+        if (!isBrowser) setIsBrowser(true)
+    }, [isBrowser, setIsBrowser])
 
     const [dragging, setDragging] = useState(false)
 
@@ -47,38 +55,37 @@ export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true,
 
     const items = React.Children.toArray(children)
 
-    return (
+    return isBrowser ? (
         <React.Fragment>
             <SlickGlobalStyles />
-            <Suspense fallback="">
-                {items.length > 0 ? (
-                    <Root
-                        $draggable={draggable}
-                        as={Slick}
-                        respondTo="min"
-                        draggable={draggable}
-                        fade={fade}
-                        accesibility={accessibility}
-                        beforeChange={handleBeforeChange}
-                        afterChange={handleAfterChange}
-                        prevArrow={
-                            <NavButton aria-label="previous" {...buttons?.previous}>
-                                <ArrowIcon />
-                            </NavButton>
-                        }
-                        nextArrow={
-                            <NavButton aria-label="next" {...buttons?.next}>
-                                <ArrowIcon />
-                            </NavButton>
-                        }
-                        {...props}
-                    >
-                        {items.map((item: any, index) => {
-                            return <Item key={index}>{React.cloneElement(item, { onClickCapture: handleOnItemClick, draggable: false })}</Item>
-                        })}
-                    </Root>
-                ) : null}
-            </Suspense>
+            {items.length > 0 ? (
+                <Root
+                    // key={isBrowser ? 'csr' : 'ssr'}
+                    $draggable={draggable}
+                    as={Slick}
+                    respondTo="min"
+                    draggable={draggable}
+                    fade={fade}
+                    accesibility={accessibility}
+                    beforeChange={handleBeforeChange}
+                    afterChange={handleAfterChange}
+                    prevArrow={
+                        <NavButton aria-label="previous" {...buttons?.previous}>
+                            <ArrowIcon />
+                        </NavButton>
+                    }
+                    nextArrow={
+                        <NavButton aria-label="next" {...buttons?.next}>
+                            <ArrowIcon />
+                        </NavButton>
+                    }
+                    {...props}
+                >
+                    {items.map((item: any, index) => {
+                        return <Item key={index}>{React.cloneElement(item, { onClickCapture: handleOnItemClick, draggable: false })}</Item>
+                    })}
+                </Root>
+            ) : null}
         </React.Fragment>
-    )
+    ) : null
 }

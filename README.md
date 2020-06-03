@@ -3,7 +3,7 @@
 [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://pmet-public.github.io/storystore-ui)
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/pmet-public/storystore-ui/develop)
 ![npm](https://img.shields.io/npm/v/@storystore/ui)
-
+![Node.js Package](https://github.com/PMET-public/storystore-ui/workflows/Node.js%20Package/badge.svg)
 ## Getting Started
 
 ### Install

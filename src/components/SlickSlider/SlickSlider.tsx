@@ -14,7 +14,7 @@ export type SlickSliderProps = Settings & {
     }
 }
 
-export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true, buttons, beforeChange, afterChange, fade = false, children, ...props }) => {
+export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true, onSwipe, buttons, fade = false, children, ...props }) => {
     const draggable = !fade
 
     /**
@@ -25,32 +25,22 @@ export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true,
         if (!isBrowser) setIsBrowser(true)
     }, [isBrowser, setIsBrowser])
 
-    const [dragging, setDragging] = useState(false)
+    const [swiped, setSwiped] = useState(false)
 
-    const handleBeforeChange = useCallback(
-        (currentSlide: number, nextSlide: number) => {
-            if (draggable) setDragging(true)
-            if (beforeChange) beforeChange(currentSlide, nextSlide)
-        },
-        [draggable, setDragging, beforeChange]
-    )
-
-    const handleAfterChange = useCallback(
-        (currentSlide: number) => {
-            if (draggable) setDragging(false)
-            if (afterChange) afterChange(currentSlide)
-        },
-        [draggable, setDragging, afterChange]
-    )
+    const handleSwiped = useCallback(() => {
+        setSwiped(true)
+        if (onSwipe) onSwipe()
+    }, [setSwiped, onSwipe])
 
     const handleOnItemClick = useCallback(
         e => {
-            if (draggable && dragging) {
-                e.preventDefault()
+            if (swiped) {
                 e.stopPropagation()
+                e.preventDefault()
+                setSwiped(false)
             }
         },
-        [draggable, dragging]
+        [swiped, setSwiped]
     )
 
     const items = React.Children.toArray(children)
@@ -60,15 +50,14 @@ export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true,
             <SlickGlobalStyles />
             {items.length > 0 ? (
                 <Root
-                    // key={isBrowser ? 'csr' : 'ssr'}
+                    key={isBrowser ? 'csr' : 'ssr'}
                     $draggable={draggable}
                     as={Slick}
                     respondTo="min"
                     draggable={draggable}
                     fade={fade}
                     accesibility={accessibility}
-                    beforeChange={handleBeforeChange}
-                    afterChange={handleAfterChange}
+                    onSwipe={handleSwiped}
                     prevArrow={
                         <NavButton aria-label="previous" {...buttons?.previous}>
                             <ArrowIcon />
@@ -81,8 +70,8 @@ export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true,
                     }
                     {...props}
                 >
-                    {items.map((item: any, index) => {
-                        return <Item key={index}>{React.cloneElement(item, { onClickCapture: handleOnItemClick, draggable: false })}</Item>
+                    {items.map((item: any, key) => {
+                        return <Item key={key}>{React.cloneElement(item, { onClickCapture: handleOnItemClick, draggable: false })}</Item>
                     })}
                 </Root>
             ) : null}

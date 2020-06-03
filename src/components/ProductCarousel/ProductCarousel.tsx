@@ -18,7 +18,7 @@ export const ProductCarousel: Component<ProductCarouselProps> = ({
     dots = true,
     speed = 400,
     infinite = true,
-    centerMode = false,
+    centerMode = true,
     variableWidth = false,
     ...props
 }) => {
@@ -32,28 +32,25 @@ export const ProductCarousel: Component<ProductCarouselProps> = ({
             speed={speed}
             centerMode={centerMode}
             variableWidth={variableWidth}
-            slidesToShow={4.15}
-            slidesToScroll={centerMode ? 1 : 4}
+            slidesToShow={4}
+            slidestoScroll={1}
             responsive={[
                 {
                     breakpoint: 1599,
                     settings: {
-                        slidesToShow: 3.15,
-                        slidesToScroll: centerMode ? 1 : 3,
+                        slidesToShow: 3,
                     },
                 },
                 {
                     breakpoint: 991,
                     settings: {
-                        slidesToShow: 2.15,
-                        slidesToScroll: centerMode ? 1 : 2,
+                        slidesToShow: 2,
                     },
                 },
                 {
                     breakpoint: 599,
                     settings: {
-                        slidesToShow: 1.025,
-                        slidesToScroll: 1,
+                        slidesToShow: 1,
                     },
                 },
             ]}

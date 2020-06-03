@@ -1,15 +1,27 @@
 # StoryStore UI
 
-[📕 UI Library Storybook](https://pmet-public.github.io/storystore-ui)
+[![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://pmet-public.github.io/storystore-ui)
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/pmet-public/storystore-ui/develop)
+![npm](https://img.shields.io/npm/v/@storystore/ui)
 
 ## Getting Started
 
-```bash
-npm install
-```
+### Install
 
 ```bash
-npm run dev
+yarn install
+```
+
+### Run
+
+```bash
+yarn dev
+```
+
+### Generate New Component
+
+```
+yarn generate component ComponentName
 ```
 
 ---
@@ -19,14 +31,6 @@ npm run dev
 -   [React](https://reactjs.org/)
 -   [TypeScript](https://www.typescriptlang.org/)
 -   [Styled Components](https://www.styled-components.com/)
-
-## Built (as-in build) with
-
--   [Babel](https://babeljs.io/)
-
-## Linted with
-
--   [Prettier](https://prettier.io/)
 
 ## Recommended VSCode Extensions
 

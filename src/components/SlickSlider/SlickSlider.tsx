@@ -1,9 +1,9 @@
 import React, { useState, useCallback, HTMLAttributes, useEffect } from 'react'
 import { Component } from '../../lib'
 import { Root, Item, NavButton, ArrowIcon, SlickGlobalStyles } from './SlickSlider.styled'
-import { Settings } from 'react-slick'
+import Slick, { Settings } from 'react-slick'
 
-const Slick = typeof window === 'undefined' ? null : require('react-slick').default
+// const Slick = typeof window === 'undefined' ? null : require('react-slick').default
 
 export type SlickSliderProps = Settings & {
     buttons?: {
@@ -27,10 +27,13 @@ export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true,
 
     const [swiped, setSwiped] = useState(false)
 
-    const handleSwiped = useCallback(() => {
-        setSwiped(true)
-        if (onSwipe) onSwipe()
-    }, [setSwiped, onSwipe])
+    const handleSwiped: typeof onSwipe = useCallback(
+        x => {
+            setSwiped(true)
+            if (onSwipe) onSwipe(x)
+        },
+        [setSwiped, onSwipe]
+    )
 
     const handleOnItemClick = useCallback(
         e => {

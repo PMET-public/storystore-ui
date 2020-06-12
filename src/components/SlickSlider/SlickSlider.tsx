@@ -1,9 +1,9 @@
-import React, { useState, useCallback, HTMLAttributes, useEffect } from 'react'
+import React, { useState, useCallback, HTMLAttributes } from 'react'
 import { Component } from '../../lib'
 import { Root, Item, NavButton, ArrowIcon, SlickGlobalStyles } from './SlickSlider.styled'
-import Slick, { Settings } from 'react-slick'
+import { Settings } from 'react-slick'
 
-// const Slick = typeof window === 'undefined' ? null : require('react-slick').default
+const Slick = require('react-slick')
 
 export type SlickSliderProps = Settings & {
     buttons?: {
@@ -16,14 +16,6 @@ export type SlickSliderProps = Settings & {
 
 export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true, onSwipe, buttons, fade = false, children, ...props }) => {
     const draggable = !fade
-
-    /**
-     * SSR Hack
-     */
-    const [isBrowser, setIsBrowser] = useState(false)
-    useEffect(() => {
-        if (!isBrowser) setIsBrowser(true)
-    }, [isBrowser, setIsBrowser])
 
     const [swiped, setSwiped] = useState(false)
 
@@ -48,14 +40,13 @@ export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true,
 
     const items = React.Children.toArray(children)
 
-    return isBrowser ? (
+    return (
         <React.Fragment>
             <SlickGlobalStyles />
             {items.length > 0 ? (
                 <Root
-                    key={isBrowser ? 'csr' : 'ssr'}
                     $draggable={draggable}
-                    as={Slick}
+                    as={Slick.default}
                     respondTo="min"
                     draggable={draggable}
                     fade={fade}
@@ -79,5 +70,5 @@ export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true,
                 </Root>
             ) : null}
         </React.Fragment>
-    ) : null
+    )
 }

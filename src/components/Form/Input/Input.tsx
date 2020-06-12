@@ -4,17 +4,20 @@ import { Label as LabelRoot } from './Input.styled'
 import { FormFieldProps, Field, FieldInput, Error, FieldColors } from '../Form'
 import { InputSkeleton } from './Input.skeleton'
 import { useFormFieldError } from '../useFormFieldError'
+import { useFormContext } from 'react-hook-form'
 
 export type InputProps = FormFieldProps & {
     loading?: boolean
 }
 
 export const Input: Component<InputProps> = ({ as, error, color: _color, label, loading, name, rules, onBlur, onChange, onFocus, ...props }) => {
+    const { getValues } = useFormContext()
+
     const fieldError = useFormFieldError({ name, error })
 
-    const color = _color ?? (fieldError && FieldColors.error)
+    const color = _color ?? (fieldError && FieldColors[fieldError.type ?? 'error'])
 
-    const { defaultValue, value = defaultValue, placeholder } = props
+    const { defaultValue, value = defaultValue ?? getValues(name), placeholder } = props
 
     const hasErrors = Boolean(fieldError)
 
@@ -53,7 +56,7 @@ export const Input: Component<InputProps> = ({ as, error, color: _color, label, 
     return (
         <Field as={as}>
             {label && (
-                <LabelRoot htmlFor={`field-input__${name}`} color={color} $active={loading || defaultActive || active || hasErrors}>
+                <LabelRoot htmlFor={`field-input__${name}`} color={color} $active={loading || active || hasErrors}>
                     {label}
                 </LabelRoot>
             )}

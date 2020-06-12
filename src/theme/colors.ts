@@ -72,6 +72,7 @@ export const generateColorTheme = (colors: { [key: string]: string }) => {
     // Generate all the opacity level 5 - 95%
     for (const color in colors) {
         const value = colors[color]
+
         result[color] = value // 100%
 
         for (let i = 5; i < 100; i = i + 5) {

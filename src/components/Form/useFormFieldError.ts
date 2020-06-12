@@ -13,7 +13,7 @@ export const useFormFieldError = (props: { name: string; error?: string }) => {
         } else {
             clearError(name)
         }
-    }, [_error])
+    }, [_error, name, setError, clearError])
 
     return _get(errors, name) as FieldError
 }

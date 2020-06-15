@@ -60,15 +60,17 @@ export const ProductCarousel: Component<ProductCarouselProps> = ({
                 ? Array(6)
                       .fill(null)
                       .map((_, key) => <ProductItemSkeleton key={key} />)
-                : items.map((item, key) => (
-                      <ProductItem
-                          key={key}
-                          {...item}
-                          image={{
-                              ...item.image,
-                          }}
-                      />
-                  ))}
+                : items.map((item, key) => {
+                      return (
+                          <ProductItem
+                              {...item}
+                              key={key}
+                              image={{
+                                  ...item.image,
+                              }}
+                          />
+                      )
+                  })}
         </Root>
     )
 }

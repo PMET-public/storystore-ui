@@ -1,9 +1,9 @@
-import React, { useState, useCallback, HTMLAttributes } from 'react'
+import React, { useState, useCallback, HTMLAttributes, useLayoutEffect } from 'react'
 import { Component } from '../../lib'
 import { Root, Item, NavButton, ArrowIcon, SlickGlobalStyles } from './SlickSlider.styled'
 import { Settings } from 'react-slick'
 
-const Slick = require('react-slick')
+const Slick = React.lazy(() => import('react-slick'))
 
 export type SlickSliderProps = Settings & {
     buttons?: {
@@ -14,44 +14,58 @@ export type SlickSliderProps = Settings & {
     }
 }
 
-export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true, onSwipe, buttons, fade = false, children, ...props }) => {
+export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true, beforeChange, afterChange, buttons, fade = false, children, ...props }) => {
     const draggable = !fade
 
-    const [swiped, setSwiped] = useState(false)
+    const [dragging, setDragging] = useState(false)
 
-    const handleSwiped: typeof onSwipe = useCallback(
-        x => {
-            setSwiped(true)
-            if (onSwipe) onSwipe(x)
+    const [loaded, setLoaded] = useState(false)
+
+    useLayoutEffect(() => {
+        setLoaded(true)
+    }, [])
+
+    const handleBeforeChange = useCallback(
+        (currentSlide: number, nextSlide: number) => {
+            if (draggable) setDragging(true)
+            if (beforeChange) beforeChange(currentSlide, nextSlide)
         },
-        [setSwiped, onSwipe]
+        [draggable, setDragging, beforeChange]
+    )
+
+    const handleAfterChange = useCallback(
+        (currentSlide: number) => {
+            if (draggable) setDragging(false)
+            if (afterChange) afterChange(currentSlide)
+        },
+        [draggable, setDragging, afterChange]
     )
 
     const handleOnItemClick = useCallback(
         e => {
-            if (swiped) {
-                e.stopPropagation()
+            if (draggable && dragging) {
                 e.preventDefault()
-                setSwiped(false)
             }
         },
-        [swiped, setSwiped]
+        [draggable, dragging]
     )
 
     const items = React.Children.toArray(children)
 
     return (
-        <React.Fragment>
+        <React.Suspense fallback={<div></div>}>
             <SlickGlobalStyles />
             {items.length > 0 ? (
                 <Root
+                    key={loaded ? 'loaded' : 'loading'}
                     $draggable={draggable}
-                    as={Slick.default}
+                    as={Slick}
                     respondTo="min"
                     draggable={draggable}
                     fade={fade}
                     accesibility={accessibility}
-                    onSwipe={handleSwiped}
+                    beforeChange={handleBeforeChange}
+                    afterChange={handleAfterChange}
                     prevArrow={
                         <NavButton aria-label="previous" {...buttons?.previous}>
                             <ArrowIcon />
@@ -69,6 +83,6 @@ export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true,
                     })}
                 </Root>
             ) : null}
-        </React.Fragment>
+        </React.Suspense>
     )
 }

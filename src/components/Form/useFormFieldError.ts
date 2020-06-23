@@ -1,6 +1,15 @@
 import { useEffect } from 'react'
 import { useFormContext, FieldError } from 'react-hook-form'
-import _get from 'lodash.get'
+
+const _get = (obj: { [key: string]: any }, name: string) => {
+    let result: any
+
+    name.split('.').forEach(key => {
+        result = result ? result[key] : obj[key]
+    })
+
+    return result
+}
 
 export const useFormFieldError = (props: { name: string; error?: string }) => {
     const { name, error: _error } = props

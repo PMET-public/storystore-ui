@@ -47,6 +47,11 @@ function tsDeclarations({ outDir, rootDir = './' }) {
 const plugins = [
     multiInput(),
 
+    nodeResolve({
+        preferBuiltins: false,
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    }),
+
     babel({
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
         babelHelpers: 'runtime',
@@ -56,11 +61,6 @@ const plugins = [
     tsDeclarations({ outDir: './dist', rootDir: './src' }),
 
     builtins(),
-
-    nodeResolve({
-        preferBuiltins: false,
-        extensions: ['.ts', '.tsx', '.js', '.jsx'],
-    }),
 
     commonjs({
         include: /node_modules/,

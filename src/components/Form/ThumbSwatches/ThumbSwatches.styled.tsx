@@ -8,7 +8,8 @@ export const Image = styled(ImageComponent)`
     transition: all 305ms ease;
     /* display: block; */
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     filter: brightness(98%) contrast(94%);
 `
 
@@ -17,9 +18,13 @@ export const Item = styled.div`
         position: relative;
         display: block;
         cursor: pointer;
+        transition: all 305ms ease;
         border: 0.1rem solid transparent;
         border-radius: 0.7rem;
-        padding: 0.1rem;
+        padding: 0.2rem;
+        height: 100%;
+        width: 100%;
+        line-height: 0;
     }
 
     & > input[type='radio'] {
@@ -42,7 +47,7 @@ export const Item = styled.div`
     }
 
     &:hover > input[type='radio']:not(:disabled) + label {
-        border-color: ${props => props.theme.colors.onSurface75};
+        border-color: ${props => props.theme.colors.onSurface50};
         & ${Image} {
             filter: brightness(98%) contrast(92%);
         }

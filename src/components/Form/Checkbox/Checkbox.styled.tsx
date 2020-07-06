@@ -7,7 +7,32 @@ export const Wrapper = styled.div`
 
 export const OnIcon = styled.svg``
 
-export const OffIcon = styled.svg``
+export const OffIcon = styled.svg`
+    opacity: 0.2;
+`
+
+export const Item = styled.label`
+    display: grid;
+    grid-auto-columns: max-content;
+    grid-auto-flow: column;
+    align-items: center;
+    grid-gap: 0.6rem;
+    cursor: pointer;
+
+    ${OnIcon},
+    ${OffIcon} {
+        width: 1.4em;
+        height: 1.4em;
+        fill: currentColor;
+        transition: opacity 350ms ease-in;
+    }
+
+    &:hover {
+        & ${OnIcon}, & ${OffIcon} {
+            opacity: 0.4;
+        }
+    }
+`
 
 export const Input = styled.input`
     display: none;
@@ -18,6 +43,15 @@ export const Input = styled.input`
 
     &:checked ~ ${OnIcon} {
         display: block;
+        opacity: 1;
+    }
+
+    &:disabled ~ span {
+        opacity: 0.5;
+    }
+
+    &:disabled ~ ${OffIcon} {
+        opacity: 0.15;
     }
 
     ~ ${OnIcon} {
@@ -25,21 +59,6 @@ export const Input = styled.input`
     }
 `
 
-export const Item = styled.label`
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-auto-flow: column;
-    align-items: center;
-    grid-gap: 0.6rem;
-    cursor: pointer;
-
-    ${OnIcon},
-    ${OffIcon} {
-        width: 1.6em;
-        height: 1.6em;
-        fill: currentColor;
-    }
-`
 export const Placeholder = styled.span`
-    color: ${props => props.theme.colors.primary75};
+    color: ${props => props.theme.colors.onSurface75};
 `

@@ -1,82 +1,119 @@
+/**
+ *  https://css-tricks.com/converting-color-spaces-in-javascript/
+ */
+
+const hexToRGBA = (h: string, alpha = 1) => {
+    let r = '0',
+        g = '0',
+        b = '0'
+
+    // 3 digits
+    if (h.length == 4) {
+        r = '0x' + h[1] + h[1]
+        g = '0x' + h[2] + h[2]
+        b = '0x' + h[3] + h[3]
+
+        // 6 digits
+    } else if (h.length == 7) {
+        r = '0x' + h[1] + h[2]
+        g = '0x' + h[3] + h[4]
+        b = '0x' + h[5] + h[6]
+    }
+
+    return 'rgb(' + +r + ',' + +g + ',' + +b + ',' + alpha / 100 + ')'
+}
+
+const hexToHSL = (H: string, lightness?: number) => {
+    // Convert hex to RGB first
+    let r: any = 0,
+        g: any = 0,
+        b: any = 0
+    if (H.length == 4) {
+        r = '0x' + H[1] + H[1]
+        g = '0x' + H[2] + H[2]
+        b = '0x' + H[3] + H[3]
+    } else if (H.length == 7) {
+        r = '0x' + H[1] + H[2]
+        g = '0x' + H[3] + H[4]
+        b = '0x' + H[5] + H[6]
+    }
+    // Then to HSL
+    r /= 255
+    g /= 255
+    b /= 255
+    const cmin = Math.min(r, g, b),
+        cmax = Math.max(r, g, b),
+        delta = cmax - cmin
+
+    let h = 0,
+        s = 0,
+        l = 0
+
+    if (delta == 0) h = 0
+    else if (cmax == r) h = ((g - b) / delta) % 6
+    else if (cmax == g) h = (b - r) / delta + 2
+    else h = (r - g) / delta + 4
+
+    h = Math.round(h * 60)
+
+    if (h < 0) h += 360
+
+    l = (cmax + cmin) / 2
+    s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1))
+    s = +(s * 100).toFixed(1)
+    l = +(l * 100).toFixed(1)
+
+    return 'hsl(' + h + ',' + s + '%,' + (lightness ?? l) + '%)'
+}
+
+export const generateColorTheme = (colors: { [key: string]: string }) => {
+    const result: { [key: string]: string } = {}
+
+    // Generate all the opacity level 5 - 95%
+    for (const color in colors) {
+        const value = colors[color]
+
+        result[color] = value // 100%
+
+        for (let i = 5; i < 100; i = i + 5) {
+            result[color + i] = hexToRGBA(value, i)
+        }
+    }
+
+    // Generate Gray Color
+    if (colors.onSurface) {
+        result.graySurface = hexToHSL(colors.onSurface, 95)
+    }
+
+    return result
+}
+
 export const defaultColors = {
-    background: '#ffffff',
-    onBackground: '#222222',
+    ...generateColorTheme({
+        surface: '#ffffff',
+        onSurface: '#222222',
 
-    surface: 'rgba(255, 255, 255, 1)',
-    surface90: 'rgba(255, 255, 255, 0.90)',
-    surface75: 'rgba(255, 255, 255, 0.75)',
-    surface50: 'rgba(255, 255, 255, 0.5)',
-    surface25: 'rgba(255, 255, 255, 0.25)',
-    surface15: 'rgba(255, 255, 255, 0.15)',
-    surface10: 'rgba(255, 255, 255, 0.10)',
-    surface5: 'rgba(255, 255, 255, 0.05)',
-    onSurface: 'rgba(34, 34, 34, 1)',
-    onSurface90: 'rgba(34, 34, 34, 0.90)',
-    onSurface75: 'rgba(34, 34, 34, 0.75)',
-    onSurface50: 'rgba(34, 34, 34, 0.5)',
-    onSurface25: 'rgba(34, 34, 34, 0.25)',
-    onSurface15: 'rgba(34, 34, 34, 0.15)',
-    onSurface10: 'rgba(34, 34, 34, 0.10)',
-    onSurface5: 'rgba(34, 34, 34, 0.05)',
+        primary: '#222222',
+        onPrimary: '#ffffff',
 
-    primary: 'rgba(17, 17, 17, 1)',
-    primary75: 'rgba(17, 17, 17, 0.75)',
-    primary50: 'rgba(17, 17, 17, 0.5)',
-    primary25: 'rgba(17, 17, 17, 0.25)',
-    primary15: 'rgba(17, 17, 17, 0.15)',
-    primary10: 'rgba(17, 17, 17, 0.10)',
-    primary5: 'rgba(17, 17, 17, 0.05)',
-    onPrimary: 'rgba(255, 255, 255, 1)',
-    onPrimary75: 'rgba(255, 255, 255, 0.75)',
-    onPrimary50: 'rgba(255, 255, 255, 0.5)',
-    onPrimary25: 'rgba(255, 255, 255, 0.25)',
-    onPrimary15: 'rgba(255, 255, 255, 0.15)',
-    onPrimary10: 'rgba(255, 255, 255, 0.10)',
-    onPrimary5: 'rgba(255, 255, 255, 0.05)',
+        secondary: '#ffffff',
+        onSecondary: '#222222',
 
-    secondary: 'rgba(250, 250, 250, 1)',
-    secondary75: 'rgba(250, 250, 250, 0.75)',
-    secondary50: 'rgba(250, 250, 250, 0.5)',
-    secondary25: 'rgba(250, 250, 250, 0.25)',
-    secondary15: 'rgba(250, 250, 250, 0.15)',
-    secondary10: 'rgba(250, 250, 250, 0.10)',
-    secondary5: 'rgba(250, 250, 250, 0.05)',
-    onSecondary: 'rgba(33, 33, 33, 1)',
-    onSecondary75: 'rgba(33, 33, 33, 0.75)',
-    onSecondary50: 'rgba(33, 33, 33, 0.5)',
-    onSecondary25: 'rgba(33, 33, 33, 0.25)',
-    onSecondary15: 'rgba(33, 33, 33, 0.15)',
-    onSecondary10: 'rgba(33, 33, 33, 0.10)',
-    onSecondary5: 'rgba(33, 33, 33, 0.05)',
+        accent: '#a14a24',
+        onAccent: '#ffffff',
 
-    accent: 'rgba(161, 74, 36, 1)',
-    accent75: 'rgba(161, 74, 36, 0.75)',
-    accent50: 'rgba(161, 74, 36, 0.5)',
-    accent25: 'rgba(161, 74, 36, 0.25)',
-    accent15: 'rgba(161, 74, 36, 0.15)',
-    accent10: 'rgba(161, 74, 36, 0.10)',
-    accent5: 'rgba(161, 74, 36, 0.05)',
-    onAccent: 'rgba(250, 250, 250, 1)',
-    onAccent75: 'rgba(250, 250, 250, 0.75)',
-    onAccent50: 'rgba(250, 250, 250, 0.5)',
-    onAccent25: 'rgba(250, 250, 250, 0.25)',
-    onAccent15: 'rgba(250, 250, 250, 0.15)',
-    onAccent10: 'rgba(250, 250, 250, 0.10)',
-    onAccent5: 'rgba(250, 250, 250, 0.05)',
+        error: '#ef5350',
+        onError: '#ffffff',
 
-    error: '#ef5350',
-    onError: 'rgba(255, 255, 255, 1)',
+        warning: '#f57c00',
+        onWarning: '#ffffff',
 
-    warning: '#f57c00',
-    onWarning: 'rgba(255, 255, 255, 1)',
+        notice: '#0070f3',
+        onNotice: '#ffffff',
 
-    notice: '#0070f3',
-    onNotice: 'rgba(255, 255, 255, 1)',
-
-    success: '#008b8b',
-    onSuccess: 'rgba(255, 255, 255, 1)',
-
-    graySurface: '#e9e9e9',
+        success: '#008b8b',
+        onSuccess: '#ffffff',
+    }),
 }
 
 export type ThemeColors = typeof defaultColors

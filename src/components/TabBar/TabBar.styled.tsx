@@ -17,16 +17,17 @@ export const Root = styled.div`
     @supports (padding: max(0px)) {
         padding-bottom: max(1.3rem, env(safe-area-inset-bottom));
     }
+    background-color: ${props => props.theme.colors.surface};
 `
 
 export const Item = styled.div<{ active?: boolean }>`
     align-items: center;
-    color: ${props => props.theme.colors.primary};
     display: flex;
     flex-direction: column;
     font-size: 2.6rem;
     justify-content: center;
     opacity: ${props => (props.active ? '1' : ' 0.5')};
+    color: ${props => props.theme.colors.primary};
 `
 
 export const Icon = styled(IconComponent)``

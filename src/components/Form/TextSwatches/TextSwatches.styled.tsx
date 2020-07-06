@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Items = styled.div`
     display: grid;
     grid-gap: 1rem;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 `
 
 export const Item = styled.span`
@@ -12,10 +12,10 @@ export const Item = styled.span`
     & > label {
         cursor: pointer;
         align-items: center;
-        background-color: ${props => props.theme.colors.onPrimary};
+        background-color: ${props => props.theme.colors.surface};
         border-radius: 0.5rem;
-        border: 0.1rem solid ${props => props.theme.colors.primary25};
-        color: ${props => props.theme.colors.primary};
+        border: 0.1rem solid ${props => props.theme.colors.onSurface25};
+        color: ${props => props.theme.colors.onSurface};
         display: flex;
         justify-content: center;
         padding: 1rem;
@@ -28,8 +28,8 @@ export const Item = styled.span`
     }
 
     & > input:checked + label {
-        background-color: ${props => props.theme.colors.primary};
-        color: ${props => props.theme.colors.onPrimary};
+        background-color: ${props => props.theme.colors.onSurface};
+        color: ${props => props.theme.colors.surface};
     }
 
     & > input:disabled + label {
@@ -37,6 +37,6 @@ export const Item = styled.span`
     }
 
     &:hover > input:not(:disabled) + label {
-        border-color: ${props => props.theme.colors.primary75};
+        border-color: ${props => props.theme.colors.onSurface75};
     }
 `

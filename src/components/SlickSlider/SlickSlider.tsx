@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useCallback, HTMLAttributes } from 'react'
+import React, { useState, useCallback, HTMLAttributes, useLayoutEffect } from 'react'
 import { Component } from '../../lib'
 import { Root, Item, NavButton, ArrowIcon, SlickGlobalStyles } from './SlickSlider.styled'
 import { Settings } from 'react-slick'
@@ -14,10 +14,16 @@ export type SlickSliderProps = Settings & {
     }
 }
 
-export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true, buttons, beforeChange, afterChange, fade = false, children, ...props }) => {
+export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true, beforeChange, afterChange, buttons, fade = false, children, ...props }) => {
     const draggable = !fade
 
     const [dragging, setDragging] = useState(false)
+
+    const [loaded, setLoaded] = useState(false)
+
+    useLayoutEffect(() => {
+        setLoaded(true)
+    }, [])
 
     const handleBeforeChange = useCallback(
         (currentSlide: number, nextSlide: number) => {
@@ -39,7 +45,6 @@ export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true,
         e => {
             if (draggable && dragging) {
                 e.preventDefault()
-                e.stopPropagation()
             }
         },
         [draggable, dragging]
@@ -48,37 +53,36 @@ export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true,
     const items = React.Children.toArray(children)
 
     return (
-        <React.Fragment>
+        <React.Suspense fallback={<div></div>}>
             <SlickGlobalStyles />
-            <Suspense fallback="">
-                {items.length > 0 ? (
-                    <Root
-                        $draggable={draggable}
-                        as={Slick}
-                        respondTo="min"
-                        draggable={draggable}
-                        fade={fade}
-                        accesibility={accessibility}
-                        beforeChange={handleBeforeChange}
-                        afterChange={handleAfterChange}
-                        prevArrow={
-                            <NavButton aria-label="previous" {...buttons?.previous}>
-                                <ArrowIcon />
-                            </NavButton>
-                        }
-                        nextArrow={
-                            <NavButton aria-label="next" {...buttons?.next}>
-                                <ArrowIcon />
-                            </NavButton>
-                        }
-                        {...props}
-                    >
-                        {items.map((item: any, index) => {
-                            return <Item key={index}>{React.cloneElement(item, { onClickCapture: handleOnItemClick, draggable: false })}</Item>
-                        })}
-                    </Root>
-                ) : null}
-            </Suspense>
-        </React.Fragment>
+            {items.length > 0 ? (
+                <Root
+                    key={loaded ? 'loaded' : 'loading'}
+                    $draggable={draggable}
+                    as={Slick}
+                    respondTo="min"
+                    draggable={draggable}
+                    fade={fade}
+                    accesibility={accessibility}
+                    beforeChange={handleBeforeChange}
+                    afterChange={handleAfterChange}
+                    prevArrow={
+                        <NavButton aria-label="previous" {...buttons?.previous}>
+                            <ArrowIcon />
+                        </NavButton>
+                    }
+                    nextArrow={
+                        <NavButton aria-label="next" {...buttons?.next}>
+                            <ArrowIcon />
+                        </NavButton>
+                    }
+                    {...props}
+                >
+                    {items.map((item: any, key) => {
+                        return <Item key={key}>{React.cloneElement(item, { onClickCapture: handleOnItemClick, draggable: false })}</Item>
+                    })}
+                </Root>
+            ) : null}
+        </React.Suspense>
     )
 }

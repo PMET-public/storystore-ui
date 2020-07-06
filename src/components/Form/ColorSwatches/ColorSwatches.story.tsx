@@ -1,18 +1,24 @@
 import React from 'react'
-import TextSwatches from '.'
+import ColorSwatches from '.'
 import { storiesOf } from '@storybook/react'
 import { object, boolean, text, select } from '@storybook/addon-knobs'
 import { Form, FieldColors } from '../Form'
 import { action } from '@storybook/addon-actions'
 
-storiesOf('📦 Components/Form/TextSwatches', module).add('Default', () => (
+storiesOf('📦 Components/Form/ColorSwatches', module).add('Default', () => (
     <Form onSubmit={action('onSubmit')}>
-        <TextSwatches
+        <ColorSwatches
             loading={boolean('loading', false)}
             label={text('label', '')}
-            name="size"
+            name="color"
             type="radio"
-            items={object('list', [{ label: 'XS' }, { label: 'M', disabled: true }, { label: 'L', defaultChecked: true }, { label: 'XL' }, { label: 'S' }])}
+            items={object('list', [
+                { label: 'Blue', color: 'blue' },
+                { label: 'Red', color: 'red', disabled: true },
+                { label: 'Teal', color: 'teal', defaultChecked: true },
+                { label: 'purple', color: 'purple' },
+                { label: 'yellow', color: 'yellow' },
+            ])}
             onChange={action('onChange')}
             error={text('error', '')}
             color={select(

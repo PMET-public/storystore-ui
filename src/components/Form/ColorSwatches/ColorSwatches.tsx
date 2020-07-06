@@ -1,22 +1,24 @@
 import React, { HTMLAttributes, ReactElement } from 'react'
 import { Component } from '../../../lib'
-import { Items, Item } from './TextSwatches.styled'
+import { Item } from './ColorSwatches.styled'
 import { FormFieldProps, Field, Label, FieldInput, Error, FieldColors } from '../Form'
-import { TextSwatchesSkeleton } from './TextSwatches.skeleton'
+import { ColorSwatchesSkeleton } from './ColorSwatches.skeleton'
 import { useFormFieldError } from '../useFormFieldError'
+import Carousel from '../../Carousel'
 
-export type TextSwatchesProps = FormFieldProps & {
+export type ColorSwatchesProps = FormFieldProps & {
     loading?: boolean
     type?: 'radio' | 'checkbox'
     items: Array<
         {
             label: ReactElement | string
+            color: string
             disabled?: boolean
         } & HTMLAttributes<HTMLInputElement>
     >
 }
 
-export const TextSwatches: Component<TextSwatchesProps> = ({ loading, error, color: _color, label, name, rules, type = 'radio', items = [], ...props }) => {
+export const ColorSwatches: Component<ColorSwatchesProps> = ({ loading, error, color: _color, label, name, rules, type = 'radio', items = [], ...props }) => {
     const fieldError = useFormFieldError({ name, error })
 
     const color = _color ?? (fieldError && FieldColors.error)
@@ -24,7 +26,7 @@ export const TextSwatches: Component<TextSwatchesProps> = ({ loading, error, col
     return (
         <Field {...props}>
             {loading ? (
-                <TextSwatchesSkeleton />
+                <ColorSwatchesSkeleton />
             ) : (
                 <React.Fragment>
                     {label && (
@@ -33,14 +35,17 @@ export const TextSwatches: Component<TextSwatchesProps> = ({ loading, error, col
                         </Label>
                     )}
 
-                    <Items>
-                        {items.map(({ label, ...item }, index) => (
+                    <Carousel gap={0.3} padding={0.3} show="auto" snap={false} hideScrollBar>
+                        {items.map(({ label, color, ...item }, index) => (
                             <Item key={index}>
                                 <FieldInput id={`swatch-group__${name}__${index}`} rules={rules} name={name} type={type} color={color as any} {...item} />
-                                <label htmlFor={`swatch-group__${name}__${index}`}>{label}</label>
+                                {/* @ts-ignore */}
+                                <label htmlFor={`swatch-group__${name}__${index}`} aria-label={label}>
+                                    <span style={{ backgroundColor: color }}></span>
+                                </label>
                             </Item>
                         ))}
-                    </Items>
+                    </Carousel>
                     <Error color={color as any}>{fieldError?.message}</Error>
                 </React.Fragment>
             )}

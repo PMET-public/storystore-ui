@@ -1,308 +1,314 @@
 import React from 'react'
 import Filters, { FiltersProps } from '.'
 import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
 
-const FiltersMockData: FiltersProps = {
-    groups: [
-        {
-            title: 'Fashion',
-            items: [
-                {
-                    as: 'a',
-                    count: 7,
-                    href: '#',
-                    text: '14K Gold',
-                },
-                {
-                    active: true,
-                    as: 'a',
-                    count: 68,
-                    href: '#',
-                    text: 'Acrylic',
-                },
-                {
-                    as: 'a',
-                    count: 68,
-                    href: '#',
-                    text: 'Cashmere',
-                },
-                {
-                    as: 'a',
-                    count: 5,
-                    href: '#',
-                    text: 'Sterling Silver',
-                },
-                {
-                    as: 'a',
-                    count: 437,
-                    href: '#',
-                    text: 'Cotton',
-                },
-                {
-                    as: 'a',
-                    count: 187,
-                    href: '#',
-                    text: 'Linen',
-                },
-                {
-                    as: 'a',
-                    count: 16,
-                    href: '#',
-                    text: 'Leather',
-                },
-                {
-                    as: 'a',
-                    count: 119,
-                    href: '#',
-                    text: 'Nylon',
-                },
-                {
-                    as: 'a',
-                    count: 310,
-                    href: '#',
-                    text: 'Organic Cotton',
-                },
-                {
-                    as: 'a',
-                    count: 140,
-                    href: '#',
-                    text: 'Polyester',
-                },
-                {
-                    as: 'a',
-                    count: 221,
-                    href: '#',
-                    text: 'Rayon',
-                },
-                {
-                    as: 'a',
-                    count: 89,
-                    href: '#',
-                    text: 'Silk',
-                },
-                {
-                    as: 'a',
-                    count: 220,
-                    href: '#',
-                    text: 'Spandex',
-                },
-                {
-                    as: 'a',
-                    count: 361,
-                    href: '#',
-                    text: 'Viscose',
-                },
-                {
-                    as: 'a',
-                    count: 51,
-                    href: '#',
-                    text: 'Wool',
-                },
-            ],
-        },
-        {
-            title: 'Style',
-            items: [
-                {
-                    as: 'a',
-                    count: 195,
-                    href: '#',
-                    text: 'Above Knee',
-                },
-                {
-                    as: 'a',
-                    count: 68,
-                    href: '#',
-                    text: 'Below Knee',
-                },
-                {
-                    as: 'a',
-                    count: 85,
-                    href: '#',
-                    text: 'Ankle Length',
-                },
-                {
-                    as: 'a',
-                    count: 34,
-                    href: '#',
-                    text: 'Halter Top',
-                },
-                {
-                    as: 'a',
-                    count: 204,
-                    href: '#',
-                    text: 'Short Sleeve',
-                    active: true,
-                },
-                {
-                    as: 'a',
-                    count: 170,
-                    href: '#',
-                    text: 'Sleeveless',
-                },
-                {
-                    as: 'a',
-                    count: 102,
-                    href: '#',
-                    text: 'Long Sleeve',
-                },
-                {
-                    as: 'a',
-                    count: 102,
-                    href: '#',
-                    text: '3/4 Sleeve',
-                },
-                {
-                    as: 'a',
-                    count: 38,
-                    href: '#',
-                    text: 'Slim Fit',
-                },
-                {
-                    as: 'a',
-                    count: 51,
-                    href: '#',
-                    text: 'Wide Leg',
-                },
-                {
-                    as: 'a',
-                    count: 21,
-                    href: '#',
-                    text: 'Capri',
-                },
-                {
-                    as: 'a',
-                    count: 255,
-                    href: '#',
-                    text: 'Full Length',
-                },
-                {
-                    as: 'a',
-                    count: 51,
-                    href: '#',
-                    text: 'Straight Leg',
-                },
-                {
-                    as: 'a',
-                    count: 119,
-                    href: '#',
-                    text: 'Open Front',
-                },
-                {
-                    as: 'a',
-                    count: 153,
-                    href: '#',
-                    text: 'Crew',
-                },
-                {
-                    as: 'a',
-                    count: 17,
-                    href: '#',
-                    text: 'Hooded',
-                },
-                {
-                    as: 'a',
-                    count: 51,
-                    href: '#',
-                    text: 'Scoopneck',
-                },
-                {
-                    as: 'a',
-                    count: 34,
-                    href: '#',
-                    text: 'V-neck',
-                },
-                {
-                    as: 'a',
-                    count: 51,
-                    href: '#',
-                    text: 'Button-down',
-                },
-            ],
-        },
-        {
-            title: 'Color',
-            items: [
-                {
-                    as: 'a',
-                    count: 72,
-                    href: '#',
-                    text: 'Gold',
-                },
-                {
-                    as: 'a',
-                    count: 156,
-                    href: '#',
-                    text: 'Peach',
-                },
-                {
-                    as: 'a',
-                    count: 144,
-                    href: '#',
-                    text: 'Khaki',
-                },
-                {
-                    as: 'a',
-                    count: 6,
-                    href: '#',
-                    text: 'Silver',
-                },
-                {
-                    as: 'a',
-                    count: 223,
-                    href: '#',
-                    text: 'Lilac',
-                },
-                {
-                    as: 'a',
-                    count: 223,
-                    href: '#',
-                    text: 'Rain',
-                },
-                {
-                    as: 'a',
-                    count: 134,
-                    href: '#',
-                    text: 'Mint',
-                },
-                {
-                    as: 'a',
-                    count: 97,
-                    href: '#',
-                    text: 'Lily',
-                },
-                {
-                    as: 'a',
-                    count: 91,
-                    href: '#',
-                    text: 'Latte',
-                },
-                {
-                    as: 'a',
-                    count: 16,
-                    href: '#',
-                    text: 'Cocoa',
-                },
-            ],
-        },
-        {
-            title: 'Has Video',
-            items: [
-                {
-                    as: 'a',
-                    count: 18,
-                    href: '#',
-                    text: 'Yes',
-                },
-                {
-                    as: 'a',
-                    count: 1133,
-                    href: '#',
-                    text: 'No',
-                },
-            ],
-        },
-    ],
-}
-
-storiesOf('📦 Components/Filters', module).add('Default', () => <Filters {...FiltersMockData} />)
+storiesOf('📦 Components/Filters', module).add('Default', () => {
+    const FiltersMockData: FiltersProps = {
+        onValues: action('onValues'),
+        onSubmit: action('onSubmit'),
+        groups: [
+            {
+                title: 'Fashion',
+                name: 'Fashion',
+                items: [
+                    {
+                        count: 7,
+                        href: '#',
+                        label: '14K Gold',
+                        value: 'Gold--value',
+                    },
+                    {
+                        count: 68,
+                        href: '#',
+                        label: 'Acrylic',
+                        value: 'Acrylic--value',
+                    },
+                    {
+                        count: 68,
+                        href: '#',
+                        label: 'Cashmere',
+                        value: 'Cashmere--value',
+                    },
+                    {
+                        count: 5,
+                        href: '#',
+                        label: 'Sterling Silver',
+                        value: 'Sterling--value',
+                    },
+                    {
+                        count: 437,
+                        href: '#',
+                        label: 'Cotton',
+                        value: 'Cotton--value',
+                    },
+                    {
+                        count: 187,
+                        href: '#',
+                        label: 'Linen',
+                        value: 'Linen--value',
+                    },
+                    {
+                        count: 16,
+                        href: '#',
+                        label: 'Leather',
+                        value: 'Leather--value',
+                    },
+                    {
+                        count: 119,
+                        href: '#',
+                        label: 'Nylon',
+                        value: 'Nylon--value',
+                    },
+                    {
+                        count: 310,
+                        href: '#',
+                        label: 'Organic Cotton',
+                        value: 'Organic--value',
+                    },
+                    {
+                        count: 140,
+                        href: '#',
+                        label: 'Polyester',
+                        value: 'Polyester--value',
+                    },
+                    {
+                        count: 221,
+                        href: '#',
+                        label: 'Rayon',
+                        value: 'Rayon--value',
+                    },
+                    {
+                        count: 89,
+                        href: '#',
+                        label: 'Silk',
+                        value: 'Silk--value',
+                    },
+                    {
+                        count: 220,
+                        href: '#',
+                        label: 'Spandex',
+                        value: 'Spandex--value',
+                    },
+                    {
+                        count: 361,
+                        href: '#',
+                        label: 'Viscose',
+                        value: 'Viscose--value',
+                    },
+                    {
+                        count: 51,
+                        href: '#',
+                        label: 'Wool',
+                        value: 'Wool--value',
+                    },
+                ],
+            },
+            {
+                title: 'Style',
+                name: 'Style',
+                items: [
+                    {
+                        count: 195,
+                        href: '#',
+                        label: 'Above Knee',
+                        value: 'Above--value',
+                    },
+                    {
+                        count: 68,
+                        href: '#',
+                        label: 'Below Knee',
+                        value: 'Below--value',
+                    },
+                    {
+                        count: 85,
+                        href: '#',
+                        label: 'Ankle Length',
+                        value: 'Ankle--value',
+                    },
+                    {
+                        count: 34,
+                        href: '#',
+                        label: 'Halter Top',
+                        value: 'Halter--value',
+                    },
+                    {
+                        count: 204,
+                        href: '#',
+                        label: 'Short Sleeve',
+                        value: 'Short--value',
+                    },
+                    {
+                        count: 170,
+                        href: '#',
+                        label: 'Sleeveless',
+                        value: 'Sleeveless--value',
+                    },
+                    {
+                        count: 102,
+                        href: '#',
+                        label: 'Long Sleeve',
+                        value: 'Long--value',
+                    },
+                    {
+                        count: 102,
+                        href: '#',
+                        label: '3/4 Sleeve',
+                        value: 'Sleeve--value',
+                    },
+                    {
+                        count: 38,
+                        href: '#',
+                        label: 'Slim Fit',
+                        value: 'Slim--value',
+                    },
+                    {
+                        count: 51,
+                        href: '#',
+                        label: 'Wide Leg',
+                        value: 'Wide--value',
+                    },
+                    {
+                        count: 21,
+                        href: '#',
+                        label: 'Capri',
+                        value: 'Capri--value',
+                    },
+                    {
+                        count: 255,
+                        href: '#',
+                        label: 'Full Length',
+                        value: 'Full--value',
+                    },
+                    {
+                        count: 51,
+                        href: '#',
+                        label: 'Straight Leg',
+                        value: 'Straight--value',
+                    },
+                    {
+                        count: 119,
+                        href: '#',
+                        label: 'Open Front',
+                        value: 'Open--value',
+                    },
+                    {
+                        count: 153,
+                        href: '#',
+                        label: 'Crew',
+                        value: 'Crew--value',
+                    },
+                    {
+                        count: 17,
+                        href: '#',
+                        label: 'Hooded',
+                        value: 'Hooded--value',
+                    },
+                    {
+                        count: 51,
+                        href: '#',
+                        label: 'Scoopneck',
+                        value: 'Scoopneck--value',
+                    },
+                    {
+                        count: 34,
+                        href: '#',
+                        label: 'V-neck',
+                        value: 'neck--value',
+                    },
+                    {
+                        count: 51,
+                        href: '#',
+                        label: 'Button-down',
+                        value: 'Button--value',
+                    },
+                ],
+            },
+            {
+                title: 'Color',
+                name: 'Color',
+                items: [
+                    {
+                        count: 72,
+                        href: '#',
+                        label: 'Gold',
+                        value: 'Gold--value',
+                    },
+                    {
+                        count: 156,
+                        href: '#',
+                        label: 'Peach',
+                        value: 'Peach--value',
+                    },
+                    {
+                        count: 144,
+                        href: '#',
+                        label: 'Khaki',
+                        value: 'Khaki--value',
+                    },
+                    {
+                        count: 6,
+                        href: '#',
+                        label: 'Silver',
+                        value: 'Silver--value',
+                    },
+                    {
+                        count: 223,
+                        href: '#',
+                        label: 'Lilac',
+                        value: 'Lilac--value',
+                    },
+                    {
+                        count: 223,
+                        href: '#',
+                        label: 'Rain',
+                        value: 'Rain--value',
+                    },
+                    {
+                        count: 134,
+                        href: '#',
+                        label: 'Mint',
+                        value: 'Mint--value',
+                    },
+                    {
+                        count: 97,
+                        href: '#',
+                        label: 'Lily',
+                        value: 'Lily--value',
+                    },
+                    {
+                        count: 91,
+                        href: '#',
+                        label: 'Latte',
+                        value: 'Latte--value',
+                    },
+                    {
+                        count: 16,
+                        href: '#',
+                        label: 'Cocoa',
+                        value: 'Cocoa--value',
+                    },
+                ],
+            },
+            {
+                title: 'Has Video',
+                name: 'Has Video',
+                items: [
+                    {
+                        count: 18,
+                        href: '#',
+                        label: 'Yes',
+                        value: 'true',
+                    },
+                    {
+                        count: 1133,
+                        href: '#',
+                        label: 'No',
+                        value: 'false',
+                    },
+                ],
+            },
+        ],
+    }
+    return <Filters {...FiltersMockData} />
+})

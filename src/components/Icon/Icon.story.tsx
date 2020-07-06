@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 import { number, text, color } from '@storybook/addon-knobs'
 
 import IconHomeSvg from 'remixicon/icons/Buildings/store-line.svg'
-import IconHeartSvg from 'remixicon/icons/System/heart-line.svg'
+import IconHeartSvg from 'remixicon/icons/Health/heart-line.svg'
 import IconCartSvg from 'remixicon/icons/Finance/shopping-bag-line.svg'
 
 storiesOf('📦 Components/Icon', module).add('Default', () => (

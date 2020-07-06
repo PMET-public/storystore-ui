@@ -32,7 +32,7 @@ export const ImageWrapper = styled.div`
 export const Item = styled.div``
 
 export const Button = styled.div<{ $active?: boolean; $xPos: number; $yPos: number }>`
-    background-color: ${props => (props.$active ? props.theme.colors.primary : props.theme.colors.accent)};
+    background-color: ${props => (props.$active ? props.theme.colors.onSurface : props.theme.colors.accent)};
     border-radius: 50%;
     border: none;
     cursor: pointer;

@@ -3,7 +3,7 @@ import TabBar from '.'
 import { storiesOf } from '@storybook/react'
 
 import IconHomeActiveSvg from 'remixicon/icons/Buildings/store-2-fill.svg'
-import IconHeartSvg from 'remixicon/icons/System/heart-line.svg'
+import IconHeartSvg from 'remixicon/icons/Health/heart-line.svg'
 import IconSearchSvg from 'remixicon/icons/System/search-line.svg'
 import IconBagSvg from 'remixicon/icons/Finance/shopping-bag-line.svg'
 

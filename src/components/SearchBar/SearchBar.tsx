@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent, useEffect, useCallback } from 'react'
+import React, { useState, ChangeEvent, FormEvent, useCallback } from 'react'
 import { Component } from '../../lib'
 import { Root, Wrapper, SearchIcon, Field, Count, ResetButton, ResetIcon } from './SearchBar.styled'
 
@@ -19,18 +19,18 @@ export type SearchBarProps = {
 export const SearchBar: Component<SearchBarProps> = ({ clearButton = true, count, label = 'Search', loading, value: defaultValue = '', onSearch, onUpdate, ...props }) => {
     const [value, setValue] = useState(defaultValue)
 
-    const throttledUpdate = useThrottle(() => {
-        if (onUpdate) onUpdate(value)
+    const throttledUpdate = useThrottle((query: string) => {
+        if (onUpdate) onUpdate(query)
     }, 250)
 
-    useEffect(throttledUpdate, [value])
-
-    useEffect(() => setValue(defaultValue), [defaultValue])
-
-    const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-        const query = event.currentTarget.value
-        setValue(query)
-    }, [])
+    const handleChange = useCallback(
+        (event: ChangeEvent<HTMLInputElement>) => {
+            const query = event.currentTarget.value
+            setValue(query)
+            throttledUpdate(query)
+        },
+        [throttledUpdate]
+    )
 
     const handleSubmit = useCallback(
         (event: FormEvent) => {
@@ -42,7 +42,8 @@ export const SearchBar: Component<SearchBarProps> = ({ clearButton = true, count
 
     const handleReset = useCallback(() => {
         setValue('')
-    }, [])
+        throttledUpdate('')
+    }, [throttledUpdate])
 
     return (
         <Root {...props}>

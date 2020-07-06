@@ -1,4 +1,6 @@
-import { RefObject, useEffect, useState } from 'react'
+import { RefObject, useEffect, useState, useCallback, useRef } from 'react'
+
+import { useDebounce } from './useDebounce'
 
 type UseMeasure = {
     bottom: number
@@ -9,24 +11,18 @@ type UseMeasure = {
     width: number
     x: number
     y: number
-    offsetX: number
-    offsetY: number
 }
 
-const getValues = (node: HTMLElement): UseMeasure => {
-    const rect = node.getBoundingClientRect()
-
+const getValues = (rect: DOMRect): UseMeasure => {
     return {
-        width: rect.width,
+        bottom: rect.bottom,
         height: rect.height,
-        top: rect.x ? rect.x : rect.top,
         left: rect.y ? rect.y : rect.left,
+        right: rect.right,
+        top: rect.x ? rect.x : rect.top,
+        width: rect.width,
         x: rect.x ? rect.x : rect.left,
         y: rect.y ? rect.y : rect.top,
-        right: rect.right,
-        bottom: rect.bottom,
-        offsetX: rect.left + window.scrollX,
-        offsetY: rect.top + window.scrollY,
     }
 }
 
@@ -40,17 +36,38 @@ export const useMeasure = (ref: RefObject<HTMLElement | null>): UseMeasure => {
         width: 0,
         x: 0,
         y: 0,
-        offsetX: 0,
-        offsetY: 0,
     })
 
-    const current = ref?.current
+    const handleContentRectUpdate = useCallback(
+        (entries: ResizeObserverEntry[]) => {
+            const [entry] = entries
+
+            if (entry) {
+                setValues(getValues(entry.target.getBoundingClientRect()))
+            }
+        },
+        [setValues]
+    )
+
+    const debounced = useDebounce(handleContentRectUpdate, 250)
+
+    const resizeObserver = useRef<ResizeObserver>()
 
     useEffect(() => {
-        if (current) {
-            setValues(getValues(current))
+        const current = ref.current
+
+        if (typeof ResizeObserver === 'undefined' || !current) return
+
+        resizeObserver.current = resizeObserver.current ?? new ResizeObserver(debounced)
+
+        const ro = resizeObserver.current
+
+        ro.observe(current, { box: 'border-box' })
+
+        return () => {
+            ro.unobserve(current)
         }
-    }, [current, setValues])
+    }, [ref, debounced, setValues, resizeObserver])
 
     return values
 }

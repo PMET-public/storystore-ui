@@ -67,6 +67,7 @@ export const SlickGlobalStyles = createGlobalStyle`
         overflow: hidden;
         margin: 0;
         padding: 0;
+        max-width: 100vw;
     }
 
     .slick-list:active {

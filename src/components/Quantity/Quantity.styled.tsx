@@ -16,7 +16,7 @@ export const Actions = styled.div`
 const Button = styled.button`
     font-size: 1.6rem;
     & > svg {
-        fill: ${({ theme }) => theme.colors.primary};
+        fill: ${({ theme }) => theme.colors.onSurface};
         width: 1em;
         height: 1em;
     }
@@ -26,7 +26,7 @@ const Button = styled.button`
     }
 
     align-items: center;
-    background-color: ${({ theme }) => theme.colors.primary5};
+    background-color: ${({ theme }) => theme.colors.onSurface10};
     border-radius: 1rem;
     display: flex;
     justify-content: center;

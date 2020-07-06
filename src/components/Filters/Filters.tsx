@@ -1,71 +1,85 @@
 import React, { useState, useRef, useCallback } from 'react'
 import { Component, Props } from '../../lib'
-import { Root, Group, Wrapper, List, GroupLabel, Item, Icon, Count, ToggleIcon, ToggleButton } from './Filters.styled'
+import { Root, Wrapper, Group, ListWrapper, List, GroupLabel, Count, ToggleIcon, ToggleButton } from './Filters.styled'
 
 import { useMeasure } from '../../hooks/useMeasure'
 
-import CheckIconSvg from 'remixicon/icons/System/checkbox-blank-circle-fill.svg'
-import CheckIconActiveSvg from 'remixicon/icons/System/checkbox-circle-fill.svg'
+import { Form, FormProps } from '../Form'
+import Checkbox from '../Form/Checkbox'
 
-export type FiltersProps = {
+export type FiltersProps = FormProps<any> & {
     groups: FiltersGroupProps[]
+    disabled?: boolean
 }
 
-export const Filters: Component<FiltersProps> = ({ groups = [], ...props }) => {
+export const Filters: Component<FiltersProps> = ({ groups = [], disabled, ...props }) => {
+    const elRef = useRef<HTMLDivElement>(null)
     return (
-        <Root {...props}>
-            {groups.map((group, index) => (
-                <FiltersGroup key={index} {...group} />
-            ))}
+        <Root as={Form} {...props}>
+            <fieldset disabled={disabled}>
+                <Wrapper ref={elRef}>
+                    {groups.map(({ _id, ...group }, index) => (
+                        <FiltersGroup key={_id ?? index} {...group} />
+                    ))}
+                </Wrapper>
+            </fieldset>
         </Root>
     )
 }
 
-type FiltersGroupProps = {
+/**
+ * Filters Group
+ */
+
+export type FiltersGroupProps = {
+    _id?: string | number
     title: string
+    name: string
     offset?: number
+    type?: 'checkbox' | 'radio'
     items: Array<
         Props<{
             _id?: string | number
-            active?: boolean
             count?: number
-            text: string
+            label: string
+            value: string
         }>
     >
 }
-
-const FiltersGroup: Component<FiltersGroupProps> = ({ items = [], offset = 5, title, ...props }) => {
+const FiltersGroup: Component<FiltersGroupProps> = ({ name, type = 'checkbox', title, items = [], offset = 4, ...props }) => {
     const [open, setOpen] = useState(false)
-
     const handleOnToggle = useCallback(() => setOpen(!open), [open, setOpen])
 
-    const elRef = useRef<any>(null)
+    const elRef = useRef<HTMLDivElement>(null)
 
     const { height } = useMeasure(elRef)
 
     return (
         <Group {...props}>
-            <Wrapper $duration={items.length * 20 + 'ms'} $height={open ? `${height / 10}rem` : `calc(2em * ${offset})`}>
+            <ListWrapper $duration={items.length * 20 + 'ms'} style={{ maxHeight: open ? `${height / 10}rem` : `calc(2.3em * ${offset})` }}>
                 <List ref={elRef}>
                     <GroupLabel>{title}</GroupLabel>
 
-                    {items.map(({ text, count, active = false, _id, ...item }, index) => (
-                        <dd key={_id || index}>
-                            <Item $active={active} {...item}>
-                                <Icon as={active ? CheckIconActiveSvg : CheckIconSvg} />
-
-                                {text}
-
-                                {count && <Count>{count}</Count>}
-                            </Item>
-                        </dd>
-                    ))}
+                    <Checkbox
+                        type={type}
+                        name={name}
+                        items={items.map(({ _id, count, label, value, ...item }, index) => ({
+                            _id: _id ?? index,
+                            label: (
+                                <>
+                                    {label} {count && <Count>{count}</Count>}
+                                </>
+                            ),
+                            value,
+                            ...item,
+                        }))}
+                    />
                 </List>
-            </Wrapper>
+            </ListWrapper>
 
             {items.length > offset && (
                 <div>
-                    <ToggleButton $active={open} onClick={handleOnToggle}>
+                    <ToggleButton $active={open} type="button" onClick={handleOnToggle}>
                         <ToggleIcon />
                         {open ? 'Less' : 'More'}
                     </ToggleButton>

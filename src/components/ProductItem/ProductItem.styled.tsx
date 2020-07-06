@@ -4,9 +4,11 @@ import { Root as PriceRoot } from '../Price/Price.styled'
 import ImageComponent from '../Image'
 
 export const Root = styled.div`
-    display: block;
     overflow: hidden;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 `
 
 export const Badge = styled.span`
@@ -22,28 +24,40 @@ export const Badge = styled.span`
     z-index: 1;
 `
 
+export const ImageWrapper = styled.div`
+    flex-grow: 1;
+    & > img {
+        background-color: #fff;
+    }
+`
+
 export const Image = styled(ImageComponent)`
     width: 100%;
     height: 100%;
+    object-fit: contain;
 `
 
 export const Colors = styled.ul`
     display: grid;
+    grid-auto-columns: 1rem;
+    grid-gap: 0.5rem;
     grid-auto-flow: column;
-    margin-top: -1rem;
-    position: relative;
+    height: 1rem;
 `
 
 export const Color = styled.li`
-    display: inline-block;
-    height: 0.65rem;
-    width: 100%;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    filter: contrast(0.85);
+    will-change: filter;
+    transform: translateZ(0);
 `
 
 export const Details = styled.span`
     display: grid;
     font-size: 1.4rem;
-    grid-gap: 0.5rem;
+    grid-gap: 0.65rem;
     padding: 1rem;
 
     @media ${props => props.theme.breakpoints.medium} {

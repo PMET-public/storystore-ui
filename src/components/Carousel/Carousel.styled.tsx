@@ -1,14 +1,8 @@
 import styled from 'styled-components'
 
-export const Root = styled.div<{ $height?: number }>`
+export const Root = styled.div`
     width: 100%;
     overflow-y: hidden;
-
-    ${props =>
-        props.$height &&
-        `
-            height: calc(${props.$height} + 3rem);
-            `}
 `
 
 export const Scroller = styled.div<{
@@ -44,7 +38,7 @@ export const Scroller = styled.div<{
             : `
             padding-bottom: 1rem;
 
-            scrollbar-color: ${props.theme.colors.primary25} ${props.theme.colors.primary15};
+            scrollbar-color: ${props.theme.colors.onSurface25} ${props.theme.colors.onSurface15};
             scrollbar-width: thin;
 
             &::-webkit-scrollbar {
@@ -54,12 +48,12 @@ export const Scroller = styled.div<{
             &::-webkit-scrollbar-track {
                 margin: 0 10%;
                 border-radius: 3rem;
-                background: ${props.theme.colors.primary15};
+                background: ${props.theme.colors.onSurface15};
             }
 
             &::-webkit-scrollbar-thumb {
                 border-radius: 3rem;
-                background: ${props.theme.colors.primary25};
+                background: ${props.theme.colors.onSurface25};
             }
         `}
 `

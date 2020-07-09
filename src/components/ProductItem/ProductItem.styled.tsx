@@ -38,6 +38,7 @@ export const Image = styled(ImageComponent)`
 `
 
 export const Colors = styled.ul`
+    list-style-type: none;
     display: grid;
     grid-auto-columns: 1rem;
     grid-gap: 0.5rem;

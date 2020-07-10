@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Items = styled.div`
     display: grid;
     grid-gap: 1rem;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
 `
 
 export const Item = styled.span`

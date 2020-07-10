@@ -7,23 +7,24 @@ export const Root = styled.div`
 `
 export const List = styled.div`
     display: grid;
-    grid-gap: 3rem 0.2rem;
+    grid-gap: 3rem 0.5rem;
     grid-template-columns: repeat(1, 1fr);
     width: 100%;
 
     @media ${props => props.theme.breakpoints.medium} {
         grid-template-columns: repeat(2, 1fr);
+        grid-gap: 3rem 1rem;
     }
 
     @media ${props => props.theme.breakpoints.large} {
         grid-template-columns: repeat(3, 1fr);
-        grid-gap: 3rem 0.5rem;
+        grid-gap: 1rem;
+        grid-gap: 2rem 1rem;
     }
 
     @media ${props => props.theme.breakpoints.xLarge} {
         grid-template-columns: repeat(4, 1fr);
-
-        grid-gap: 3rem;
+        grid-gap: 3rem 2rem;
     }
 `
 

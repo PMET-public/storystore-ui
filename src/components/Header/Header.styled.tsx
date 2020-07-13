@@ -10,7 +10,6 @@ export const Root = styled.div`
     grid-template-columns: auto 1fr;
     grid-template-rows: auto;
     width: 100%;
-    padding: 1rem 0;
     min-height: 6rem;
 
     @media ${props => props.theme.breakpoints.smallOnly} {

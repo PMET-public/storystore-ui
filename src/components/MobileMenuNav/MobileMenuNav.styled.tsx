@@ -2,62 +2,68 @@ import styled from 'styled-components'
 
 export const Root = styled.div`
     position: relative;
+    width: calc(100vw);
+    min-height: 10rem;
+    padding: 0 1rem;
+
+    @media ${props => props.theme.breakpoints.medium} {
+        max-width: 40rem;
+    }
 `
 
-export const ToggleButton = styled.button<{ $active?: boolean }>`
-    position: relative;
-    z-index: 2;
-    color: ${props => props.theme.colors.primary};
-    background-color: ${props => (props.$active ? 'transparent' : props.theme.colors.primary10)};
-    line-height: 0;
+export const CloseButton = styled.button`
+    position: absolute;
+    right: 2rem;
+    top: 1rem;
     padding: 1rem;
-    border-radius: ${props => (props.$active ? '50%' : '0.7rem')};
-    transition: background-color 250ms ease-in, border-radius 250ms ease-in;
 
     & > svg {
         fill: currentColor;
         width: 2rem;
-    }
-
-    &:hover {
-        background-color: ${props => props.theme.colors.primary15};
-        border-radius: 50%;
+        height: 2rem;
     }
 `
 
 export const Wrapper = styled.div`
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: ${props => props.theme.colors.surface90};
+    background: ${props => props.theme.colors.surface};
     color: ${props => props.theme.colors.onSurface};
-    border-radius: 1.8rem;
-    box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
+    border-radius: 2rem;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.35);
     border: 0.1rem solid ${props => props.theme.colors.onSurface5};
-    z-index: 1;
-    width: calc(100vw - 4rem);
-    min-height: 10rem;
-    padding: 2rem;
+    padding: 4rem 2rem 2rem;
+    display: grid;
+    grid-gap: 2rem;
+    grid-auto-rows: max-content;
+`
 
-    @media ${props => props.theme.breakpoints.medium} {
-        width: 40rem;
-    }
+export const Title = styled.h2`
+    font-size: 1.3rem;
+    font-family: ${props => props.theme.typography.heading.family};
+    font-weight: ${props => props.theme.typography.heading.weight.semi};
+    text-transform: uppercase;
+    color: ${props => props.theme.colors.onSurface50};
 `
 
 export const Categories = styled.ul`
     list-style-type: none;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 1rem;
+    grid-auto-rows: max-content;
+    grid-gap: 1rem 1rem;
 `
 
 export const Category = styled.li`
-    font-size: 0.8em;
+    font-size: 1.3rem;
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: auto 1fr;
     align-items: center;
-    grid-gap: 0.7rem;
+    grid-gap: 1rem;
+    min-height: 2rem;
+    background-color: ${props => props.theme.colors.onSurface5};
+    border-radius: 2rem;
+    transition: background-color 200ms ease-in, color 200ms ease-in;
+    color: ${props => props.theme.colors.onSurface75};
 
     & > span {
         text-overflow: ellipsis;
@@ -66,16 +72,35 @@ export const Category = styled.li`
     }
 
     & > img {
-        width: 3.2rem;
-        height: 3.2rem;
+        width: 4rem;
+        height: 4rem;
         border-radius: 50%;
         object-fit: cover;
         overflow: hidden;
     }
+
+    & > svg {
+        width: 2rem;
+        height: 2rem;
+        padding: 1rem 0 1rem 1rem;
+        border-radius: 50%;
+        transition: fill 200ms ease-in;
+        fill: ${props => props.theme.colors.accent30};
+    }
+
+    &:hover {
+        background-color: ${props => props.theme.colors.onSurface10};
+        color: ${props => props.theme.colors.onSurface};
+
+        & > svg {
+            fill: ${props => props.theme.colors.accent50};
+        }
+    }
 `
 
-export const AdminBlock = styled.div`
-    margin-top: 2rem;
+export const CmsBlock = styled.div``
+
+export const CTAs = styled.div`
     padding-top: 2rem;
     border-top: 1px dashed ${props => props.theme.colors.onSurface15};
     display: flex;

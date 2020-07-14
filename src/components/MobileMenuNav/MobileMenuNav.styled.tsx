@@ -13,8 +13,8 @@ export const Root = styled.div`
 
 export const CloseButton = styled.button`
     position: absolute;
-    right: 2rem;
-    top: 1rem;
+    right: 1.5rem;
+    top: 0.5rem;
     padding: 1rem;
 
     & > svg {
@@ -27,10 +27,10 @@ export const CloseButton = styled.button`
 export const Wrapper = styled.div`
     background: ${props => props.theme.colors.surface};
     color: ${props => props.theme.colors.onSurface};
-    border-radius: 2rem;
+    border-radius: 1rem;
     box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.35);
     border: 0.1rem solid ${props => props.theme.colors.onSurface5};
-    padding: 4rem 2rem 2rem;
+    padding: 2rem;
     display: grid;
     grid-gap: 2rem;
     grid-auto-rows: max-content;

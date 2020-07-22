@@ -20,7 +20,6 @@ export const Wrapper = styled.div`
 `
 
 export const Item = styled.div`
-    background-color: ${props => props.theme.colors.surface};
     border-radius: 1rem;
     border: 0.1rem solid ${props => props.theme.colors.onSurface15};
     color: ${props => props.theme.colors.onSurface};

@@ -24,7 +24,7 @@ storiesOf('📦 Components/Icon', module).add('Default', () => (
             <IconHeartSvg />
         </Icon>
 
-        <Icon count={number('count', 0)} text={text('text', '')}>
+        <Icon count={number('count', 0)} text={text('text', '')} attention>
             <IconCartSvg />
         </Icon>
     </div>

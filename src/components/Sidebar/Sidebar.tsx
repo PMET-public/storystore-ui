@@ -1,15 +1,17 @@
 import React from 'react'
 import { Component } from '../../lib'
-import { Root, Screen } from './Sidebar.styled'
+import { Root, Screen, Buttons } from './Sidebar.styled'
 
 import { useTransition, animated } from 'react-spring'
+import Button, { ButtonProps } from '../Button'
 
 export type SidebarProps = {
     position: 'left' | 'right'
     onClose?: () => void
+    button?: ButtonProps
 }
 
-export const Sidebar: Component<SidebarProps> = ({ children, position = 'left', onClose = () => {} }) => {
+export const Sidebar: Component<SidebarProps> = ({ children, position = 'left', button, onClose = () => {} }) => {
     const slideTransitions = useTransition(children, null, {
         from: {
             opacity: 0,
@@ -44,6 +46,12 @@ export const Sidebar: Component<SidebarProps> = ({ children, position = 'left', 
                     item && (
                         <Root as={animated.div} $position={position} key={key} style={props}>
                             {item}
+
+                            {button && (
+                                <Buttons>
+                                    <Button {...button} />
+                                </Buttons>
+                            )}
                         </Root>
                     )
             )}

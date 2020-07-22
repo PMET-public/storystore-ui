@@ -14,15 +14,15 @@ const _get = (obj: { [key: string]: any }, name: string) => {
 export const useFormFieldError = (props: { name: string; error?: string }) => {
     const { name, error: _error } = props
 
-    const { setError, clearError, errors } = useFormContext()
+    const { setError, clearErrors, errors } = useFormContext()
 
     useEffect(() => {
         if (_error) {
-            setError(name, 'server', _error)
+            setError(name, { type: 'server', message: _error })
         } else {
-            clearError(name)
+            clearErrors(name)
         }
-    }, [_error, name, setError, clearError])
+    }, [_error, name, setError, clearErrors])
 
     return _get(errors, name) as FieldError
 }

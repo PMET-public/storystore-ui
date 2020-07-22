@@ -4,6 +4,7 @@ export const Root = styled.div`
     width: 100%;
     display: grid;
     grid-gap: 2rem;
+    grid-auto-rows: max-content;
 `
 export const List = styled.div`
     display: grid;

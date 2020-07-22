@@ -17,7 +17,6 @@ export const Root = styled.div`
     @supports (padding: max(0px)) {
         padding-bottom: max(1.3rem, env(safe-area-inset-bottom));
     }
-    background-color: ${props => props.theme.colors.surface};
 `
 
 export const Item = styled.div<{ active?: boolean }>`

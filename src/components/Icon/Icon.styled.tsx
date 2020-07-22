@@ -1,12 +1,28 @@
 import styled from 'styled-components'
 
-export const Root = styled.span`
+export const Root = styled.span<{ $attention?: boolean }>`
     align-items: center;
     color: inherit;
     display: inline-flex;
     flex-direction: column;
     font-size: inherit;
     line-height: 0;
+    position: relative;
+
+    ${props =>
+        props.$attention &&
+        `
+            &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 0.3em;
+                height: 0.3em;
+                border-radius: 50%;
+                background-color: ${props.theme.colors.accent};
+            }
+        `}
 `
 
 export const Wrapper = styled.span<{ $hasCount?: boolean }>`

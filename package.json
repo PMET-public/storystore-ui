@@ -1,6 +1,6 @@
 {
   "name": "@storystore/ui",
-  "version": "1.1.2-beta2",
+  "version": "1.2.0-beta1",
   "description": "Magento React UI Library",
   "repository": "https://github.com/pmet-public/storystore-ui.git",
   "author": "Carlos A. Cabrera @fnhipster",
@@ -80,7 +80,7 @@
     "react": "16.13.1",
     "react-content-loader": "^5.0.4",
     "react-dom": "16.13.1",
-    "react-hook-form": "^5.7.2",
+    "react-hook-form": "^6.0.8",
     "react-is": "^16.13.1",
     "react-lazy-images": "^1.1.0",
     "react-slick": "^0.25.2",

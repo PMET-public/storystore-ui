@@ -1,26 +1,27 @@
 import { RefObject, useEffect } from 'react'
 import { useScroll } from './useScroll'
 import { useResize } from './useResize'
+import { useMeasure } from './useMeasure'
 
 type UseFetchMoreOnScrollingOptions = {
-    hasNextPage: boolean
-    loading?: boolean
+    disabled?: boolean
     delay?: number
     threshold?: number
-    scrollContainer?: RefObject<Element>
+    contentRef: RefObject<HTMLElement>
+    scrollContainerRef?: RefObject<Element>
 }
-export const useFetchMoreOnScrolling = ({ loading, hasNextPage, delay, scrollContainer: container, threshold = 0 }: UseFetchMoreOnScrollingOptions, onLoadMore: CallableFunction) => {
-    const disabled = hasNextPage === false || loading
+export const useFetchMoreOnScrolling = (onLoadMore: CallableFunction, { disabled, delay, contentRef, scrollContainerRef: container, threshold = 0 }: UseFetchMoreOnScrollingOptions) => {
+    const { height: productListHeight } = useMeasure(contentRef)
 
-    const { scrollY, scrollHeight } = useScroll({ delay, container, disabled })
+    const { scrollY } = useScroll({ disabled, container, delay })
 
-    const { height } = useResize()
+    const { height: viewportHeight } = useResize()
 
-    return useEffect(() => {
-        if (disabled || !height || !scrollHeight) return
+    useEffect(() => {
+        if (disabled || !productListHeight || !scrollY || !viewportHeight) return
 
-        if (scrollY + height >= scrollHeight - threshold) {
+        if (scrollY + viewportHeight >= productListHeight - threshold) {
             onLoadMore()
         }
-    }, [scrollY, height, scrollHeight, onLoadMore, threshold, disabled])
+    }, [scrollY, viewportHeight, productListHeight, disabled, threshold, onLoadMore])
 }

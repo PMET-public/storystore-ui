@@ -9,19 +9,20 @@ export type IconProps = {
     count?: number
     svg?: ReactComponentLike
     text?: string | null
+    attention?: boolean
 }
 
-export const Icon: Component<IconProps> = ({ children, count, svg: Svg, text, ...props }) => {
+export const Icon: Component<IconProps> = ({ children, count, svg: Svg, text, attention, ...props }) => {
     const countTransitions = useTransition(count, p => p, {
         from: { position: 'absolute', opacity: 0, transform: 'scale(0) translateY(-4rem)', transformOrigin: 'center' },
         enter: { opacity: 1, transform: 'scale(1) translateY(0)' },
         leave: { opacity: 0, transform: 'scale(0) translateY(4rem)' },
     })
 
-    const hasCount = typeof count === 'number'
+    const hasCount = typeof count === 'number' || attention
 
     return (
-        <Root {...props}>
+        <Root {...props} $attention={attention && !count}>
             <Wrapper $hasCount={hasCount}>
                 {Svg ? <Svg /> : children}
 

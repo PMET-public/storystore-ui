@@ -1,21 +1,27 @@
-import React, { useState, useRef, useCallback } from 'react'
+import React, { useState, useRef, useCallback, ReactElement } from 'react'
 import { Component, Props } from '../../lib'
-import { Root, Wrapper, Group, ListWrapper, List, GroupLabel, Count, ToggleIcon, ToggleButton } from './Filters.styled'
-
+import { Root, Title, Wrapper, Group, ListWrapper, List, GroupLabel, Count, ToggleIcon, ToggleButton } from './Filters.styled'
+import { FiltersSkeleton } from './Filters.skeleton'
 import { useMeasure } from '../../hooks/useMeasure'
 
 import { Form, FormProps } from '../Form'
 import Checkbox from '../Form/Checkbox'
 
 export type FiltersProps = FormProps<any> & {
-    groups: FiltersGroupProps[]
+    title?: ReactElement | string
     disabled?: boolean
+    loading?: boolean
+    groups: FiltersGroupProps[]
 }
 
-export const Filters: Component<FiltersProps> = ({ groups = [], disabled, ...props }) => {
+export const Filters: Component<FiltersProps> = ({ groups = [], disabled, title, loading, ...props }) => {
     const elRef = useRef<HTMLDivElement>(null)
+
+    if (loading) return <FiltersSkeleton />
+
     return (
         <Root as={Form} {...props}>
+            {title && <Title>{title}</Title>}
             <fieldset disabled={disabled}>
                 <Wrapper ref={elRef}>
                     {groups.map(({ _id, ...group }, index) => (

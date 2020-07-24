@@ -5,6 +5,13 @@ import { Wrapper as Checkboxes } from '../Form/Checkbox/Checkbox.styled'
 
 export const Root = styled.div``
 
+export const Title = styled.div`
+    font-family: ${props => props.theme.typography.heading.family};
+    font-weight: ${props => props.theme.typography.heading.weight.bold};
+    font-size: 2rem;
+    margin-bottom: 2rem;
+`
+
 export const Wrapper = styled.div`
     display: grid;
     grid-gap: 4rem;
@@ -37,8 +44,9 @@ export const List = styled.div`
 `
 
 export const GroupLabel = styled.div`
-    font-size: 1.8rem;
-    font-weight: 600;
+    font-size: 1.6rem;
+    font-family: ${props => props.theme.typography.body.family};
+    font-weight: ${props => props.theme.typography.body.weight.semi};
 `
 
 export const Count = styled.span`

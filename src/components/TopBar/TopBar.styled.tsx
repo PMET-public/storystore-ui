@@ -18,4 +18,5 @@ export const Wrapper = styled(ContainerWrapper)`
     display: grid;
     grid-template-columns: 1fr auto;
     height: 7rem;
+    grid-gap: 1rem;
 `

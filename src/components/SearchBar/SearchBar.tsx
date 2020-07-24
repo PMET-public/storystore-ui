@@ -53,7 +53,7 @@ export const SearchBar: Component<SearchBarProps> = ({ clearButton = true, count
 
                     <Field aria-label={label} onChange={handleChange} placeholder={label} as="input" type="text" value={value} />
 
-                    {count && <Count>{loading ? <Loader {...loading} /> : count}</Count>}
+                    {<Count>{loading ? <Loader {...loading} /> : count}</Count>}
                     {clearButton && value.length > 0 && (
                         <ResetButton as="button" type="reset" aria-label="reset" onClick={handleReset}>
                             <ResetIcon />

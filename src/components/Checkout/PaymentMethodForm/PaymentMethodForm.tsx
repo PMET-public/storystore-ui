@@ -120,11 +120,9 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({ loading: 
 
     const authorization = braintree?.authorization
 
-    const [{ instance, editable, loading, formError, paymentInfo }, dispatch] = useReducer(reducer, { ...initialState, loading: _loading || !authorization })
+    const [{ instance, editable, loading, formError, paymentInfo }, dispatch] = useReducer(reducer, initialState)
 
     const createBraintreeInstance = useCallback(async () => {
-        if (!containerElem) return
-
         try {
             const payload = await BraintreeWebDropIn.create({
                 container: '[data-braintree-dropin]',
@@ -155,16 +153,12 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({ loading: 
             dispatch({ type: 'unsetInstance' })
             console.error(error)
         }
-    }, [containerElem, braintree, colors.onSurface])
+    }, [braintree, colors.onSurface])
 
     useEffect(() => {
-        if (!loading && !!authorization && editable && !instance) {
+        if (!loading && !!authorization && editable && !instance && containerElem.current) {
             createBraintreeInstance()
             console.log('💳 Creating Braintree Instance')
-        }
-
-        return () => {
-            if (instance) instance.teardown()
         }
     }, [instance, editable, createBraintreeInstance, loading, authorization])
 
@@ -196,8 +190,6 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({ loading: 
 
         dispatch({ type: 'setLoader', payload: false })
     }, [onSubmit, instance])
-
-    console.log('PaymenMethodForm.tsx', loading)
 
     return (
         <Root as={Form} onSubmit={handleOnSubmit}>

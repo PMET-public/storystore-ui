@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, ChangeEvent, FocusEvent } from 'react'
+import React, { useState, useCallback, ChangeEvent, FocusEvent, useEffect } from 'react'
 import { Component } from '../../../lib'
 import { Label as LabelRoot } from './Input.styled'
 import { FormFieldProps, Field, FieldInput, Error, FieldColors } from '../Form'
@@ -21,11 +21,11 @@ export const Input: Component<InputProps> = ({ as, error, color: _color, label, 
 
     const hasErrors = Boolean(fieldError)
 
-    const defaultActive = useMemo(() => {
-        return !!value || !!placeholder || hasErrors
-    }, [value, placeholder, hasErrors])
+    const [active, setActive] = useState(loading || !!value || !!placeholder || hasErrors)
 
-    const [active, setActive] = useState<boolean>(defaultActive)
+    useEffect(() => {
+        setActive(loading || !!value || !!placeholder || hasErrors)
+    }, [loading, value, placeholder, hasErrors])
 
     const handleOnChange = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
@@ -56,7 +56,7 @@ export const Input: Component<InputProps> = ({ as, error, color: _color, label, 
     return (
         <Field as={as}>
             {label && (
-                <LabelRoot htmlFor={`field-input__${name}`} color={color} $active={loading || active || hasErrors}>
+                <LabelRoot htmlFor={`field-input__${name}`} color={color} $active={active}>
                     {label}
                 </LabelRoot>
             )}

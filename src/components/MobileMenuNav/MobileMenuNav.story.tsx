@@ -7,7 +7,7 @@ storiesOf('📦 Components/MobileMenuNav', module).add('Default', () => (
     <MobileMenuNav
         active={boolean('open', true)}
         categories={{
-            title: 'Categories',
+            title: 'Shop by Category',
             items: [
                 {
                     as: 'a',
@@ -71,7 +71,7 @@ storiesOf('📦 Components/MobileMenuNav', module).add('w/ CMS Block', () => (
     <MobileMenuNav
         active={boolean('open', true)}
         categories={{
-            title: 'Categories',
+            title: 'Shop By Category',
             items: [
                 {
                     as: 'a',
@@ -137,7 +137,7 @@ storiesOf('📦 Components/MobileMenuNav', module).add('w/o Images', () => (
     <MobileMenuNav
         active={boolean('open', true)}
         categories={{
-            title: 'Categories',
+            title: 'Shop by Category',
             items: [
                 {
                     as: 'a',

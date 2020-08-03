@@ -4,7 +4,8 @@ export const Root = styled.div`
     position: relative;
     width: calc(100vw);
     min-height: 10rem;
-    padding: 0 1rem;
+    padding: 0 0.5rem;
+    z-index: 1;
 
     @media ${props => props.theme.breakpoints.medium} {
         max-width: 40rem;
@@ -16,6 +17,9 @@ export const CloseButton = styled.button`
     right: 1.5rem;
     top: 0.5rem;
     padding: 1rem;
+    background-color: ${props => props.theme.colors.surface50};
+    border-radius: 1rem;
+    line-height: 0;
 
     & > svg {
         fill: currentColor;
@@ -24,16 +28,23 @@ export const CloseButton = styled.button`
     }
 `
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ $maxHeight?: string }>`
     background: ${props => props.theme.colors.surface};
     color: ${props => props.theme.colors.onSurface};
     border-radius: 1rem;
     box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.35);
     border: 0.1rem solid ${props => props.theme.colors.onSurface5};
-    padding: 2rem;
+    padding: 2rem 1rem;
     display: grid;
     grid-gap: 2rem;
     grid-auto-rows: max-content;
+
+    max-height: ${props => props.$maxHeight};
+    overflow-y: auto;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 `
 
 export const Title = styled.h2`
@@ -52,7 +63,7 @@ export const Categories = styled.ul`
     grid-gap: 1rem 1rem;
 `
 
-export const Category = styled.li`
+export const Category = styled.span`
     font-size: 1.3rem;
     display: grid;
     grid-auto-flow: column;
@@ -105,4 +116,12 @@ export const CTAs = styled.div`
     border-top: 1px dashed ${props => props.theme.colors.onSurface15};
     display: flex;
     justify-content: center;
+`
+
+export const Screen = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 `

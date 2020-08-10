@@ -9,6 +9,7 @@ export const Root = styled.div`
     display: flex;
     flex-direction: column;
     height: 100%;
+    text-align: left;
 `
 
 export const Badge = styled.span`

@@ -7,7 +7,7 @@ import ProductItem, { ProductItemProps } from '../ProductItem'
 
 export type ProductCarouselProps = {
     loading?: boolean
-    items: ProductItemProps[]
+    items: Array<ProductItemProps & { _id: string | number }>
 } & SlickSliderProps
 
 export const ProductCarousel: Component<ProductCarouselProps> = ({
@@ -60,13 +60,14 @@ export const ProductCarousel: Component<ProductCarouselProps> = ({
                 ? Array(6)
                       .fill(null)
                       .map((_, key) => <ProductItemSkeleton key={key} />)
-                : items.map((item, key) => {
+                : items.map((item, index) => {
                       return (
                           <ProductItem
                               {...item}
-                              key={key}
+                              key={`slide__${item._id ?? index}`}
                               image={{
                                   ...item.image,
+                                  lazy: false,
                               }}
                           />
                       )

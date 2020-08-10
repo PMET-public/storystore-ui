@@ -15,7 +15,9 @@ export const Root = styled.div<{ $draggable?: boolean }>`
         `}
 `
 
-export const Item = styled.div``
+export const Item = styled.div`
+    height: 100%;
+`
 
 export const NavButton = styled.button`
     position: absolute;
@@ -93,7 +95,9 @@ export const SlickGlobalStyles = createGlobalStyle`
         position: relative;
         top: 0;
         left: 0;
-        display: block;
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: max-content;
     }
 
     .slick-track:before, .slick-track:after {
@@ -130,6 +134,10 @@ export const SlickGlobalStyles = createGlobalStyle`
 
     .slick-initialized .slick-slide {
         display: block;
+    }
+
+    .slick-initialized .slick-slide > div {
+        height: 100%;
     }
 
     .slick-loading .slick-slide {

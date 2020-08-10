@@ -53,7 +53,7 @@ export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true,
     const items = React.Children.toArray(children)
 
     return (
-        <React.Suspense fallback={<div></div>}>
+        <React.Suspense fallback={<></>}>
             <SlickGlobalStyles />
             {items.length > 0 ? (
                 <Root
@@ -79,7 +79,7 @@ export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true,
                     {...props}
                 >
                     {items.map((item: any, key) => {
-                        return <Item key={key}>{React.cloneElement(item, { onClickCapture: handleOnItemClick, draggable: false })}</Item>
+                        return <Item key={item._id ?? key}>{React.cloneElement(item, { onClickCapture: handleOnItemClick, draggable: false })}</Item>
                     })}
                 </Root>
             ) : null}

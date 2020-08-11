@@ -1,4 +1,4 @@
-import React, { useState, useCallback, HTMLAttributes, useLayoutEffect } from 'react'
+import React, { useState, useCallback, HTMLAttributes, useEffect } from 'react'
 import { Component } from '../../lib'
 import { Root, Item, NavButton, ArrowIcon, SlickGlobalStyles } from './SlickSlider.styled'
 import { Settings } from 'react-slick'
@@ -21,7 +21,7 @@ export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true,
 
     const [loaded, setLoaded] = useState(false)
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         setLoaded(true)
     }, [])
 

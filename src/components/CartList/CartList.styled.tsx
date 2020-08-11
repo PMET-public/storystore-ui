@@ -62,6 +62,7 @@ export const Sku = styled.div`
 `
 
 export const Options = styled.ul`
+    list-style-type: none;
     grid-area: options;
     display: flex;
     flex-wrap: wrap;

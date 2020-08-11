@@ -15,8 +15,8 @@ export const Item = styled.span`
 
         & > span {
             border-radius: 50%;
-            width: 4rem;
-            height: 4rem;
+            width: 5rem;
+            height: 5rem;
             filter: contrast(0.85);
             will-change: filter;
             transform: translateZ(0);

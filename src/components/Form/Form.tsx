@@ -4,20 +4,22 @@ import { Root, Field as FieldRoot, Label as LabelRoot, Error as ErrorRoot, Input
 
 export { FieldColors } from './Form.styled'
 
-import { FormContext, useForm, useFormContext, ValidationOptions, FieldErrors, OnSubmit, FormContextValues, UseFormOptions } from 'react-hook-form'
+import { FormProvider, useForm, useFormContext, UseFormOptions, ValidationRules } from 'react-hook-form'
+
+import { FieldErrors, UseFormMethods } from 'react-hook-form/dist/types/form'
 
 /** Form */
 export type FormProps<P> = Override<
     FormHTMLAttributes<any>,
     {
+        options?: UseFormOptions
         onValues?: (values: any) => any
         onErrors?: (values: FieldErrors<any>) => any
-        options?: UseFormOptions
-        onSubmit?: OnSubmit<P>
+        onSubmit?: (values: any) => any
     }
 >
 
-export type FormContext = FormContextValues
+export type FormContext = UseFormMethods
 
 export const Form: Component<FormProps<any>> = React.forwardRef(({ children, onSubmit, onErrors, onValues, onChange, options, ...props }, ref: any) => {
     const form = useForm(options)
@@ -26,7 +28,7 @@ export const Form: Component<FormProps<any>> = React.forwardRef(({ children, onS
 
     const handleOnValueChanges = useCallback(
         e => {
-            const values = form.getValues({ nest: true })
+            const values = form.getValues()
             if (onValues) onValues(values)
             if (onChange) onChange(e)
         },
@@ -34,24 +36,28 @@ export const Form: Component<FormProps<any>> = React.forwardRef(({ children, onS
     )
 
     useEffect(() => {
-        if (onErrors) onErrors(form.errors)
+        if (onErrors && Object.entries(form.errors).length > 0) {
+            onErrors(form.errors)
+        }
     }, [onErrors, form.errors])
 
     return (
-        <FormContext {...form}>
+        <FormProvider {...form}>
             <Root onSubmit={onSubmit && form.handleSubmit(onSubmit)} onChange={handleOnValueChanges} {...props}>
                 {children}
             </Root>
-        </FormContext>
+        </FormProvider>
     )
 })
+
+Form.displayName = 'Form'
 
 export type FormFieldProps = Props<{
     name: string
     label?: ReactElement | string
     error?: string
     color?: FieldColors
-    rules?: ValidationOptions
+    rules?: ValidationRules
 }>
 
 /** Field */
@@ -73,7 +79,7 @@ export const Label: Component<LabelProps> = ({ children, color, ...props }) => {
 }
 
 /** FieldInput */
-export type FieldInputProps = InputHTMLAttributes<any> & { rules?: ValidationOptions; color?: FieldColors }
+export type FieldInputProps = InputHTMLAttributes<any> & { rules?: ValidationRules; color?: FieldColors }
 
 export const FieldInput: Component<FieldInputProps> = ({ children, rules, color, ...props }) => {
     const { register } = useFormContext()

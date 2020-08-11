@@ -11,6 +11,8 @@ export const Root = styled.div<{ $position: 'left' | 'right' }>`
     color: ${props => props.theme.colors.onSurface};
     background-color: ${props => props.theme.colors.surface};
     -webkit-overflow-scrolling: touch;
+    display: grid;
+    grid-template-rows: 1fr auto;
 
     @media ${props => props.theme.breakpoints.smallOnly} {
         width: 100%;
@@ -36,4 +38,12 @@ export const Screen = styled.div`
     width: 100%;
     z-index: 10;
     background: ${props => props.theme.colors.onSurface50};
+`
+
+export const Buttons = styled.div`
+    position: sticky;
+    padding: 1rem;
+    bottom: 0;
+    display: grid;
+    background-color: ${props => props.theme.colors.surface95};
 `

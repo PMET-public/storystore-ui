@@ -1,4 +1,4 @@
-import React, { useState, useCallback, HTMLAttributes, useLayoutEffect } from 'react'
+import React, { useState, useCallback, HTMLAttributes, useEffect } from 'react'
 import { Component } from '../../lib'
 import { Root, Item, NavButton, ArrowIcon, SlickGlobalStyles } from './SlickSlider.styled'
 import { Settings } from 'react-slick'
@@ -21,7 +21,7 @@ export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true,
 
     const [loaded, setLoaded] = useState(false)
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         setLoaded(true)
     }, [])
 
@@ -53,7 +53,7 @@ export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true,
     const items = React.Children.toArray(children)
 
     return (
-        <React.Suspense fallback={<div></div>}>
+        <React.Suspense fallback={<></>}>
             <SlickGlobalStyles />
             {items.length > 0 ? (
                 <Root
@@ -79,7 +79,7 @@ export const SlickSlider: Component<SlickSliderProps> = ({ accessibility = true,
                     {...props}
                 >
                     {items.map((item: any, key) => {
-                        return <Item key={key}>{React.cloneElement(item, { onClickCapture: handleOnItemClick, draggable: false })}</Item>
+                        return <Item key={item._id ?? key}>{React.cloneElement(item, { onClickCapture: handleOnItemClick, draggable: false })}</Item>
                     })}
                 </Root>
             ) : null}

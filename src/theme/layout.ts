@@ -13,7 +13,7 @@ export type ThemeBreakpoints = typeof defaultBreakpoints
 
 export const defaultLayout = {
     containedWidth: '190rem',
-    margin: '2rem',
+    margin: '1rem',
 }
 
 export type ThemeLayout = typeof defaultLayout

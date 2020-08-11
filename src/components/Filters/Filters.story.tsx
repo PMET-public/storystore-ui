@@ -2,11 +2,14 @@ import React from 'react'
 import Filters, { FiltersProps } from '.'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
+import { boolean } from '@storybook/addon-knobs'
 
 storiesOf('📦 Components/Filters', module).add('Default', () => {
     const FiltersMockData: FiltersProps = {
         onValues: action('onValues'),
         onSubmit: action('onSubmit'),
+        title: 'Filters',
+        loading: boolean('loading', false),
         groups: [
             {
                 title: 'Fashion',

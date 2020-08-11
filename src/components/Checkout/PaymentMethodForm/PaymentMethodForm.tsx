@@ -5,12 +5,14 @@ import BraintreeWebDropIn, { Dropin, Options, PaymentMethodPayload as Payload } 
 import Button, { ButtonProps } from '../../Button'
 import Form, { FormProps, FormError } from '../../Form'
 import { useTheme } from '../../../theme/useTheme'
+import { PaymentMethodFormSkeleton } from './PaymentMethodForm.skeleton'
 
 export type Braintree = Dropin
 
 export type PaymentMethodPayload = Payload
 
 export type PaymentMethodFormProps = FormProps<PaymentMethodPayload> & {
+    loading?: boolean
     submitting?: boolean
     error?: string
     submitButton: ButtonProps
@@ -111,16 +113,16 @@ const reducer: Reducer<ReducerState, ReducerActions> = (state, action) => {
     }
 }
 
-export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({ submitting, error, braintree, submitButton, editButton, onSubmit, ...props }) => {
+export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({ loading: _loading, submitting, error, braintree, submitButton, editButton, onSubmit, ...props }) => {
     const { colors } = useTheme()
 
     const containerElem = useRef(null)
 
+    const authorization = braintree?.authorization
+
     const [{ instance, editable, loading, formError, paymentInfo }, dispatch] = useReducer(reducer, initialState)
 
     const createBraintreeInstance = useCallback(async () => {
-        if (!containerElem) return
-
         try {
             const payload = await BraintreeWebDropIn.create({
                 container: '[data-braintree-dropin]',
@@ -151,15 +153,14 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({ submittin
             dispatch({ type: 'unsetInstance' })
             console.error(error)
         }
-    }, [containerElem, braintree, colors.onSurface])
+    }, [braintree, colors.onSurface])
 
     useEffect(() => {
-        if (editable && !instance) createBraintreeInstance()
-
-        return () => {
-            if (instance) instance.teardown()
+        if (!loading && !!authorization && editable && !instance && containerElem.current) {
+            createBraintreeInstance()
+            console.log('💳 Creating Braintree Instance')
         }
-    }, [instance, editable, createBraintreeInstance])
+    }, [instance, editable, createBraintreeInstance, loading, authorization])
 
     const handleOnEdit = useCallback(
         async (e: Event) => {
@@ -193,10 +194,11 @@ export const PaymentMethodForm: Component<PaymentMethodFormProps> = ({ submittin
     return (
         <Root as={Form} onSubmit={handleOnSubmit}>
             {editable ? (
-                <div ref={containerElem} data-braintree-dropin {...props} />
+                <React.Fragment>
+                    {_loading || !authorization ? <PaymentMethodFormSkeleton /> : <div ref={containerElem} data-braintree-dropin {...props} style={{ minHeight: 297, ...props.style }} />}
+                </React.Fragment>
             ) : (
-                paymentInfo &&
-                paymentInfo.type === 'CreditCard' && (
+                paymentInfo?.type === 'CreditCard' && (
                     <Card>
                         <CardIcon />
                         <CardType>{(paymentInfo.details as any).cardType}</CardType>

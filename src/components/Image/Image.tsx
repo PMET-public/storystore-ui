@@ -13,13 +13,14 @@ export type ImageProps = Override<
         height?: string | number
         width?: string | number
         title?: string
+        lazy?: boolean
     }
 >
 
-export const ImageComponent: Component<ImageProps> = ({ src: _src, vignette, width, height, ...props }) => {
+export const ImageComponent: Component<ImageProps> = ({ src: _src, vignette, width, height, lazy = true, ...props }) => {
     const src = useImage(_src)
 
-    return (
+    return lazy ? (
         <LazyImageFull src={src || ''} {...props}>
             {({ imageProps, imageState, ref }) => (
                 <Root
@@ -33,5 +34,7 @@ export const ImageComponent: Component<ImageProps> = ({ src: _src, vignette, wid
                 />
             )}
         </LazyImageFull>
+    ) : (
+        <Root $loaded $vignette={vignette} {...props} src={src} width={width} height={height} />
     )
 }

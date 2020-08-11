@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 export const OnIcon = styled.svg``
 
 export const OffIcon = styled.svg`
-    opacity: 0.2;
+    opacity: 0.15;
 `
 
 export const Item = styled.label`
@@ -24,12 +24,12 @@ export const Item = styled.label`
         width: 1.4em;
         height: 1.4em;
         fill: currentColor;
-        transition: opacity 350ms ease-in;
+        transition: opacity 150ms ease-in;
     }
 
     &:hover {
         & ${OnIcon}, & ${OffIcon} {
-            opacity: 0.4;
+            opacity: 0.3;
         }
     }
 `

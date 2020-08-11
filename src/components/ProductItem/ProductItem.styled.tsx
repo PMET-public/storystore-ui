@@ -9,6 +9,7 @@ export const Root = styled.div`
     display: flex;
     flex-direction: column;
     height: 100%;
+    text-align: left;
 `
 
 export const Badge = styled.span`
@@ -34,10 +35,11 @@ export const ImageWrapper = styled.div`
 export const Image = styled(ImageComponent)`
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
 `
 
 export const Colors = styled.ul`
+    list-style-type: none;
     display: grid;
     grid-auto-columns: 1rem;
     grid-gap: 0.5rem;

@@ -15,10 +15,10 @@ export const useImage = (src: ImgSrc) => {
 
     return useMemo(() => {
         if (typeof src === 'object') {
-            if (src.mobile && breakpoints.smallOnly) {
-                return src.mobile
-            } else {
+            if (breakpoints.medium) {
                 return src.desktop
+            } else {
+                return src.mobile || src.desktop
             }
         }
 

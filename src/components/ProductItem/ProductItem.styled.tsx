@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 import { Root as PriceRoot } from '../Price/Price.styled'
-import ImageComponent from '../Image'
 
 export const Root = styled.div`
     overflow: hidden;
@@ -27,15 +26,17 @@ export const Badge = styled.span`
 
 export const ImageWrapper = styled.div`
     flex-grow: 1;
-    & > img {
-        background-color: #fff;
-    }
-`
+    & > picture {
+        width: 100%;
+        height: 100%;
+        display: inline-block;
 
-export const Image = styled(ImageComponent)`
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+        & > img {
+            width: inherit;
+            height: inherit;
+            object-fit: cover;
+        }
+    }
 `
 
 export const Colors = styled.ul`

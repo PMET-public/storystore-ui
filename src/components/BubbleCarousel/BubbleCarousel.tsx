@@ -1,8 +1,8 @@
 import React from 'react'
 import { Component, Props } from '../../lib'
-import { Root, Image, CarouselItem, Wrapper, Label } from './BubbleCarousel.styled'
+import { Root, CarouselItem, Wrapper, Label } from './BubbleCarousel.styled'
 
-import { ImageProps } from '../Image'
+import Image, { ImageProps } from '../Image'
 import { BubbleCarouselSkeleton } from './BubbleCarousel.skeleton'
 
 type Items = Array<

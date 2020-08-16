@@ -1,19 +1,21 @@
 import styled from 'styled-components'
 
-import ImageComponent from '../../Image'
-
-export const Image = styled(ImageComponent)`
-    border-radius: 0.5rem;
-    overflow: hidden;
-    transition: all 305ms ease;
-    /* display: block; */
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(98%) contrast(94%);
-`
+import { Root as ImageRoot, Img } from '../../Image/Image.styled'
 
 export const Item = styled.div`
+    & ${ImageRoot} {
+        border-radius: 0.5rem;
+        overflow: hidden;
+        transition: all 305ms ease;
+
+        ${Img} {
+            filter: brightness(98%) contrast(94%);
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
     & > label {
         position: relative;
         display: block;
@@ -35,20 +37,20 @@ export const Item = styled.div`
     & > input[type='radio']:checked + label,
     & > input[type='radio']:focus + label {
         border-color: ${props => props.theme.colors.onSurface} !important;
-        & ${Image} {
+        & ${Img} {
             filter: brightness(100%) contrast(100%) !important;
         }
     }
 
     & > input[type='radio']:disabled + label {
-        & ${Image} {
+        & ${Img} {
             filter: grayscale(100%) opacity(25%) contrast(90%);
         }
     }
 
     &:hover > input[type='radio']:not(:disabled) + label {
         border-color: ${props => props.theme.colors.onSurface50};
-        & ${Image} {
+        & ${Img} {
             filter: brightness(98%) contrast(92%);
         }
     }

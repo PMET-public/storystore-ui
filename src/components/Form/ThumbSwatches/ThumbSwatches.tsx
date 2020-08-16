@@ -1,8 +1,8 @@
 import React, { HTMLAttributes } from 'react'
 import { Component } from '../../../lib'
-import { Image, Item } from './ThumbSwatches.styled'
+import { Item } from './ThumbSwatches.styled'
 
-import { ImageProps } from '../../Image'
+import Image, { ImageProps } from '../../Image'
 import Carousel from '../../Carousel'
 
 import { FormFieldProps, Field, Label, FieldInput, Error, FieldColors } from '../Form'

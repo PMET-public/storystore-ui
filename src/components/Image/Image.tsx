@@ -1,40 +1,62 @@
-import React from 'react'
-import { Component, Override } from '../../lib'
-import { LazyImageFull, ImageState, ImageProps as LazyImageProps } from 'react-lazy-images'
-import { Root } from './Image.styled'
-import { useImage, ImgSrc } from '../../hooks/useImage'
+import React, { useState, useRef, useEffect } from 'react'
+import { Component } from '../../lib'
+import { Root, Img } from './Image.styled'
+import { defaultBreakpoints } from '../../theme/layout'
 
-export type ImageProps = Override<
-    LazyImageProps,
-    {
-        vignette?: boolean
-        src: ImgSrc
-        alt?: string
-        height?: string | number
-        width?: string | number
-        title?: string
-        lazy?: boolean
-    }
->
+export type ImgSrc = {
+    mobile?: string
+    desktop: string
+}
+
+export type ImageProps = {
+    vignette?: boolean
+    src: string | ImgSrc
+    alt?: string
+    height?: number
+    width?: number
+    title?: string
+    lazy?: boolean
+}
 
 export const ImageComponent: Component<ImageProps> = ({ src: _src, vignette, width, height, lazy = true, ...props }) => {
-    const src = useImage(_src)
+    const imageRef = useRef<HTMLImageElement>(null)
 
-    return lazy ? (
-        <LazyImageFull src={src || ''} {...props}>
-            {({ imageProps, imageState, ref }) => (
-                <Root
-                    $loaded={imageState === ImageState.LoadSuccess}
-                    $vignette={vignette}
-                    {...imageProps}
-                    src={imageState === ImageState.LoadSuccess ? src : 'data:image/gif;base64,R0lGODlhBAAFAPAAANbW1gAAACH5BAAAAAAALAAAAAAEAAUAAAIEhI+ZBQA7'}
-                    ref={ref}
-                    width={width}
-                    height={height}
-                />
+    const [loaded, setLoaded] = useState(false)
+
+    const [error, setError] = useState(false)
+
+    const loading = lazy ? 'lazy' : undefined
+
+    const placeholder = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII='
+
+    useEffect(() => {
+        /** Check if Image has already been loaded (cache) */
+        if (loaded === false && imageRef.current?.complete) setLoaded(true)
+    }, [loaded, imageRef])
+
+    const src =
+        typeof _src === 'string'
+            ? {
+                  desktop: error ? placeholder : _src,
+              }
+            : {
+                  desktop: error ? placeholder : _src.desktop,
+                  mobile: error ? placeholder : _src.mobile,
+              }
+
+    return (
+        <Root onLoad={() => setLoaded(true)} onError={() => setError(true)} $loaded={loaded} $error={error} $vignette={vignette}>
+            {/* Mobile Image */}
+            {src.mobile && (
+                <>
+                    <source media={defaultBreakpoints.smallOnly} srcSet={`${src.mobile}`} />
+                </>
             )}
-        </LazyImageFull>
-    ) : (
-        <Root $loaded $vignette={vignette} {...props} src={src} width={width} height={height} />
+
+            {/* Desktop */}
+            <source media={defaultBreakpoints.medium} srcSet={`${src.desktop}`} />
+
+            <Img ref={imageRef} $loaded={loaded && !error} {...props} loading={loading} width={width} height={height} src={src.mobile || src.desktop} />
+        </Root>
     )
 }

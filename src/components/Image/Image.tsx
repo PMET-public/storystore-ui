@@ -9,29 +9,27 @@ export type ImageProps = Override<
         src: string
         srcSet?: string
         alt?: string
-        height?: number
-        width?: number
+        height?: number | string
+        width?: number | string
         vignette?: boolean
         lazy?: boolean
     }
 >
 
+const placeholder = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII='
+
 export const ImageComponent: Component<ImageProps> = ({ vignette, lazy = true, ...props }) => {
     if (!props.src) return null
 
     return (
-        <LazyImageFull loadEagerly={!lazy} {...props}>
+        <LazyImageFull {...props}>
             {({ imageProps, imageState, ref }) => (
                 <Img
                     $vignette={vignette}
                     $loaded={imageState === ImageState.LoadSuccess}
                     ref={ref}
                     {...imageProps}
-                    src={
-                        imageState === ImageState.LoadSuccess
-                            ? imageProps.src
-                            : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII='
-                    }
+                    src={imageState === ImageState.LoadSuccess || !lazy ? imageProps.src : placeholder}
                 />
             )}
         </LazyImageFull>

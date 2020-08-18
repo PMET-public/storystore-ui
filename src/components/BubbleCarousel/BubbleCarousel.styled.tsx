@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import Carousel from '../Carousel'
-import { Root as ImageRoot, Img } from '../Image/Image.styled'
+import { Img } from '../Image/Image.styled'
 
 export const Root = styled(Carousel)`
     --size: 10rem;
@@ -22,14 +22,9 @@ export const Wrapper = styled.div`
     text-decoration: none;
     display: grid;
 
-    & ${ImageRoot} {
-        border-radius: 50%;
-        overflow: hidden;
-        height: var(--size);
-        width: var(--size);
-    }
 
     & ${Img} {
+        border-radius: 50%;
         object-fit: cover;
         object-position: center;
         display: inline-block;

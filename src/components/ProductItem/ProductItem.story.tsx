@@ -24,6 +24,8 @@ storiesOf('📦 Components/ProductItem', module).add('Default', () => (
             image={{
                 alt: '',
                 src: text('image', require('../../../public/images/product-item-sample.jpg')),
+                width: 4,
+                height: 6,
             }}
             price={{
                 regular: 49.99,

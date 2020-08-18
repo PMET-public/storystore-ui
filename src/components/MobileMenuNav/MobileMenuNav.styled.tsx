@@ -82,18 +82,12 @@ export const Category = styled.span`
         overflow: hidden;
     }
 
-    & > picture {
+    & > img {
         width: 4rem;
         height: 4rem;
         border-radius: 50%;
-
-        & > img {
-            width: inherit;
-            height: inherit;
-            border-radius: inherit;
-            object-fit: cover;
-            overflow: hidden;
-        }
+        object-fit: cover;
+        overflow: hidden;
     }
 
     & > svg {

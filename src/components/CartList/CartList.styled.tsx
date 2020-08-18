@@ -21,12 +21,17 @@ export const Product = styled.article`
 `
 
 export const Thumbnail = styled.div`
-    width: 10rem;
     @media ${props => props.theme.breakpoints.medium} {
         width: 16rem;
     }
+
     @media ${props => props.theme.breakpoints.large} {
         width: 18rem;
+    }
+
+    & > img {
+        width: 100%;
+        height: auto;
     }
 `
 

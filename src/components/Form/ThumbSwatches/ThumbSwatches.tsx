@@ -37,12 +37,12 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({ loading, name, ty
                         </Label>
                     )}
 
-                    <Carousel gap={0.3} padding={0.3} show={items.length > 4 ? 4.2 : 4} snap={false} hideScrollBar>
+                    <Carousel gap={0.1} padding={0.1} show={items.length > 5 ? 5.2 : 5} snap={false} hideScrollBar>
                         {items.map(({ image, ...item }, index) => (
                             <Item as={Carousel.Item} key={index}>
                                 <FieldInput id={`swatch-group__${name}__${index}`} type={type} name={name} rules={rules} color={color as any} {...item} />
                                 <label htmlFor={`swatch-group__${name}__${index}`}>
-                                    <Image width={160} height={198} {...image} />
+                                    <Image {...image} />
                                 </label>
                             </Item>
                         ))}

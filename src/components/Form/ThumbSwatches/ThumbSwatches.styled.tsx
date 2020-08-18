@@ -1,19 +1,16 @@
 import styled from 'styled-components'
 
-import { Root as ImageRoot, Img } from '../../Image/Image.styled'
+import { Img } from '../../Image/Image.styled'
 
 export const Item = styled.div`
-    & ${ImageRoot} {
+    & ${Img} {
         border-radius: 0.5rem;
         overflow: hidden;
         transition: all 305ms ease;
-
-        ${Img} {
-            filter: brightness(98%) contrast(94%);
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-        }
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        filter: brightness(98%) contrast(94%);
     }
 
     & > label {
@@ -24,8 +21,8 @@ export const Item = styled.div`
         border: 0.1rem solid transparent;
         border-radius: 0.7rem;
         padding: 0.2rem;
-        height: 100%;
-        width: 100%;
+        /* height: 100%; */
+        width: 9rem;
         line-height: 0;
     }
 

@@ -82,12 +82,16 @@ export const Category = styled.span`
         overflow: hidden;
     }
 
-    & > img {
+    & picture,
+    & img {
         width: 4rem;
         height: 4rem;
         border-radius: 50%;
-        object-fit: cover;
         overflow: hidden;
+    }
+
+    & img {
+        object-fit: cover;
     }
 
     & > svg {

@@ -9,6 +9,8 @@ const StoryContainer = styled.div`
     width: 60rem;
 `
 
+const DelayedImage = 'https://deelay.me/2000/https://vignette.wikia.nocookie.net/theoffice/images/c/c5/Dwight_.jpg/revision/latest/scale-to-width-down/700'
+
 storiesOf('📦 Components/ProductItem', module).add('Default', () => (
     <StoryContainer>
         <ProductItem
@@ -23,7 +25,7 @@ storiesOf('📦 Components/ProductItem', module).add('Default', () => (
             ])}
             image={{
                 alt: '',
-                src: text('image', require('../../../public/images/product-item-sample.jpg')),
+                src: DelayedImage,
             }}
             price={{
                 regular: 49.99,

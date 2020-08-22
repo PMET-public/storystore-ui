@@ -1,29 +1,45 @@
-import React from 'react'
+import React, { useState, ImgHTMLAttributes, useRef, useEffect } from 'react'
 import { Component } from '../../lib'
-import { LazyImageFull, ImageState, ImageProps as LazyImageProps } from 'react-lazy-images'
-import { Root } from './Image.styled'
+import { Root, Placeholder, Picture, Img } from './Image.styled'
 
-export type ImageProps = LazyImageProps & {
+export type ImageProps = ImgHTMLAttributes<HTMLImageElement> & {
     vignette?: boolean
     lazy?: boolean
+    sources?: JSX.Element[]
 }
 
-export const ImageComponent: Component<ImageProps> = ({ vignette, lazy = true, ...props }) => {
-    return (
-        <LazyImageFull {...props} loadEagerly={!lazy}>
-            {({ imageProps, imageState, ref }) => {
-                const loaded = imageState === ImageState.LoadSuccess
+export const placeholderBase64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII='
 
-                return (
-                    <Root
-                        ref={ref}
-                        $loaded={loaded}
-                        $vignette={vignette}
-                        {...imageProps}
-                        src={loaded ? imageProps.src : 'data:image/gif;base64,R0lGODlhBAAFAPAAANbW1gAAACH5BAAAAAAALAAAAAAEAAUAAAIEhI+ZBQA7'}
-                    />
-                )
-            }}
-        </LazyImageFull>
+export const ImageComponent: Component<ImageProps> = ({ vignette, sources, src, lazy = true, ...props }) => {
+    const imageRef = useRef<HTMLImageElement>(null)
+
+    const [loaded, setLoaded] = useState(false)
+
+    useEffect(() => {
+        if (imageRef.current?.complete && !loaded) setLoaded(true)
+    }, [imageRef])
+
+    return (
+        <Root style={props.style}>
+            <Picture>
+                {sources?.map((source, key) => (
+                    <React.Fragment key={key}>{source}</React.Fragment>
+                ))}
+
+                <Img
+                    loading={lazy ? 'lazy' : 'eager'}
+                    ref={imageRef}
+                    $loaded={loaded}
+                    $vignette={vignette}
+                    {...props}
+                    src={src}
+                    onLoad={() => {
+                        if (!loaded) setLoaded(true)
+                    }}
+                />
+            </Picture>
+
+            <Placeholder $loaded={loaded} loading="eager" {...props} role="presentation" alt={null} title={undefined} src={placeholderBase64} />
+        </Root>
     )
 }

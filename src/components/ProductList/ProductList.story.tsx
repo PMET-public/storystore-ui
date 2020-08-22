@@ -3,6 +3,8 @@ import ProductList from '.'
 import { storiesOf } from '@storybook/react'
 import { number, boolean } from '@storybook/addon-knobs'
 
+const DelayedImage = 'https://deelay.me/2000/https://vignette.wikia.nocookie.net/theoffice/images/c/c5/Dwight_.jpg/revision/latest/scale-to-width-down/700'
+
 storiesOf('📦 Components/ProductList', module).add('Default', () => (
     <ProductList
         loading={boolean('loading', false)}
@@ -10,7 +12,7 @@ storiesOf('📦 Components/ProductList', module).add('Default', () => (
         items={new Array(number('# items', 7)).fill(null).map(() => ({
             image: {
                 alt: '',
-                src: require('../../../public/images/product-item-sample.jpg'),
+                src: DelayedImage,
             },
             price: {
                 regular: 49.99,

@@ -7,10 +7,10 @@ export const Image = styled(ImageComponent)`
     overflow: hidden;
     transition: all 305ms ease;
     /* display: block; */
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     filter: brightness(98%) contrast(94%);
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
 `
 
 export const Item = styled.div`

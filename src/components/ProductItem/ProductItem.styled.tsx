@@ -27,9 +27,6 @@ export const Badge = styled.span`
 
 export const ImageWrapper = styled.div`
     flex-grow: 1;
-    & > img {
-        background-color: #fff;
-    }
 `
 
 export const Image = styled(ImageComponent)`

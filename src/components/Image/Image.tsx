@@ -8,12 +8,16 @@ export type ImageProps = ImgHTMLAttributes<HTMLImageElement> & {
     sources?: JSX.Element[]
 }
 
-export const placeholderBase64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAQAAADIpIVQAAAADklEQVR42mNkgAJGIhgAALQABsHyMOcAAAAASUVORK5CYII='
-
-export const ImageComponent: Component<ImageProps> = ({ vignette, sources, src, lazy = true, ...props }) => {
+export const ImageComponent: Component<ImageProps> = ({ vignette, sources, src, width: _width, height: _height, lazy = true, ...props }) => {
     const imageRef = useRef<HTMLImageElement>(null)
 
     const [loaded, setLoaded] = useState(false)
+
+    const width = _width ?? (imageRef.current?.naturalWidth || imageRef.current?.width || 0)
+
+    const height = _height ?? (imageRef.current?.naturalHeight || imageRef.current?.height || 0)
+
+    const placeholderBase64 = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${width} ${height}'%3E%3C/svg%3E`
 
     useEffect(() => {
         if (imageRef.current?.complete && !loaded) setLoaded(true)
@@ -39,7 +43,7 @@ export const ImageComponent: Component<ImageProps> = ({ vignette, sources, src, 
                 />
             </Picture>
 
-            <Placeholder $loaded={loaded} loading="eager" {...props} role="presentation" alt={null} title={undefined} src={placeholderBase64} />
+            <Placeholder $loaded={loaded} loading="eager" role="presentation" width={width} height={height} {...props} alt={null} title={undefined} src={placeholderBase64} />
         </Root>
     )
 }

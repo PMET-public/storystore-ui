@@ -11,7 +11,7 @@ export type ImageProps = ImgHTMLAttributes<HTMLImageElement> & {
 export const ImageComponent: Component<ImageProps> = ({ vignette, sources, src, width: _width, height: _height, lazy = true, ...props }) => {
     const imageRef = useRef<HTMLImageElement>(null)
 
-    const [loaded, setLoaded] = useState(false)
+    const [loaded, setLoaded] = useState(imageRef.current?.complete ?? false)
 
     const width = _width ?? (imageRef.current?.naturalWidth || imageRef.current?.width || 0)
 
@@ -21,7 +21,7 @@ export const ImageComponent: Component<ImageProps> = ({ vignette, sources, src, 
 
     useEffect(() => {
         if (imageRef.current?.complete && !loaded) setLoaded(true)
-    }, [imageRef])
+    }, [imageRef, loaded])
 
     return (
         <Root style={props.style}>

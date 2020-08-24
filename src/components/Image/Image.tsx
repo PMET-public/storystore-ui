@@ -1,4 +1,4 @@
-import React, { useState, ImgHTMLAttributes, useRef } from 'react'
+import React, { useState, ImgHTMLAttributes, useRef, useEffect } from 'react'
 import { Component } from '../../lib'
 import { Root, Placeholder, Picture, Img } from './Image.styled'
 
@@ -18,6 +18,12 @@ export const ImageComponent: Component<ImageProps> = ({ vignette, sources, src, 
     const height = _height ?? (imageRef.current?.naturalHeight || imageRef.current?.height || 0)
 
     const placeholderBase64 = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${width} ${height}'%3E%3C/svg%3E`
+
+    useEffect(() => {
+        if (imageRef.current?.complete && !loaded) {
+            setLoaded(true)
+        }
+    }, [imageRef.current?.complete, loaded])
 
     return (
         <Root style={props.style}>

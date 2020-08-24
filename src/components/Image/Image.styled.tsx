@@ -18,12 +18,12 @@ export const Picture = styled.picture`
     width: 100%;
     height: 100%;
     line-height: 0;
+    z-index: 1;
 `
 
 export const Img = styled.img<{ $loaded?: boolean; $vignette?: boolean }>`
     will-change: filter;
     transform: translateZ(0);
-    transition: opacity 300ms ease-out, filter 300ms ease-out;
     opacity: ${props => (props.$loaded ? 1 : 0.1)};
-    filter: brightness(${props => (props.$vignette ? 0.95 : 1)}) blur(${props => (props.$loaded ? 0 : '10px')});
+    filter: brightness(${props => (props.$vignette ? 0.95 : 1)});
 `

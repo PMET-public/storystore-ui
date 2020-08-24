@@ -22,7 +22,7 @@ export const Badge = styled.span`
     position: absolute;
     text-transform: uppercase;
     top: 2rem;
-    z-index: 1;
+    z-index: 2;
 `
 
 export const ImageWrapper = styled.div`

@@ -10,6 +10,7 @@ const StoryContainer = styled.div`
 `
 
 const DelayedImage = 'https://deelay.me/2000/https://vignette.wikia.nocookie.net/theoffice/images/c/c5/Dwight_.jpg/revision/latest/scale-to-width-down/700'
+const DelayedImageSmall = 'https://deelay.me/2000/https://vignette.wikia.nocookie.net/theoffice/images/c/c5/Dwight_.jpg/revision/latest/scale-to-width-down/400'
 
 storiesOf('📦 Components/ProductItem', module).add('Default', () => (
     <StoryContainer>
@@ -25,6 +26,7 @@ storiesOf('📦 Components/ProductItem', module).add('Default', () => (
             ])}
             image={{
                 alt: '',
+                sources: [<source key="mobile" media="(max-width: 599px)" srcSet={DelayedImageSmall} />, <source key="desktop" media="(min-width: 600px)" srcSet={DelayedImage} />],
                 src: DelayedImage,
             }}
             price={{

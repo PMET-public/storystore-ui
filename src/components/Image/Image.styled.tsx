@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const Root = styled.div`
     position: relative;
     overflow: hidden;
+    line-height: 0;
 `
 
 export const Placeholder = styled.img<{ $loaded?: boolean }>`
@@ -16,6 +17,7 @@ export const Picture = styled.picture`
     position: absolute;
     width: 100%;
     height: 100%;
+    line-height: 0;
 `
 
 export const Img = styled.img<{ $loaded?: boolean; $vignette?: boolean }>`

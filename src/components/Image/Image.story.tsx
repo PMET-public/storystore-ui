@@ -21,13 +21,25 @@ storiesOf('📦 Components/Image', module)
 
     .add('Breakpoints', () => (
         <picture>
-            <Image sources={[<source media="(max-width: 599px)" srcSet={DelayedImageSmall} />, <source media="(min-width: 600px)" srcSet={DelayedImage} />]} src="" alt="" width={700} height={934} />
+            <Image
+                sources={[<source key="mobile" media="(max-width: 599px)" srcSet={DelayedImageSmall} />, <source key="desktop" media="(min-width: 600px)" srcSet={DelayedImage} />]}
+                src={DelayedImageSmall}
+                alt=""
+                width={700}
+                height={934}
+            />
         </picture>
     ))
 
     .add('Breakpoints (Eager)', () => (
         <picture>
-            <Image sources={[<source media="(max-width: 599px)" srcSet={DelayedImageSmall} />, <source media="(min-width: 600px)" srcSet={DelayedImage} />]} src="" alt="" width={700} height={934} />
+            <Image
+                sources={[<source key="mobile" media="(max-width: 599px)" srcSet={DelayedImageSmall} />, <source key="desktop" media="(min-width: 600px)" srcSet={DelayedImage} />]}
+                src={DelayedImageSmall}
+                alt=""
+                width={700}
+                height={934}
+            />
         </picture>
     ))
 

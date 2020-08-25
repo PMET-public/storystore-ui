@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Root = styled.span`
+export const Root = styled.div`
     position: relative;
     line-height: 0;
 `

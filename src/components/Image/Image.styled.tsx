@@ -11,6 +11,7 @@ export const Placeholder = styled.img<{ $loaded?: boolean }>`
     background-color: ${props => props.theme.colors.onSurface10};
     opacity: ${props => (props.$loaded ? 0 : 1)};
     max-width: 100%;
+    color: transparent;
 `
 
 export const Picture = styled.picture`
@@ -27,4 +28,5 @@ export const Img = styled.img<{ $loaded?: boolean; $vignette?: boolean }>`
     filter: brightness(${props => (props.$vignette ? 0.95 : 1)});
     transform: translate3d(0, 0, 0);
     will-change: filter;
+    color: transparent;
 `

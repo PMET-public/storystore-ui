@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
-export const Root = styled.div`
+export const Root = styled.span`
     position: relative;
-    overflow: hidden;
     line-height: 0;
 `
 
@@ -11,6 +10,7 @@ export const Placeholder = styled.img<{ $loaded?: boolean }>`
     z-index: 0;
     background-color: ${props => props.theme.colors.onSurface10};
     opacity: ${props => (props.$loaded ? 0 : 1)};
+    max-width: 100%;
 `
 
 export const Picture = styled.picture`
@@ -22,8 +22,9 @@ export const Picture = styled.picture`
 `
 
 export const Img = styled.img<{ $loaded?: boolean; $vignette?: boolean }>`
-    will-change: filter;
-    transform: translateZ(0);
+    transition: opacity 200ms ease;
     opacity: ${props => (props.$loaded ? 1 : 0.1)};
     filter: brightness(${props => (props.$vignette ? 0.95 : 1)});
+    transform: translate3d(0, 0, 0);
+    will-change: filter;
 `

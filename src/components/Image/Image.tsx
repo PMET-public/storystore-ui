@@ -33,6 +33,7 @@ export const ImageComponent: Component<ImageProps> = ({ vignette, sources, src, 
                 ))}
 
                 <Img
+                    decoding="async"
                     loading={lazy ? 'lazy' : 'eager'}
                     ref={imageRef}
                     $loaded={loaded}

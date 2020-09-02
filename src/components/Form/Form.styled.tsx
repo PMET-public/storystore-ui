@@ -32,13 +32,22 @@ export const Error = styled.span<{ $color?: FieldColors }>`
     line-height: 1.3;
 `
 
+export const FormSuccess = styled.span`
+    border-radius: 1rem;
+    color: ${({ theme }) => theme.colors.success};
+    background-color: ${({ theme }) => theme.colors.success10};
+    font-size: 90%;
+    min-height: 1em;
+    padding: 2rem 1rem;
+`
+
 export const FormError = styled.span<{ $color?: FieldColors }>`
-    border-radius: 0.25rem;
-    border: 0.1rem solid ${({ theme, $color }) => theme.colors[$color || FieldColors.error]};
+    border-radius: 1rem;
+    background-color: ${({ theme, $color }) => theme.colors[`${$color || FieldColors.error}5`]};
     color: ${({ theme, $color }) => theme.colors[$color || FieldColors.error]};
     font-size: 90%;
     min-height: 1em;
-    padding: 1rem;
+    padding: 2rem 1rem;
 `
 
 export const Input = styled.input<{ $color?: FieldColors }>`

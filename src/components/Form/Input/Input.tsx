@@ -10,7 +10,7 @@ export type InputProps = FormFieldProps & {
     loading?: boolean
 }
 
-export const Input: Component<InputProps> = ({ as, error, color: _color, label, loading, name, rules, onBlur, onChange, onFocus, ...props }) => {
+export const Input: Component<InputProps> = ({ as, autoFocus, error, color: _color, label, loading, name, rules, onBlur, onChange, onFocus, ...props }) => {
     const { getValues } = useFormContext()
 
     const fieldError = useFormFieldError({ name, error })
@@ -24,8 +24,8 @@ export const Input: Component<InputProps> = ({ as, error, color: _color, label, 
     const [active, setActive] = useState(loading || !!value || !!placeholder || hasErrors)
 
     useEffect(() => {
-        setActive(loading || !!value || !!placeholder || hasErrors)
-    }, [loading, value, placeholder, hasErrors])
+        setActive(autoFocus || loading || !!value || !!placeholder || hasErrors)
+    }, [autoFocus, loading, value, placeholder, hasErrors])
 
     const handleOnChange = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
@@ -64,7 +64,18 @@ export const Input: Component<InputProps> = ({ as, error, color: _color, label, 
                 {loading ? (
                     <InputSkeleton />
                 ) : (
-                    <FieldInput id={`field-input__${name}`} type="text" onFocus={handleOnFocus} onChange={handleOnChange} onBlur={handleOnBlur} name={name} color={color} rules={rules} {...props} />
+                    <FieldInput
+                        id={`field-input__${name}`}
+                        type="text"
+                        onFocus={handleOnFocus}
+                        onChange={handleOnChange}
+                        onBlur={handleOnBlur}
+                        name={name}
+                        color={color}
+                        rules={rules}
+                        autoFocus={autoFocus}
+                        {...props}
+                    />
                 )}
                 <Error color={color}>{fieldError?.message}</Error>
             </React.Fragment>

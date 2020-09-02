@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, FormHTMLAttributes, LabelHTMLAttributes, InputHTMLAttributes, ReactElement } from 'react'
 import { Component, Props, Override } from '../../lib'
-import { Root, Field as FieldRoot, Label as LabelRoot, Error as ErrorRoot, Input as InputRoot, FormError as FormErrorRoot, FieldColors } from './Form.styled'
+import { Root, Field as FieldRoot, Label as LabelRoot, Error as ErrorRoot, Input as InputRoot, FormError as FormErrorRoot, FormSuccess as FormSuccessRoot, FieldColors } from './Form.styled'
 
 export { FieldColors } from './Form.styled'
 
@@ -111,4 +111,9 @@ export const FormError: Component<FormErrorProps> = ({ children, color, ...props
             {children}
         </FormErrorRoot>
     )
+}
+
+/** Error */
+export const FormSuccess: Component<FormErrorProps> = ({ children, ...props }) => {
+    return <FormSuccessRoot {...props}>{children}</FormSuccessRoot>
 }

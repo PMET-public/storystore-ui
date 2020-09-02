@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-export const Root = styled.button<{ $secondary?: boolean; $outline?: boolean }>`
+export const Root = styled.button<{ $secondary?: boolean; $transparent?: boolean; $outline?: boolean }>`
     align-items: center;
-    background-color: ${props => (props.$secondary ? props.theme.colors.secondary : props.theme.colors.primary)};
+    background-color: ${props => (props.$transparent ? 'transparent' : props.$secondary ? props.theme.colors.secondary : props.theme.colors.primary)};
     color: ${props => (props.$secondary ? props.theme.colors.onSecondary : props.theme.colors.onPrimary)};
 
     ${props =>

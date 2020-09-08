@@ -21,14 +21,14 @@ export const Register: Component<RegisterProps> = ({ title, description, loading
 
             {description && <Description>{description}</Description>}
 
-            <Input autoFocus name="firstname" rules={{ required: 'Please enter your first name.' }} disabled={loading} label="First Name" />
+            <Input autoFocus name="firstname" rules={{ required: 'Please enter your first name.' }} loading={loading} label="First Name" />
 
-            <Input name="lastname" rules={{ required: 'Please enter your last name.' }} disabled={loading} label="Last Name" />
+            <Input name="lastname" rules={{ required: 'Please enter your last name.' }} loading={loading} label="Last Name" />
 
             <Input
                 name="email"
                 rules={{ required: 'Please enter your email address.', pattern: { value: patterns.email, message: 'Please enter a valid email address.' } }}
-                disabled={loading}
+                loading={loading}
                 label="Email"
             />
 
@@ -41,10 +41,10 @@ export const Register: Component<RegisterProps> = ({ title, description, loading
                 }}
                 type="password"
                 label="Password"
-                disabled={loading}
+                loading={loading}
             />
 
-            <Checkbox items={[{ label: 'Get email alerts about new promotions and exclusive offers.', value: 'yes' }]} disabled={loading} name="is_subscribed" />
+            <Checkbox items={[{ label: 'Get email alerts about new promotions and exclusive offers.', value: 'yes' }]} loading={loading} name="is_subscribed" />
 
             {success && <FormSuccess>{success}</FormSuccess>}
 

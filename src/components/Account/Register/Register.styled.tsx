@@ -15,4 +15,6 @@ export const Title = styled.h2`
     margin-bottom: 2rem;
 `
 
-export const Description = styled.div``
+export const Description = styled.div`
+    margin-bottom: 2rem;
+`

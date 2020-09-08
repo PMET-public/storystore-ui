@@ -25,7 +25,7 @@ export const Login: Component<LoginProps> = ({ title, description, loading, erro
                 autoFocus
                 name="email"
                 rules={{ required: 'Please enter your email address.', pattern: { value: patterns.email, message: 'Please enter a valid email address.' } }}
-                disabled={loading}
+                loading={loading}
                 label="Email"
             />
 
@@ -38,7 +38,7 @@ export const Login: Component<LoginProps> = ({ title, description, loading, erro
                 }}
                 type="password"
                 label="Password"
-                disabled={loading}
+                loading={loading}
             />
 
             {success && <FormSuccess>{success}</FormSuccess>}

@@ -25,7 +25,7 @@ export const ForgotPassword: Component<ForgotPasswordProps> = ({ title, descript
                 autoFocus
                 name="email"
                 rules={{ required: 'Please enter your email address.', pattern: { value: patterns.email, message: 'Please enter a valid email address.' } }}
-                disabled={loading}
+                loading={loading}
                 label="Email"
             />
 

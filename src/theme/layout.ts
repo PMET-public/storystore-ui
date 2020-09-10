@@ -7,6 +7,7 @@ export const defaultBreakpoints = {
     largeOnly: '(min-width: 992px) and (max-width: 1599px)',
     untilLarge: '(max-width: 1599px)',
     xLarge: '(min-width: 1600px)',
+    xxLarge: '(min-width: 2600px)',
 }
 
 export type ThemeBreakpoints = typeof defaultBreakpoints

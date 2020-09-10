@@ -14,18 +14,14 @@ export const List = styled.div`
 
     @media ${props => props.theme.breakpoints.medium} {
         grid-template-columns: repeat(2, 1fr);
-        grid-gap: 3rem 1rem;
     }
 
     @media ${props => props.theme.breakpoints.large} {
         grid-template-columns: repeat(3, 1fr);
-        grid-gap: 1rem;
-        grid-gap: 2rem 1rem;
     }
 
     @media ${props => props.theme.breakpoints.xLarge} {
         grid-template-columns: repeat(4, 1fr);
-        grid-gap: 3rem 2rem;
     }
 `
 

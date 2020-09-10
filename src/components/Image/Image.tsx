@@ -40,6 +40,8 @@ export const ImageComponent: Component<ImageProps> = ({ vignette, sources, src, 
                     $vignette={vignette}
                     {...props}
                     src={src}
+                    width={width}
+                    height={height}
                     onLoad={() => {
                         if (!loaded) setLoaded(true)
                     }}

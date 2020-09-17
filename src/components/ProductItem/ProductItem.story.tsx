@@ -2,7 +2,7 @@ import React from 'react'
 import ProductItem from '.'
 import { storiesOf } from '@storybook/react'
 import styled from 'styled-components'
-import { text, object, boolean } from '@storybook/addon-knobs'
+import { text, object, boolean, number } from '@storybook/addon-knobs'
 
 const StoryContainer = styled.div`
     max-width: 100vw;
@@ -28,6 +28,8 @@ storiesOf('📦 Components/ProductItem', module).add('Default', () => (
                 alt: '',
                 sources: [<source key="mobile" media="(max-width: 599px)" srcSet={DelayedImageSmall} />, <source key="desktop" media="(min-width: 600px)" srcSet={DelayedImage} />],
                 src: DelayedImage,
+                width: number('width', 600),
+                height: number('height', 600),
             }}
             price={{
                 regular: 49.99,

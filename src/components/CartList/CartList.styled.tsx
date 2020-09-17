@@ -22,6 +22,8 @@ export const Product = styled.article`
 
 export const Thumbnail = styled.div`
     width: 10rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
 
     @media ${props => props.theme.breakpoints.medium} {
         width: 16rem;

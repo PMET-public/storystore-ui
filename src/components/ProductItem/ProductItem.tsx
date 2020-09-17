@@ -32,7 +32,7 @@ export const ProductItem: Component<ProductItemProps> = ({ loading, badge, color
                     )}
 
                     <ImageWrapper>
-                        <Image width={4} height={5} vignette {...image} />
+                        <Image width={4} height={4} vignette {...image} />
                     </ImageWrapper>
 
                     <Details>

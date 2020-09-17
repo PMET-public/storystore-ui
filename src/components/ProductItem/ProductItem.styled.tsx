@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 import { Root as PriceRoot } from '../Price/Price.styled'
 import ImageComponent from '../Image'
+import { Root as ImageRoot } from '../Image/Image.styled'
 
 export const Root = styled.div`
     overflow: hidden;
@@ -10,6 +11,11 @@ export const Root = styled.div`
     flex-direction: column;
     height: 100%;
     text-align: left;
+
+    ${ImageRoot} {
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
 `
 
 export const Badge = styled.span`

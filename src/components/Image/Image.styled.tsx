@@ -1,8 +1,25 @@
 import styled from 'styled-components'
 
-export const Root = styled.div`
+export const Root = styled.div<{ $vignette?: boolean }>`
     position: relative;
     line-height: 0;
+
+    ${props =>
+        props.$vignette &&
+        `
+            &::after {
+                pointer-events: none;
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+                box-shadow: 0 0 4rem rgba(0, 0, 0, 0.07) inset;
+                cursor: inherit;
+            }
+        `}
 `
 
 export const Placeholder = styled.img<{ $loaded?: boolean }>`
@@ -22,11 +39,8 @@ export const Picture = styled.picture`
     z-index: 1;
 `
 
-export const Img = styled.img<{ $loaded?: boolean; $vignette?: boolean }>`
+export const Img = styled.img<{ $loaded?: boolean }>`
     transition: opacity 200ms ease;
     opacity: ${props => (props.$loaded ? 1 : 0.1)};
-    filter: brightness(${props => (props.$vignette ? 0.95 : 1)});
-    transform: translate3d(0, 0, 0);
-    will-change: filter;
     color: transparent;
 `

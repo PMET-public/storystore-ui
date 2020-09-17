@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Root as ImageRoot } from '../Image/Image.styled'
 
 export const Root = styled.section`
     display: grid;
@@ -22,8 +23,11 @@ export const Product = styled.article`
 
 export const Thumbnail = styled.div`
     width: 10rem;
-    border-radius: 0.5rem;
-    overflow: hidden;
+
+    ${ImageRoot} {
+        border-radius: 1rem;
+        overflow: hidden;
+    }
 
     @media ${props => props.theme.breakpoints.medium} {
         width: 16rem;
@@ -35,7 +39,8 @@ export const Thumbnail = styled.div`
 
     & img {
         width: 100%;
-        height: auto;
+        height: 100%;
+        object-fit: cover;
     }
 `
 

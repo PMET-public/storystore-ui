@@ -13,7 +13,7 @@ export const Root = styled.div`
     text-align: left;
 
     ${ImageRoot} {
-        border-radius: 0.5rem;
+        border-radius: 2rem;
         overflow: hidden;
     }
 `

@@ -12,7 +12,7 @@ export const ProductItemSkeleton: FunctionComponent<ProductItemSkeletonProps> = 
             <rect x="16" y={height + 10} rx="4" ry="4" width="60%" height="16" />
             <rect x="16" y={height + 30} rx="4" ry="4" width="30%" height="15" />
             <rect x="16" y={height + 50} rx="4" ry="4" width="10%" height="15" />
-            <rect x="0" y="0" rx="5" ry="5" width={width} height={height} />
+            <rect x="0" y="0" rx="20" ry="20" width={width} height={height} />
         </Skeleton>
     )
 }

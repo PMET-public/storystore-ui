@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, FormEvent, useCallback } from 'react'
 import { Component } from '../../lib'
 import { Root, Wrapper, SearchIcon, Field, Count, ResetButton, ResetIcon } from './SearchBar.styled'
 
-import { useThrottle } from '../../hooks/useThrottle'
+import { useDebounce } from '../../hooks/useDebounce'
 
 import Loader, { LoaderProps } from '../Loader'
 
@@ -19,7 +19,7 @@ export type SearchBarProps = {
 export const SearchBar: Component<SearchBarProps> = ({ clearButton = true, count, label = 'Search', loading, value: defaultValue = '', onSearch, onUpdate, ...props }) => {
     const [value, setValue] = useState(defaultValue)
 
-    const throttledUpdate = useThrottle((query: string) => {
+    const throttledUpdate = useDebounce((query: string) => {
         if (onUpdate) onUpdate(query)
     }, 250)
 

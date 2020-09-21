@@ -36,7 +36,7 @@ export const CartList: Component<CartListProps> = ({ loading, items, children, .
                     <Thumbnail>
                         <Image vignette width="4" height="5" {...thumbnail} />
                     </Thumbnail>
-                    <DetailsWrapper>
+                    <DetailsWrapper $withOptions={options?.length > 0}>
                         <Title {...title}>{title.text}</Title>
 
                         <Price>
@@ -44,7 +44,9 @@ export const CartList: Component<CartListProps> = ({ loading, items, children, .
                         </Price>
 
                         <Quantity as={QuantityComponent} {...quantity} />
+
                         <Sku>{sku}</Sku>
+
                         {options && (
                             <Options>
                                 {options.map(({ _id, label, value }, index) => (

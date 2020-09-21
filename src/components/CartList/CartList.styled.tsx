@@ -44,16 +44,28 @@ export const Thumbnail = styled.div`
     }
 `
 
-export const DetailsWrapper = styled.div`
+export const DetailsWrapper = styled.div<{ $withOptions?: boolean }>`
     align-items: center;
     display: grid;
     grid-gap: 1.2rem 1rem;
-    grid-template-areas:
-        'title title'
-        'sku sku'
-        'options options'
-        'price quantity';
-    grid-template-rows: repeat(4, max-content);
+
+    ${props =>
+        props.$withOptions
+            ? `
+                grid-template-areas:
+                    'title title'
+                    'sku sku'
+                    'options options'
+                    'price quantity';
+                grid-template-rows: repeat(4, max-content);
+            `
+            : `
+                grid-template-areas:
+                    'title title'
+                    'sku sku'
+                    'price quantity';
+                grid-template-rows: repeat(3, max-content);
+            `}
     grid-template-columns: repeat(2, max-content);
     font-size: 1.4rem;
 `

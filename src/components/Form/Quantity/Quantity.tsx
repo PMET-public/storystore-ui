@@ -26,7 +26,7 @@ export const Quantity: Component<QuantityProps> = ({
     label,
     rules,
     color: _color,
-    value: inputValue = 1,
+    defaultValue: inputValue = 1,
     maxValue,
     minValue = 1,
     addLabel,
@@ -35,6 +35,7 @@ export const Quantity: Component<QuantityProps> = ({
     delay = 250,
     error,
     hideError,
+    disabled,
     onUpdate: _onUpdate,
     onRemove: _onRemove,
     ...props
@@ -82,14 +83,15 @@ export const Quantity: Component<QuantityProps> = ({
 
             <Root>
                 <Value>
-                    <sub>x</sub> <FieldInput id={`field-input__${name}`} name={name} type="number" onChange={handleUpdate} size={2} value={value} rules={rules} color={color} {...props} />
+                    <sub>x</sub>{' '}
+                    <FieldInput id={`field-input__${name}`} name={name} type="number" onChange={handleUpdate} size={2} value={value} rules={rules} color={color} disabled={disabled} {...props} />
                 </Value>
 
                 <Actions>
-                    <Minus disabled={_onRemove ? value < minValue : value <= minValue} type="button" onClick={handleSubstract}>
+                    <Minus disabled={disabled || (_onRemove ? value < minValue : value <= minValue)} type="button" onClick={handleSubstract}>
                         {_onRemove && value <= minValue ? <RemoveIconSvg aria-label={substractLabel} /> : <MinusIconSvg aria-label={removeLabel} />}
                     </Minus>
-                    <Plus disabled={value === maxValue} type="button" onClick={handleAdd}>
+                    <Plus disabled={disabled || value === maxValue} type="button" onClick={handleAdd}>
                         <PlusIconSvg aria-label={addLabel} />
                     </Plus>
                 </Actions>

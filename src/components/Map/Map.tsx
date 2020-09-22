@@ -1,4 +1,4 @@
-import React, { useCallback, useState, Suspense, useRef } from 'react'
+import React, { useCallback, useState, useRef } from 'react'
 import { Component } from '../../lib'
 import { Root, Marker, Location, Title } from './Map.styled'
 
@@ -6,10 +6,10 @@ import { useTransition, animated } from 'react-spring'
 
 import StoreMarkerSvg from 'remixicon/icons/Map/map-pin-fill.svg'
 import CloseSvg from 'remixicon/icons/System/close-circle-fill.svg'
-import { Props as GoogleMapsProps, Coords } from 'google-map-react'
+import GoogleMapReact, { Coords } from 'google-map-react'
 import Error from '../Error'
 
-const GoogleMapReact = React.lazy(() => import('google-map-react')) as React.ComponentType<GoogleMapsProps>
+// const GoogleMapReact = React.lazy(() => import('google-map-react')) as React.ComponentType<GoogleMapsProps>
 
 type Location = {
     _id?: number
@@ -124,25 +124,23 @@ export const Map: Component<MapProps> = ({ apiKey, controls, locations = [], ...
     if (!apiKey) return <Error>Missing Google Maps API Key</Error>
 
     return (
-        <Suspense fallback="">
-            <Root {...props}>
-                <GoogleMapReact
-                    bootstrapURLKeys={{ key: apiKey }}
-                    defaultCenter={{ lat: 30.40134, lng: -97.72415 }}
-                    zoom={10}
-                    onGoogleApiLoaded={handleApiLoaded}
-                    onChildClick={handleInfoToggle}
-                    yesIWantToUseGoogleMapApiInternals
-                    options={{
-                        disableDefaultUI: !controls,
-                        mapTypeControl: controls,
-                    }}
-                >
-                    {locations.map(({ _id, ...location }) => (
-                        <MapMarker key={_id} show={selected === _id} {...location} />
-                    ))}
-                </GoogleMapReact>
-            </Root>
-        </Suspense>
+        <Root {...props}>
+            <GoogleMapReact
+                bootstrapURLKeys={{ key: apiKey }}
+                defaultCenter={{ lat: 30.40134, lng: -97.72415 }}
+                zoom={10}
+                onGoogleApiLoaded={handleApiLoaded}
+                onChildClick={handleInfoToggle}
+                yesIWantToUseGoogleMapApiInternals
+                options={{
+                    disableDefaultUI: !controls,
+                    mapTypeControl: controls,
+                }}
+            >
+                {locations.map(({ _id, ...location }) => (
+                    <MapMarker key={_id} show={selected === _id} {...location} />
+                ))}
+            </GoogleMapReact>
+        </Root>
     )
 }

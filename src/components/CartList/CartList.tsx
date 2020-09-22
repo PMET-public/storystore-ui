@@ -3,8 +3,9 @@ import { Component, Props } from '../../lib'
 import { Root, Product, Thumbnail, DetailsWrapper, Title, Price, Quantity, Sku, Options, Option, OptionLabel, OptionValue } from './CartList.styled'
 import PriceComponent, { PriceProps } from '../Price'
 import Image, { ImageProps } from '../Image'
-import QuantityComponent, { QuantityProps } from '../Quantity'
 import { CartListSkeleton } from './CartList.skeleton'
+import Form from '../Form'
+import QuantityComponent, { QuantityProps } from '../Form/Quantity'
 
 export type CartListProps = {
     loading?: boolean
@@ -36,14 +37,16 @@ export const CartList: Component<CartListProps> = ({ loading, items, children, .
                     <Thumbnail>
                         <Image vignette width="4" height="5" {...thumbnail} />
                     </Thumbnail>
-                    <DetailsWrapper $withOptions={options?.length > 0}>
+                    <DetailsWrapper $withOptions={!!options}>
                         <Title {...title}>{title.text}</Title>
 
                         <Price>
                             <PriceComponent {...price} />
                         </Price>
 
-                        <Quantity as={QuantityComponent} {...quantity} />
+                        <Form>
+                            <Quantity as={QuantityComponent} {...quantity} name={`${sku}.quantity`} hideError />
+                        </Form>
 
                         <Sku>{sku}</Sku>
 

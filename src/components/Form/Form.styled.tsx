@@ -14,8 +14,8 @@ export const Root = styled.form`
     grid-auto-rows: max-content;
 `
 
-export const Field = styled.div`
-    display: grid;
+export const Field = styled.div<{ $type?: string }>`
+    display: ${props => (props.$type === 'hidden' ? 'none' : 'grid')};
     grid-gap: 1rem;
 `
 

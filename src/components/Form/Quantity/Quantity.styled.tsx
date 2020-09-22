@@ -1,10 +1,11 @@
 import styled from 'styled-components'
+import { Input } from '../Form.styled'
 
 export const Root = styled.div`
     align-items: center;
     display: grid;
     grid-gap: 1.4rem;
-    grid-template-columns: 1fr max-content;
+    grid-template-columns: max-content max-content;
 `
 
 export const Actions = styled.div`
@@ -39,9 +40,18 @@ export const Plus = styled(Button)``
 export const Minus = styled(Button)``
 
 export const Value = styled.span`
-    text-align: center;
-
     & > sub {
         font-size: 80%;
+    }
+
+    & ${Input} {
+        width: 3rem;
+        text-align: center;
+
+        -moz-appearance: textfield;
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
     }
 `

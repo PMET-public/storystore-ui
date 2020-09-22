@@ -1,26 +1,31 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { Component } from '../../lib'
+import { Component } from '../../../lib'
 import { Root, Actions, Plus, Minus, Value } from './Quantity.styled'
 
-import { useThrottle } from '../../hooks/useThrottle'
+import { useThrottle } from '../../../hooks/useThrottle'
 
 import PlusIconSvg from 'remixicon/icons/System/add-line.svg'
 import MinusIconSvg from 'remixicon/icons/System/subtract-line.svg'
 import RemoveIconSvg from 'remixicon/icons/System/delete-bin-2-line.svg'
+import { Label, Error, Field, FieldInput, FormFieldProps } from '../Form'
+import { useFormFieldError } from '../useFormFieldError'
+import { FieldColors } from '../Form.styled'
 
-export type QuantityProps = {
-    value?: number
-    maxValue?: number
-    minValue?: number
+export type QuantityProps = FormFieldProps & {
     addLabel?: string
     removeLabel?: string
     substractLabel?: string
     delay?: number
+    hideError?: boolean
     onUpdate?: (value: number) => any
     onRemove?: () => any
 }
 
 export const Quantity: Component<QuantityProps> = ({
+    name,
+    label,
+    rules,
+    color: _color,
     value: inputValue = 1,
     maxValue,
     minValue = 1,
@@ -28,12 +33,18 @@ export const Quantity: Component<QuantityProps> = ({
     removeLabel,
     substractLabel,
     delay = 250,
+    error,
+    hideError,
     onUpdate: _onUpdate,
     onRemove: _onRemove,
     ...props
 }) => {
     const [value, setValue] = useState(inputValue)
     const [loaded, setLoaded] = useState(false)
+
+    const fieldError = useFormFieldError({ name, error })
+
+    const color = _color ?? (fieldError && FieldColors[fieldError.type ?? 'error'])
 
     const onUpdate = useThrottle(() => {
         if (!loaded) return
@@ -49,6 +60,10 @@ export const Quantity: Component<QuantityProps> = ({
 
     useEffect(() => setLoaded(true), [])
 
+    const handleUpdate = useCallback(({ target }) => {
+        setValue(Number(target.value))
+    }, [])
+
     const handleSubstract = useCallback(() => {
         setValue(value - 1)
     }, [value, setValue])
@@ -58,20 +73,29 @@ export const Quantity: Component<QuantityProps> = ({
     }, [value, setValue])
 
     return (
-        <Root {...props}>
-            <Value>
-                <sub>x</sub> {value}
-            </Value>
-            {_onUpdate && (
+        <Field $type={props.type}>
+            {label && (
+                <Label htmlFor={`field-input__${name}`} color={color}>
+                    {label}
+                </Label>
+            )}
+
+            <Root>
+                <Value>
+                    <sub>x</sub> <FieldInput id={`field-input__${name}`} name={name} type="number" onChange={handleUpdate} size={2} value={value} rules={rules} color={color} {...props} />
+                </Value>
+
                 <Actions>
-                    <Minus disabled={value < minValue} type="button" onClick={handleSubstract}>
+                    <Minus disabled={_onRemove ? value < minValue : value <= minValue} type="button" onClick={handleSubstract}>
                         {_onRemove && value <= minValue ? <RemoveIconSvg aria-label={substractLabel} /> : <MinusIconSvg aria-label={removeLabel} />}
                     </Minus>
-                    <Plus disabled={value === maxValue} onClick={handleAdd}>
+                    <Plus disabled={value === maxValue} type="button" onClick={handleAdd}>
                         <PlusIconSvg aria-label={addLabel} />
                     </Plus>
                 </Actions>
-            )}
-        </Root>
+            </Root>
+
+            {!hideError && <Error color={color}>{fieldError?.message}</Error>}
+        </Field>
     )
 }

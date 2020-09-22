@@ -54,7 +54,7 @@ export const Input: Component<InputProps> = ({ as, autoFocus, error, color: _col
     )
 
     return (
-        <Field as={as}>
+        <Field as={as} $type={props.type}>
             {label && (
                 <LabelRoot htmlFor={`field-input__${name}`} color={color} $active={active}>
                     {label}
@@ -66,7 +66,6 @@ export const Input: Component<InputProps> = ({ as, autoFocus, error, color: _col
                 ) : (
                     <FieldInput
                         id={`field-input__${name}`}
-                        type="text"
                         onFocus={handleOnFocus}
                         onChange={handleOnChange}
                         onBlur={handleOnBlur}

@@ -16,7 +16,7 @@ export type CartListProps = {
         }>
         sku: string
         thumbnail: ImageProps
-        quantity: QuantityProps
+        quantity: { fixedValue?: number } | QuantityProps
         price: PriceProps
         options?: Array<{
             _id?: string | number
@@ -41,12 +41,20 @@ export const CartList: Component<CartListProps> = ({ loading, items, children, .
                         <Title {...title}>{title.text}</Title>
 
                         <Price>
-                            <PriceComponent {...price} />
+                            <PriceComponent {...price} />{' '}
+                            {quantity.fixedValue && (
+                                <span>
+                                    <sub>x</sub>
+                                    {quantity.fixedValue}
+                                </span>
+                            )}
                         </Price>
 
-                        <Form>
-                            <Quantity as={QuantityComponent} {...quantity} name={`${sku}.quantity`} hideError />
-                        </Form>
+                        {!quantity.fixedValue && (
+                            <Form>
+                                <Quantity as={QuantityComponent} {...quantity} name={`${sku}.quantity`} hideError />
+                            </Form>
+                        )}
 
                         <Sku>{sku}</Sku>
 

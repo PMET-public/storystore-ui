@@ -7,10 +7,11 @@ import { useFormFieldError } from '../useFormFieldError'
 
 export type SelectProps = FormFieldProps & {
     items: Array<{ text: string } & OptionHTMLAttributes<HTMLOptionElement>>
+    blankDefault?: boolean
     loading?: boolean
 }
 
-export const Select: Component<SelectProps> = ({ as, error, color: _color, label, loading, name, rules, items, ...props }) => {
+export const Select: Component<SelectProps> = ({ as, error, color: _color, label, loading, name, rules, items, blankDefault, ...props }) => {
     const fieldError = useFormFieldError({ name, error })
 
     const color = _color ?? (fieldError && FieldColors.error)
@@ -29,6 +30,7 @@ export const Select: Component<SelectProps> = ({ as, error, color: _color, label
                 ) : (
                     <Wrapper $disabled={props.disabled}>
                         <FieldInput id={`field-input__${name}`} as={SelectRoot} disabled={items?.length === 0} name={name} rules={rules} color={color} {...props}>
+                            {blankDefault && <option selected disabled></option>}
                             {items &&
                                 items.map(({ text, ...option }, index) => (
                                     <option key={index} {...option}>

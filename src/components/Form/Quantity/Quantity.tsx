@@ -17,6 +17,7 @@ export type QuantityProps = FormFieldProps & {
     substractLabel?: string
     delay?: number
     hideError?: boolean
+    fixed?: boolean
     onUpdate?: (value: number) => any
     onRemove?: () => any
 }
@@ -36,6 +37,7 @@ export const Quantity: Component<QuantityProps> = ({
     error,
     hideError,
     disabled,
+    fixed,
     onUpdate: _onUpdate,
     onRemove: _onRemove,
     ...props
@@ -84,16 +86,36 @@ export const Quantity: Component<QuantityProps> = ({
             <Root>
                 <Value>
                     <sub>x</sub>{' '}
-                    <FieldInput id={`field-input__${name}`} name={name} type="number" onChange={handleUpdate} size={2} value={value} rules={rules} color={color} disabled={disabled} {...props} />
+                    <FieldInput
+                        id={`field-input__${name}`}
+                        name={name}
+                        type="number"
+                        onChange={handleUpdate}
+                        size={2}
+                        value={value}
+                        rules={rules}
+                        color={color}
+                        disabled={fixed || disabled}
+                        {...props}
+                    />
                 </Value>
 
                 <Actions>
-                    <Minus disabled={disabled || (_onRemove ? value < minValue : value <= minValue)} type="button" onClick={handleSubstract}>
-                        {_onRemove && value <= minValue ? <RemoveIconSvg aria-label={substractLabel} /> : <MinusIconSvg aria-label={removeLabel} />}
-                    </Minus>
-                    <Plus disabled={disabled || value === maxValue} type="button" onClick={handleAdd}>
-                        <PlusIconSvg aria-label={addLabel} />
-                    </Plus>
+                    {fixed ? (
+                        <Minus type="button" onClick={handleSubstract}>
+                            <RemoveIconSvg aria-label={substractLabel} />
+                        </Minus>
+                    ) : (
+                        <React.Fragment>
+                            <Minus disabled={disabled || (_onRemove ? value < minValue : value <= minValue)} type="button" onClick={handleSubstract}>
+                                {_onRemove && value <= minValue ? <RemoveIconSvg aria-label={substractLabel} /> : <MinusIconSvg aria-label={removeLabel} />}
+                            </Minus>
+
+                            <Plus disabled={disabled || value === maxValue} type="button" onClick={handleAdd}>
+                                <PlusIconSvg aria-label={addLabel} />
+                            </Plus>
+                        </React.Fragment>
+                    )}
                 </Actions>
             </Root>
 

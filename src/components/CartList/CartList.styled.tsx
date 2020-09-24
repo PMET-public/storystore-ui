@@ -81,6 +81,16 @@ export const Title = styled.div`
 
 export const Price = styled.div`
     grid-area: price;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    display: grid;
+    grid-gap: 0.5rem;
+
+    & sub {
+        font-size: 0.9em;
+        display: inline-block;
+        padding-right: 0.2rem;
+    }
 `
 
 export const Sku = styled.div`

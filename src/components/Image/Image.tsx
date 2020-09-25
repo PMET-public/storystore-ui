@@ -6,16 +6,17 @@ export type ImageProps = ImgHTMLAttributes<HTMLImageElement> & {
     vignette?: boolean
     lazy?: boolean
     sources?: JSX.Element[]
+    originalWidthAndHeight?: boolean
 }
 
-export const ImageComponent: Component<ImageProps> = ({ vignette, sources, src, width: _width, height: _height, lazy = true, ...props }) => {
+export const ImageComponent: Component<ImageProps> = ({ vignette, sources, src, width: _width, height: _height, originalWidthAndHeight = false, lazy = true, ...props }) => {
     const imageRef = useRef<HTMLImageElement>(null)
 
     const [loaded, setLoaded] = useState(imageRef.current?.complete ?? false)
 
-    const width = _width ?? (imageRef.current?.naturalWidth || imageRef.current?.width || 0)
+    const width = originalWidthAndHeight ? imageRef.current?.naturalWidth || imageRef.current?.width || _width : _width
 
-    const height = _height ?? (imageRef.current?.naturalHeight || imageRef.current?.height || 0)
+    const height = originalWidthAndHeight ? imageRef.current?.naturalHeight || imageRef.current?.height || _height : _height
 
     const placeholderBase64 = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${width} ${height}'%3E%3C/svg%3E`
 

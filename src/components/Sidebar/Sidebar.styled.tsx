@@ -38,6 +38,7 @@ export const Screen = styled.div`
     width: 100%;
     z-index: 10;
     background: ${props => props.theme.colors.onSurface50};
+    backdrop-filter: blur(10px);
 `
 
 export const Buttons = styled.div`

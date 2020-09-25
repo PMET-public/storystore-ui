@@ -12,6 +12,7 @@ import { useFormFieldError } from '../useFormFieldError'
 export type ThumbSwatchesProps = FormFieldProps & {
     loading?: boolean
     type?: 'radio' | 'checkbox'
+    hideError?: boolean
     items: Array<
         {
             image: ImageProps
@@ -20,7 +21,7 @@ export type ThumbSwatchesProps = FormFieldProps & {
     >
 }
 
-export const ThumbSwatches: Component<ThumbSwatchesProps> = ({ loading, name, type = 'radio', label, error, color: _color, rules, items = [], ...props }) => {
+export const ThumbSwatches: Component<ThumbSwatchesProps> = ({ loading, name, type = 'radio', label, error, color: _color, rules, hideError, items = [], ...props }) => {
     const fieldError = useFormFieldError({ name, error })
 
     const color = _color ?? (fieldError && FieldColors.error)
@@ -48,7 +49,7 @@ export const ThumbSwatches: Component<ThumbSwatchesProps> = ({ loading, name, ty
                         ))}
                     </Carousel>
 
-                    <Error color={color}>{fieldError?.message}</Error>
+                    {!hideError && <Error color={color}>{fieldError?.message}</Error>}
                 </React.Fragment>
             )}
         </Field>

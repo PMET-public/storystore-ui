@@ -7,11 +7,12 @@ import { useFormFieldError } from '../useFormFieldError'
 
 export type SelectProps = FormFieldProps & {
     items: Array<{ text: string } & OptionHTMLAttributes<HTMLOptionElement>>
-    blankDefault?: boolean
+    blankDefault?: string | boolean
     loading?: boolean
+    hideError?: boolean
 }
 
-export const Select: Component<SelectProps> = ({ as, error, color: _color, label, loading, name, rules, items, blankDefault, ...props }) => {
+export const Select: Component<SelectProps> = ({ as, error, color: _color, label, loading, name, rules, items, blankDefault, hideError, ...props }) => {
     const fieldError = useFormFieldError({ name, error })
 
     const color = _color ?? (fieldError && FieldColors.error)
@@ -30,7 +31,11 @@ export const Select: Component<SelectProps> = ({ as, error, color: _color, label
                 ) : (
                     <Wrapper $disabled={props.disabled}>
                         <FieldInput id={`field-input__${name}`} as={SelectRoot} disabled={items?.length === 0} name={name} rules={rules} color={color} {...props}>
-                            {blankDefault && <option selected disabled></option>}
+                            {blankDefault && (
+                                <option selected disabled>
+                                    {typeof blankDefault === 'string' && blankDefault}
+                                </option>
+                            )}
                             {items &&
                                 items.map(({ text, ...option }, index) => (
                                     <option key={index} {...option}>
@@ -40,7 +45,7 @@ export const Select: Component<SelectProps> = ({ as, error, color: _color, label
                         </FieldInput>
                     </Wrapper>
                 )}
-                <Error color={color}>{fieldError?.message}</Error>
+                {!hideError && <Error color={color}>{fieldError?.message}</Error>}
             </React.Fragment>
         </Field>
     )

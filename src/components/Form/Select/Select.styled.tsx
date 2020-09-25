@@ -29,5 +29,9 @@ export const Select = styled.select`
         background-color: initial;
         color: initial;
         font-size: initial;
+
+        &:disabled {
+            opacity: 0.75;
+        }
     }
 `

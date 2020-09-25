@@ -1,13 +1,15 @@
 import styled from 'styled-components'
 
 export const Items = styled.div`
-    display: grid;
-    grid-gap: 1rem;
-    grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
+    display: inline-flex;
+    flex-wrap: wrap;
+    margin: -1rem 0 0 -1rem;
+    width: calc(100% + 1rem);
 `
 
 export const Item = styled.span`
     position: relative;
+    margin: 1rem 0 0 1rem;
 
     & > label {
         cursor: pointer;

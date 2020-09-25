@@ -9,6 +9,7 @@ import Carousel from '../../Carousel'
 export type ColorSwatchesProps = FormFieldProps & {
     loading?: boolean
     type?: 'radio' | 'checkbox'
+    hideError?: boolean
     items: Array<
         {
             label: ReactElement | string
@@ -18,7 +19,7 @@ export type ColorSwatchesProps = FormFieldProps & {
     >
 }
 
-export const ColorSwatches: Component<ColorSwatchesProps> = ({ loading, error, color: _color, label, name, rules, type = 'radio', items = [], ...props }) => {
+export const ColorSwatches: Component<ColorSwatchesProps> = ({ loading, error, color: _color, label, name, rules, hideError, type = 'radio', items = [], ...props }) => {
     const fieldError = useFormFieldError({ name, error })
 
     const color = _color ?? (fieldError && FieldColors.error)
@@ -46,7 +47,7 @@ export const ColorSwatches: Component<ColorSwatchesProps> = ({ loading, error, c
                             </Item>
                         ))}
                     </Carousel>
-                    <Error color={color as any}>{fieldError?.message}</Error>
+                    {!hideError && <Error color={color as any}>{fieldError?.message}</Error>}
                 </React.Fragment>
             )}
         </Field>

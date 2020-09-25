@@ -8,6 +8,7 @@ import { useFormFieldError } from '../useFormFieldError'
 export type TextSwatchesProps = FormFieldProps & {
     loading?: boolean
     type?: 'radio' | 'checkbox'
+    hideError?: boolean
     items: Array<
         {
             label: ReactElement | string
@@ -16,7 +17,7 @@ export type TextSwatchesProps = FormFieldProps & {
     >
 }
 
-export const TextSwatches: Component<TextSwatchesProps> = ({ loading, error, color: _color, label, name, rules, type = 'radio', items = [], ...props }) => {
+export const TextSwatches: Component<TextSwatchesProps> = ({ loading, error, color: _color, label, name, rules, hideError, type = 'radio', items = [], ...props }) => {
     const fieldError = useFormFieldError({ name, error })
 
     const color = _color ?? (fieldError && FieldColors.error)
@@ -41,7 +42,8 @@ export const TextSwatches: Component<TextSwatchesProps> = ({ loading, error, col
                             </Item>
                         ))}
                     </Items>
-                    <Error color={color as any}>{fieldError?.message}</Error>
+
+                    {!hideError && <Error color={color as any}>{fieldError?.message}</Error>}
                 </React.Fragment>
             )}
         </Field>

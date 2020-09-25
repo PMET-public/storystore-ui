@@ -8,9 +8,10 @@ import { useFormContext } from 'react-hook-form'
 
 export type InputProps = FormFieldProps & {
     loading?: boolean
+    hideError?: boolean
 }
 
-export const Input: Component<InputProps> = ({ as, autoFocus, error, color: _color, label, loading, name, rules, onBlur, onChange, onFocus, ...props }) => {
+export const Input: Component<InputProps> = ({ as, autoFocus, error, color: _color, label, loading, name, rules, onBlur, onChange, onFocus, hideError, ...props }) => {
     const { getValues } = useFormContext()
 
     const fieldError = useFormFieldError({ name, error })
@@ -76,7 +77,7 @@ export const Input: Component<InputProps> = ({ as, autoFocus, error, color: _col
                         {...props}
                     />
                 )}
-                <Error color={color}>{fieldError?.message}</Error>
+                {!hideError && <Error color={color}>{fieldError?.message}</Error>}
             </React.Fragment>
         </Field>
     )

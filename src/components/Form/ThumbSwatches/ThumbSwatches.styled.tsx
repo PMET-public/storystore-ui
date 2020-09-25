@@ -9,7 +9,7 @@ export const Image = styled(ImageComponent)`
     /* display: block; */
     filter: brightness(98%) contrast(94%);
     max-width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
 `
 

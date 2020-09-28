@@ -37,8 +37,13 @@ export const Screen = styled.div`
     top: 0;
     width: 100%;
     z-index: 10;
-    background: ${props => props.theme.colors.onSurface50};
-    backdrop-filter: blur(10px);
+    background: ${props => props.theme.colors.onSurface75};
+
+    @supports (backdrop-filter: blur(10px)) or (--webkit-backdrop-filter: blur(10px)) {
+        background-color: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(10px);
+        transform: translateZ(0);
+    }
 `
 
 export const Buttons = styled.div`

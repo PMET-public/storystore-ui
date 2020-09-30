@@ -39,7 +39,7 @@ export const Checkbox: Component<CheckboxProps> = ({ as, error, color: _color, r
 
                 <Wrapper>
                     {items.map(({ _id, label, ...item }, index) => (
-                        <Item key={_id ?? index}>
+                        <Item key={_id ?? index} $disabled={props.disabled}>
                             <FieldInput as={Input} type={type} name={name} rules={rules} color={color as any} {...item} />
                             <OffIcon as={type === 'radio' ? RadioOffIconSvg : CheckboxOffIconSvg} />
                             <OnIcon as={type === 'radio' ? RadioOnIconSvg : CheckboxOnIconSvg} />

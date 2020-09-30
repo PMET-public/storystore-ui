@@ -11,13 +11,13 @@ export const OffIcon = styled.svg`
     opacity: 0.15;
 `
 
-export const Item = styled.label`
+export const Item = styled.label<{ $disabled?: boolean }>`
     display: grid;
     grid-auto-columns: max-content;
     grid-auto-flow: column;
     align-items: center;
     grid-gap: 0.6rem;
-    cursor: pointer;
+    cursor: ${props => (props.$disabled ? 'inherit' : 'pointer')};
 
     ${OnIcon},
     ${OffIcon} {
@@ -47,11 +47,11 @@ export const Input = styled.input`
     }
 
     &:disabled ~ span {
-        opacity: 0.5;
+        opacity: 0.6;
     }
 
-    &:disabled ~ ${OffIcon} {
-        opacity: 0.15;
+    &:disabled ~ ${OffIcon}, &:disabled ~ ${OnIcon} {
+        opacity: 0.2;
     }
 
     ~ ${OnIcon} {

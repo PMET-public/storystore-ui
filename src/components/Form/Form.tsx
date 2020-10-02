@@ -6,7 +6,8 @@ export { FieldColors } from './Form.styled'
 
 import { FormProvider, useForm, useFormContext, UseFormOptions, ValidationRules } from 'react-hook-form'
 
-import { FieldErrors, UseFormMethods } from 'react-hook-form/dist/types/form'
+import { UseFormMethods } from 'react-hook-form/dist/types/form'
+import { FieldErrors } from 'react-hook-form/dist/types/errors'
 
 /** Form */
 export type FormProps<P> = Override<

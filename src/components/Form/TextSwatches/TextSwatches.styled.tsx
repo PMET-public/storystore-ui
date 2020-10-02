@@ -14,7 +14,6 @@ export const Item = styled.span`
     & > label {
         cursor: pointer;
         align-items: center;
-        background-color: ${props => props.theme.colors.surface};
         border-radius: 0.5rem;
         border: 0.1rem solid ${props => props.theme.colors.onSurface25};
         color: ${props => props.theme.colors.onSurface};
@@ -22,6 +21,7 @@ export const Item = styled.span`
         justify-content: center;
         padding: 1rem;
         transition: all 305ms ease;
+        min-width: 4rem;
     }
 
     & > input {

@@ -13,8 +13,7 @@ export const defaultBreakpoints = {
 export type ThemeBreakpoints = typeof defaultBreakpoints
 
 export const defaultLayout = {
-    containedWidthLarge: '190rem',
-    containedWidth: '128rem',
+    containedWidth: '140rem',
     margin: '1rem',
 }
 

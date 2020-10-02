@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 
-export const Root = styled.div<{ $vignette?: boolean }>`
+export const Root = styled.div<{ $vignette?: boolean; $loaded?: boolean }>`
     position: relative;
     line-height: 0;
 
     ${props =>
         props.$vignette &&
+        props.$loaded &&
         `
             &::after {
                 pointer-events: none;
@@ -16,7 +17,7 @@ export const Root = styled.div<{ $vignette?: boolean }>`
                 width: 100%;
                 height: 100%;
                 z-index: 1;
-                box-shadow: 0 0 4rem rgba(0, 0, 0, 0.07) inset;
+                box-shadow: 0 0 10rem rgba(0, 0, 0, 0.2) inset;
                 cursor: inherit;
             }
         `}

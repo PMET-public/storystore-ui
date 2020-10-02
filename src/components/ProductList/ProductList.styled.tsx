@@ -8,7 +8,7 @@ export const Root = styled.div`
 `
 export const List = styled.div`
     display: grid;
-    grid-gap: 3rem 0.5rem;
+    grid-gap: 2rem 0.5rem;
     grid-template-columns: repeat(1, 1fr);
     width: 100%;
 

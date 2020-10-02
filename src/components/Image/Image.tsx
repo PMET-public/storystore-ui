@@ -27,7 +27,7 @@ export const ImageComponent: Component<ImageProps> = ({ vignette, sources, src, 
     }, [imageRef.current?.complete, loaded])
 
     return (
-        <Root $vignette={vignette} style={props.style}>
+        <Root $loaded={loaded} $vignette={vignette} style={props.style}>
             <Picture>
                 {sources?.map((source, key) => (
                     <React.Fragment key={key}>{source}</React.Fragment>

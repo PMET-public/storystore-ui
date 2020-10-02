@@ -11,9 +11,10 @@ export const Root = styled.div`
     flex-direction: column;
     height: 100%;
     text-align: left;
+    border-radius: 2rem;
+    background-color: ${props => props.theme.colors.onSurface5};
 
     ${ImageRoot} {
-        border-radius: 2rem;
         overflow: hidden;
     }
 `
@@ -64,7 +65,7 @@ export const Details = styled.span`
     display: grid;
     font-size: 1.4rem;
     grid-gap: 0.65rem;
-    padding: 1rem;
+    padding: 2rem;
 
     @media ${props => props.theme.breakpoints.medium} {
         font-size: 1.6rem;

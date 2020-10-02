@@ -10,7 +10,7 @@ export const Root = styled.div`
     grid-template-columns: auto 1fr;
     grid-template-rows: auto;
     width: 100%;
-    min-height: 6rem;
+    height: 6rem;
 
     @media ${props => props.theme.breakpoints.smallOnly} {
         grid-template-areas: 'logo utilities';
@@ -38,8 +38,8 @@ export const Logo = styled.div`
 
     & svg,
     & img {
-        padding: 0 1rem;
-        max-width: 15rem;
+        width: auto;
+        height: 4rem;
     }
 
     & a {

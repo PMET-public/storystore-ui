@@ -7,6 +7,7 @@ import { Root as ImageRoot } from '../Image/Image.styled'
 export const Root = styled.div`
     overflow: hidden;
     position: relative;
+    z-index: 0;
     display: flex;
     flex-direction: column;
     height: 100%;

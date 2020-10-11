@@ -25,7 +25,8 @@ const Button = styled.button`
     &[disabled] {
         opacity: 0.5;
     }
-
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
     align-items: center;
     background-color: ${({ theme }) => theme.colors.onSurface10};
     border-radius: 1rem;

@@ -19,9 +19,10 @@ export type CheckboxProps = FormFieldProps & {
             value?: string
         } & HTMLAttributes<HTMLInputElement>
     >
+    hideError?: boolean
 }
 
-export const Checkbox: Component<CheckboxProps> = ({ as, error, color: _color, rules, label, name, placeholder, type = 'checkbox', items, ...props }) => {
+export const Checkbox: Component<CheckboxProps> = ({ as, error, color: _color, rules, label, name, placeholder, hideError, type = 'checkbox', items, ...props }) => {
     const fieldError = useFormFieldError({ name, error })
 
     const color = _color ?? (fieldError && FieldColors.error)
@@ -48,7 +49,7 @@ export const Checkbox: Component<CheckboxProps> = ({ as, error, color: _color, r
                     ))}
                 </Wrapper>
 
-                <Error color={color}>{fieldError?.message}</Error>
+                {!hideError && <Error color={color}>{fieldError?.message}</Error>}
             </Field>
         </fieldset>
     )

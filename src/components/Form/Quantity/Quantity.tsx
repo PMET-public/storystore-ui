@@ -85,7 +85,7 @@ export const Quantity: Component<QuantityProps> = ({
 
             <Root>
                 <Value>
-                    <sub>x</sub>{' '}
+                    <sub>×</sub>{' '}
                     <FieldInput
                         id={`field-input__${name}`}
                         name={name}

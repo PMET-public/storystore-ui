@@ -10,9 +10,6 @@ export const baseTheme = { colors, typography, breakpoints, layout }
 
 export const UIBase = () => {
     const { colors, typography, breakpoints } = useTheme()
-    return (
-        <React.Fragment>
-            <GlobalStyles $colors={colors} $typography={typography} $breakpoints={breakpoints} />
-        </React.Fragment>
-    )
+
+    return <GlobalStyles $colors={colors} $typography={typography} $breakpoints={breakpoints} />
 }

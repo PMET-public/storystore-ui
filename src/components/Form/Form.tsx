@@ -62,9 +62,8 @@ export type FormFieldProps = Props<{
 }>
 
 /** Field */
-export type FieldProps = {}
 
-export const Field: Component<FieldProps> = ({ children, ...props }) => {
+export const Field: Component = ({ children, ...props }) => {
     return <FieldRoot {...props}>{children}</FieldRoot>
 }
 

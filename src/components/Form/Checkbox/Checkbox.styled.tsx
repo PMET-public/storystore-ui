@@ -13,8 +13,7 @@ export const OffIcon = styled.svg`
 
 export const Item = styled.label<{ $disabled?: boolean }>`
     display: grid;
-    grid-auto-columns: max-content;
-    grid-auto-flow: column;
+    grid-template-columns: auto 1fr;
     align-items: center;
     grid-gap: 0.6rem;
     cursor: ${props => (props.$disabled ? 'inherit' : 'pointer')};

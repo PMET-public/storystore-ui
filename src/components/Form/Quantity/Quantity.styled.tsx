@@ -23,7 +23,7 @@ const Button = styled.button`
     }
 
     &[disabled] {
-        opacity: 0.5;
+        opacity: 0.35;
     }
     -ms-touch-action: manipulation;
     touch-action: manipulation;

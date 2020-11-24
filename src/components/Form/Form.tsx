@@ -14,6 +14,7 @@ export type FormProps<P> = Override<
     FormHTMLAttributes<any>,
     {
         options?: UseFormOptions
+        onInit?: (values: any) => any
         onValues?: (values: any) => any
         onErrors?: (values: FieldErrors<any>) => any
         onSubmit?: (values: any) => any
@@ -22,7 +23,7 @@ export type FormProps<P> = Override<
 
 export type FormContext = UseFormMethods
 
-export const Form: Component<FormProps<any>> = React.forwardRef(({ children, onSubmit, onErrors, onValues, onChange, options, ...props }, ref: any) => {
+export const Form: Component<FormProps<any>> = React.forwardRef(({ children, onSubmit, onErrors, onValues, onInit, onChange, options, ...props }, ref: any) => {
     const form = useForm(options)
 
     if (ref) ref.current = form
@@ -35,6 +36,11 @@ export const Form: Component<FormProps<any>> = React.forwardRef(({ children, onS
         },
         [onChange, onValues, form]
     )
+
+    useEffect(() => {
+        const values = form.getValues()
+        if (onInit) onInit(values)
+    }, [onInit])
 
     useEffect(() => {
         if (onErrors && Object.entries(form.errors).length > 0) {

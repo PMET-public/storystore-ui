@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, FormHTMLAttributes, LabelHTMLAttributes, InputHTMLAttributes, ReactElement } from 'react'
+import React, { useEffect, FormHTMLAttributes, LabelHTMLAttributes, InputHTMLAttributes, ReactElement } from 'react'
 import { Component, Props, Override } from '../../lib'
 import { Root, Field as FieldRoot, Label as LabelRoot, Error as ErrorRoot, Input as InputRoot, FormError as FormErrorRoot, FormSuccess as FormSuccessRoot, FieldColors } from './Form.styled'
 
 export { FieldColors } from './Form.styled'
 
-import { FormProvider, useForm, useFormContext, UseFormOptions, ValidationRules } from 'react-hook-form'
+import { FormProvider, useForm, useFormContext, UseFormOptions, RegisterOptions } from 'react-hook-form'
 
 import { UseFormMethods } from 'react-hook-form/dist/types/form'
 import { FieldErrors } from 'react-hook-form/dist/types/errors'
@@ -14,7 +14,6 @@ export type FormProps<P> = Override<
     FormHTMLAttributes<any>,
     {
         options?: UseFormOptions
-        onInit?: (values: any) => any
         onValues?: (values: any) => any
         onErrors?: (values: FieldErrors<any>) => any
         onSubmit?: (values: any) => any
@@ -23,24 +22,16 @@ export type FormProps<P> = Override<
 
 export type FormContext = UseFormMethods
 
-export const Form: Component<FormProps<any>> = React.forwardRef(({ children, onSubmit, onErrors, onValues, onInit, onChange, options, ...props }, ref: any) => {
+export const Form: Component<FormProps<any>> = React.forwardRef(({ children, onSubmit, onErrors, onValues, options, ...props }, ref: any) => {
     const form = useForm(options)
 
     if (ref) ref.current = form
 
-    const handleOnValueChanges = useCallback(
-        e => {
-            const values = form.getValues()
-            if (onValues) onValues(values)
-            if (onChange) onChange(e)
-        },
-        [onChange, onValues, form]
-    )
+    const values = form.watch()
 
     useEffect(() => {
-        const values = form.getValues()
-        if (onInit) onInit(values)
-    }, [onInit])
+        if (onValues) onValues(values)
+    }, [onValues, JSON.stringify(values)])
 
     useEffect(() => {
         if (onErrors && Object.entries(form.errors).length > 0) {
@@ -50,7 +41,7 @@ export const Form: Component<FormProps<any>> = React.forwardRef(({ children, onS
 
     return (
         <FormProvider {...form}>
-            <Root onSubmit={onSubmit && form.handleSubmit(onSubmit)} onChange={handleOnValueChanges} {...props}>
+            <Root onSubmit={onSubmit && form.handleSubmit(onSubmit)} {...props}>
                 {children}
             </Root>
         </FormProvider>
@@ -64,7 +55,7 @@ export type FormFieldProps = Props<{
     label?: ReactElement | string
     error?: string
     color?: FieldColors
-    rules?: ValidationRules
+    rules?: RegisterOptions
 }>
 
 /** Field */
@@ -85,7 +76,7 @@ export const Label: Component<LabelProps> = ({ children, color, ...props }) => {
 }
 
 /** FieldInput */
-export type FieldInputProps = InputHTMLAttributes<any> & { rules?: ValidationRules; color?: FieldColors }
+export type FieldInputProps = InputHTMLAttributes<any> & { rules?: RegisterOptions; color?: FieldColors }
 
 export const FieldInput: Component<FieldInputProps> = ({ children, rules, color, ...props }) => {
     const { register } = useFormContext()

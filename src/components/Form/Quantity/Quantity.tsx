@@ -3,6 +3,7 @@ import { Component } from '../../../lib'
 import { Root, Actions, Plus, Minus, Value } from './Quantity.styled'
 
 import { useThrottle } from '../../../hooks/useThrottle'
+import { useFormContext } from 'react-hook-form'
 
 import PlusIconSvg from 'remixicon/icons/System/add-line.svg'
 import MinusIconSvg from 'remixicon/icons/System/subtract-line.svg'
@@ -27,7 +28,7 @@ export const Quantity: Component<QuantityProps> = ({
     label,
     rules,
     color: _color,
-    defaultValue: inputValue = 1,
+    defaultValue = 1,
     maxValue,
     minValue = 1,
     addLabel,
@@ -37,12 +38,16 @@ export const Quantity: Component<QuantityProps> = ({
     error,
     hideError,
     disabled,
+    readOnly,
     fixed,
     onUpdate: _onUpdate,
     onRemove: _onRemove,
     ...props
 }) => {
-    const [value, setValue] = useState(inputValue)
+    const { watch, setValue } = useFormContext()
+
+    const value = watch(name, defaultValue)
+
     const [loaded, setLoaded] = useState(false)
 
     const fieldError = useFormFieldError({ name, error })
@@ -63,17 +68,13 @@ export const Quantity: Component<QuantityProps> = ({
 
     useEffect(() => setLoaded(true), [])
 
-    const handleUpdate = useCallback(({ target }) => {
-        setValue(Number(target.value))
-    }, [])
-
     const handleSubstract = useCallback(() => {
-        setValue(value - 1)
-    }, [value, setValue])
+        setValue(name, Number(value) - 1, { shouldDirty: true })
+    }, [setValue, name, value])
 
     const handleAdd = useCallback(() => {
-        setValue(value + 1)
-    }, [value, setValue])
+        setValue(name, Number(value) + 1, { shouldDirty: true })
+    }, [setValue, name, value])
 
     return (
         <Field $type={props.type}>
@@ -90,12 +91,12 @@ export const Quantity: Component<QuantityProps> = ({
                         id={`field-input__${name}`}
                         name={name}
                         type="number"
-                        onChange={handleUpdate}
                         size={2}
-                        value={value}
+                        defaultValue={defaultValue}
                         rules={rules}
                         color={color}
                         disabled={fixed || disabled}
+                        readOnly={readOnly}
                         {...props}
                     />
                 </Value>
@@ -107,11 +108,11 @@ export const Quantity: Component<QuantityProps> = ({
                         </Minus>
                     ) : (
                         <React.Fragment>
-                            <Minus disabled={disabled || (_onRemove ? value < minValue : value <= minValue)} type="button" onClick={handleSubstract}>
+                            <Minus disabled={readOnly || disabled || (_onRemove ? value < minValue : value <= minValue)} type="button" onClick={handleSubstract}>
                                 {_onRemove && value <= minValue ? <RemoveIconSvg aria-label={substractLabel} /> : <MinusIconSvg aria-label={removeLabel} />}
                             </Minus>
 
-                            <Plus disabled={disabled || value === maxValue} type="button" onClick={handleAdd}>
+                            <Plus disabled={readOnly || disabled || value === maxValue} type="button" onClick={handleAdd}>
                                 <PlusIconSvg aria-label={addLabel} />
                             </Plus>
                         </React.Fragment>

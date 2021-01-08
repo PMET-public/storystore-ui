@@ -73,7 +73,8 @@ export const Input = styled.input<{ $color?: FieldColors }>`
         background-color: ${props => props.theme.colors.accent5};
     }
 
-    &:disabled {
+    &:disabled,
+    &:readonly {
         border-bottom-style: dashed;
         border-bottom-color: ${props => props.theme.colors.onSurface10};
     }

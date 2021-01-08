@@ -7,12 +7,12 @@ import { useFormFieldError } from '../useFormFieldError'
 
 export type SelectProps = FormFieldProps & {
     items: Array<{ text: string } & OptionHTMLAttributes<HTMLOptionElement>>
-    blankDefault?: string | boolean
+    blankLabel?: string | boolean
     loading?: boolean
     hideError?: boolean
 }
 
-export const Select: Component<SelectProps> = ({ as, error, color: _color, label, loading, name, rules, items, blankDefault, hideError, ...props }) => {
+export const Select: Component<SelectProps> = ({ as, error, color: _color, label, loading, name, rules, items, blankLabel, hideError, defaultValue = '', ...props }) => {
     const fieldError = useFormFieldError({ name, error })
 
     const color = _color ?? (fieldError && FieldColors.error)
@@ -30,10 +30,10 @@ export const Select: Component<SelectProps> = ({ as, error, color: _color, label
                     <SelectSkeleton />
                 ) : (
                     <Wrapper $disabled={props.disabled}>
-                        <FieldInput id={`field-input__${name}`} as={SelectRoot} disabled={items?.length === 0} name={name} rules={rules} color={color} {...props}>
-                            {blankDefault && (
-                                <option selected disabled>
-                                    {typeof blankDefault === 'string' && blankDefault}
+                        <FieldInput id={`field-input__${name}`} as={SelectRoot} disabled={items?.length === 0} name={name} rules={rules} color={color} defaultValue={defaultValue} {...props}>
+                            {blankLabel && (
+                                <option value="" disabled>
+                                    {typeof blankLabel === 'string' && blankLabel}
                                 </option>
                             )}
                             {items &&

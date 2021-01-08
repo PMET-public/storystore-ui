@@ -22,6 +22,7 @@ storiesOf('📦 Components/Form/Select', module).add('Default', () => (
                 },
                 undefined
             )}
+            blankLabel
             defaultValue="2"
             onChange={action('onChange')}
             items={[

@@ -12,6 +12,7 @@ storiesOf('📦 Components/Form/Select', module).add('Default', () => (
             loading={boolean('loading', false)}
             label="Label"
             error={text('error', '')}
+            blankDefault
             color={select(
                 'color',
                 {
@@ -30,6 +31,7 @@ storiesOf('📦 Components/Form/Select', module).add('Default', () => (
                 { text: 'Three', value: '3' },
                 { text: 'Four', value: '4' },
             ]}
+            rules={{ required: true }}
         />
     </Form>
 ))

@@ -4,7 +4,7 @@ import { Root, Field as FieldRoot, Label as LabelRoot, Error as ErrorRoot, Input
 
 export { FieldColors } from './Form.styled'
 
-import { FormProvider, useForm, useFormContext, UseFormOptions, ValidationRule } from 'react-hook-form'
+import { FormProvider, useForm, useFormContext, UseFormOptions, RegisterOptions } from 'react-hook-form'
 
 import { UseFormMethods } from 'react-hook-form/dist/types/form'
 import { FieldErrors } from 'react-hook-form/dist/types/errors'
@@ -24,7 +24,7 @@ export type FormProps<P> = Override<
 export type FormContext = UseFormMethods
 
 export const Form: Component<FormProps<any>> = React.forwardRef(({ children, onSubmit, onErrors, onValues, onInit, onChange, options, ...props }, ref: any) => {
-    const form = useForm(options)
+    const form = useForm({ shouldFocusError: true, ...options})
 
     if (ref) ref.current = form
 
@@ -43,9 +43,8 @@ export const Form: Component<FormProps<any>> = React.forwardRef(({ children, onS
     }, [onInit])
 
     useEffect(() => {
-        if (onErrors && Object.entries(form.errors).length > 0) {
-            onErrors(form.errors)
-        }
+        if (Object.entries(form.errors).length < 1) return
+        if (onErrors) onErrors(form.errors)
     }, [onErrors, form.errors])
 
     return (
@@ -64,7 +63,7 @@ export type FormFieldProps = Props<{
     label?: ReactElement | string
     error?: string
     color?: FieldColors
-    rules?: ValidationRules
+    rules?: RegisterOptions
 }>
 
 /** Field */
@@ -85,7 +84,7 @@ export const Label: Component<LabelProps> = ({ children, color, ...props }) => {
 }
 
 /** FieldInput */
-export type FieldInputProps = InputHTMLAttributes<any> & { rules?: ValidationRules; color?: FieldColors }
+export type FieldInputProps = InputHTMLAttributes<any> & { rules?: RegisterOptions; color?: FieldColors }
 
 export const FieldInput: Component<FieldInputProps> = ({ children, rules, color, ...props }) => {
     const { register } = useFormContext()

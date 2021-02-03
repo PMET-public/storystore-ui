@@ -33,6 +33,7 @@ storiesOf('📦 Components/Form/ThumbSwatches', module).add('Default', () => (
                 },
                 undefined
             )}
+            rules={{ required: true }}
         />
     </Form>
 ))

@@ -34,7 +34,7 @@ export const Item = styled.label<{ $disabled?: boolean }>`
 `
 
 export const Input = styled.input`
-    display: none;
+    position: absolute;
 
     &:checked + ${OffIcon} {
         display: none;

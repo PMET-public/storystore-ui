@@ -8,7 +8,7 @@ import { action } from '@storybook/addon-actions'
 storiesOf('📦 Components/Form/Checkbox', module).add('Default', () => (
     <Form onSubmit={action('onSubmit')}>
         <Checkbox
-            label="Label"
+            label="Options"
             name="test"
             placeholder={text('placeholder', '')}
             error={text('error', '')}
@@ -31,13 +31,15 @@ storiesOf('📦 Components/Form/Checkbox', module).add('Default', () => (
                 {
                     label: 'Option 2',
                     value: 'option2',
-                    defaultChecked: true,
+                    // defaultChecked: true,
                 },
                 {
                     label: 'Option 3',
                     value: 'option3',
                 },
             ]}
+            rules={{ required: true }}
         />
+
     </Form>
 ))

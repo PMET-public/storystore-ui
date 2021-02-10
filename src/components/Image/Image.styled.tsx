@@ -21,6 +21,10 @@ export const Root = styled.div<{ $vignette?: boolean; $loaded?: boolean }>`
                 cursor: inherit;
             }
         `}
+
+    & img {
+        max-width: 100%;
+    }
 `
 
 export const Placeholder = styled.img<{ $loaded?: boolean }>`
@@ -28,7 +32,6 @@ export const Placeholder = styled.img<{ $loaded?: boolean }>`
     z-index: 0;
     background-color: ${props => props.theme.colors.onSurface10};
     opacity: ${props => (props.$loaded ? 0 : 1)};
-    max-width: 100%;
     color: transparent;
 `
 

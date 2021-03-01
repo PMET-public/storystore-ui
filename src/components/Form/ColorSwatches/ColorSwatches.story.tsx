@@ -9,13 +9,13 @@ storiesOf('📦 Components/Form/ColorSwatches', module).add('Default', () => (
     <Form onSubmit={action('onSubmit')}>
         <ColorSwatches
             loading={boolean('loading', false)}
-            label={text('label', '')}
+            label={text('label', 'Colors')}
             name="color"
             type="radio"
             items={object('list', [
                 { label: 'Blue', color: 'blue' },
                 { label: 'Red', color: 'red', disabled: true },
-                { label: 'Teal', color: 'teal', defaultChecked: true },
+                { label: 'Teal', color: 'teal' },
                 { label: 'purple', color: 'purple' },
                 { label: 'yellow', color: 'yellow' },
             ])}
@@ -31,6 +31,7 @@ storiesOf('📦 Components/Form/ColorSwatches', module).add('Default', () => (
                 },
                 undefined
             )}
+            rules={{ required: true }}
         />
     </Form>
 ))

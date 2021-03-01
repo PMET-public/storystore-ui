@@ -15,7 +15,7 @@ export const Skeleton: Component<SkeletonProps> = ({ children, width, height, ..
             foregroundColor="rgba(204, 204, 204, 0.25)"
             viewBox={width && height ? `0 0 ${width} ${height}` : undefined}
             {...props}
-            style={{ width, height, ...props.style }}
+            style={{ width, height, maxWidth: '100%', ...props.style }}
         >
             {children}
         </ContentLoader>

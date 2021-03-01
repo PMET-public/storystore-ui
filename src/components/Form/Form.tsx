@@ -34,9 +34,8 @@ export const Form: Component<FormProps<any>> = React.forwardRef(({ children, onS
     }, [onValues, JSON.stringify(values)])
 
     useEffect(() => {
-        if (onErrors && Object.entries(form.errors).length > 0) {
-            onErrors(form.errors)
-        }
+        if (Object.entries(form.errors).length < 1) return
+        if (onErrors) onErrors(form.errors)
     }, [onErrors, form.errors])
 
     return (

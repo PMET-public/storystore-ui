@@ -11,7 +11,7 @@ const DelayedImageSmall = 'https://deelay.me/2000/https://vignette.wikia.nocooki
 storiesOf('📦 Components/Image', module)
     .add('Default', () => <Image alt={text('alt', 'Lorem')} src={text('src', DelayedImage)} width={number('width', 700)} height={number('height', 934)} vignette={boolean('vignette', false)} />)
 
-    .add('w/o W & H', () => <Image alt="" src={text('src', DelayedImage)} />)
+    .add('w/o W & H', () => <Image alt="" originalWidthAndHeight={boolean('originalWidthAndHeight', false)} src={text('src', DelayedImage)} />)
 
     .add('Eager', () => (
         <picture>

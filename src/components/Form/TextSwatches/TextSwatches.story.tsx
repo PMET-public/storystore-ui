@@ -9,10 +9,10 @@ storiesOf('📦 Components/Form/TextSwatches', module).add('Default', () => (
     <Form onSubmit={action('onSubmit')}>
         <TextSwatches
             loading={boolean('loading', false)}
-            label={text('label', '')}
+            label={text('label', 'Sizes')}
             name="size"
             type="radio"
-            items={object('list', [{ label: 'XS' }, { label: 'M', disabled: true }, { label: 'L', defaultChecked: true }, { label: 'XL' }, { label: 'S' }])}
+            items={object('list', [{ label: 'XS' }, { label: 'M', disabled: true }, { label: 'L' }, { label: 'XL' }, { label: 'S' }])}
             onChange={action('onChange')}
             error={text('error', '')}
             color={select(
@@ -25,6 +25,7 @@ storiesOf('📦 Components/Form/TextSwatches', module).add('Default', () => (
                 },
                 undefined
             )}
+            rules={{ required: true }}
         />
     </Form>
 ))
